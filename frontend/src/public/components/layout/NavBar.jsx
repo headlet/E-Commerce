@@ -8,9 +8,9 @@ function NavBar() {
       <div className="bg-black text-white text-sm">
         <p className="text-center p-2">Summer cloths for 5% off | Order Now</p>
       </div>
-      <nav className="flex justify-evenly items-center h-15 border-b gap-9 mt-3 border-gray-400">
-        <img src={logo} alt="logo" className="w-auto h-14" />
-        <ul className="flex gap-8">
+      <nav className="flex justify-around items-center h-15 border-b gap-9 mt-3 border-gray-400">
+        <img src={logo ?? ''} alt="logo" className="w-auto h-16" />
+        <ul className="flex gap-8 text-xl">
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -28,7 +28,7 @@ function NavBar() {
 
         <Link
           to="/login"
-          className="border flex gap-2 justify-center items-center bg-black text-white p-2 rounded-xl hover:border-black hover:bg-white hover:text-black 
+          className="text-xl border flex gap-2 justify-center items-center bg-black text-white p-2 rounded-xl hover:border-black hover:bg-white hover:text-black 
 transition-all duration-200"
         >
           <FaUser />
