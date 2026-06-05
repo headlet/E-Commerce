@@ -24,6 +24,8 @@ import prod2 from "../../../assets/products/product1/prod6.png";
 import prod3 from "../../../assets/products/product1/prod7.png";
 import prod4 from "../../../assets/products/product1/prod8.png";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import ban1 from '../../../assets/banner/ban1.png';
+import ban2 from '../../../assets/banner/ban2.png';
 
 function Home() {
   const brands = [
@@ -208,8 +210,8 @@ function Home() {
       </div>
 
       {/* Deal of the day */}
-      <div className="w-full flex flex-col lg:flex-row">
-        <div className="flex flex-col justify-center lg:w-[74%]">
+      <div className="w-full flex flex-col lg:flex-row gap-8">
+        <div className="flex flex-col justify-center lg:w-[76%]">
           <div className="flex justify-between bg-[#1ABA1A] items-center p-4 rounded-2xl">
             <div className=" font-semibold text-lg text-left text-white ">
               <h2>DEALS OF THE DAY</h2>
@@ -220,11 +222,12 @@ function Home() {
             </div>
           </div>
 
-          <div className="flex justify-center items-center bg-white rounded-lg p-9 gap-10">
-            <div className="w-auto h-96 py-6 flex flex-col gap-3">
+          <div className="flex flex-col md:flex-row justify-center items-center bg-white rounded-lg p-9 gap-10">
+            <div className="flex w-full justify-center items-center">
+              <div className="w-auto h-96 py-6 flex flex-col gap-3">
               {dealsimg.map((deal, index) => (
                 <div key={index}>
-                  <img src={deal} alt={deal} className="hover:bg-[#1ABA1A]"/>
+                  <img src={deal} alt={deal} className="hover:bg-[#1ABA1A]" />
                 </div>
               ))}
             </div>
@@ -232,16 +235,22 @@ function Home() {
               <p className="absolute top-12 left-5 bg-[#1ABA1A] p-1 text-white font-semibold  rounded-2xl">
                 Save <span className="text-xl block">$199.00</span>
               </p>
-              <img src={prod} alt="" className="w-auto h-72"/>
+              <img src={prod} alt="" className="w-auto h-72" />
             </div>
 
-
-            <div className="flex flex-col gap-4">
-              <h2 className="font-bold text-xl w-92">Xiomi Redmi Note 11 pro 256GB 2023, Black Smartphone</h2>
-              <p className="text-[#F1352B] text-xl font-bold">$569.00
-                <span className="text-gray-500 font-normal "> $759.00</span>
+            </div>
+            <div className="flex flex-col gap-4 justify-center items-center md:justify-start md:items-start">
+              <h2 className="font-bold text-xl w-92">
+                Xiomi Redmi Note 11 pro 256GB 2023, Black Smartphone
+              </h2>
+              <p className="text-[#F1352B] text-xl font-bold">
+                $569.00
+                <span className="text-gray-500 font-normal line-through px-2">
+                  {" "}
+                  $759.00
+                </span>
               </p>
-              <ul className=" list-disc px-8" >
+              <ul className=" list-disc px-8">
                 <li>
                   Intel LGA 1700 Socket: Supports 13th & 12th Gen Intel Core
                 </li>
@@ -250,12 +259,18 @@ function Home() {
               </ul>
 
               <div className="flex gap-4">
-                <p className="bg-green-100 p-2 rounded text-[#1ABA1A]">FREE SHIPPING</p>
-                <p className="bg-red-100 p-2 rounded text-[#F1352B]">FREE GIFT</p>
+                <p className="bg-green-100 p-2 rounded text-[#1ABA1A]">
+                  FREE SHIPPING
+                </p>
+                <p className="bg-red-100 p-2 rounded text-[#F1352B]">
+                  FREE GIFT
+                </p>
               </div>
 
               <div className="grid grid-cols-4">
-                <h2 className="font-semibold">HURRY UP! PROMORTION WILL EXPIRES IN</h2>
+                <h2 className="font-semibold">
+                  HURRY UP! PROMORTION WILL EXPIRES IN
+                </h2>
                 <div></div>
                 <div></div>
                 <div></div>
@@ -265,7 +280,9 @@ function Home() {
               </div>
 
               <div>
-                <div></div>
+                <div className="w-[80%] h-2 bg-gray-300 rounded-full overflow-hidden border">
+                  <div className="h-full w-[34.6%] bg-green-500"></div>
+                </div>
                 <p>
                   SOLD: <span className="font-bold">26/75</span>
                 </p>
@@ -274,9 +291,9 @@ function Home() {
           </div>
         </div>
 
-        <div>
-          <div></div>
-          <div></div>
+        <div className="w-92 sm:w-[22%] flex flex-col gap-4 mx-auto">
+          <img src={ban1} alt="" className=" h-44"/>
+          <img src={ban2} alt="" className=" h-44"/>
         </div>
       </div>
     </section>
