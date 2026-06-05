@@ -19,8 +19,6 @@ import cat2 from "../../../assets/categories/cat2.png";
 import cat3 from "../../../assets/categories/cat3.png";
 import cat4 from "../../../assets/categories/cat4.png";
 
-
-
 function Home() {
   const brands = [
     brand1,
@@ -35,10 +33,15 @@ function Home() {
     brand10,
   ];
 
-  const cats =[cat1, cat2, cat3, cat4];
+  const cats = [
+    { icon: cat1, name: "Laptop" },
+    { icon: cat2, name: "CPU" },
+    { icon: cat3, name: "HeadPhone" },
+    { icon: cat4, name: "Monitor" },
+  ];
   return (
-    <section className="flex flex-col items-center justify-center gap-5">
-      <div className="w-full mx-auto flex flex-col md:flex-row justify-center items-start gap-4 px-4 pt-4">
+    <section className="flex flex-col items-center justify-center gap-5 p-4">
+      <div className="w-full mx-auto flex flex-col md:flex-row justify-center items-start gap-4 ">
         {/* LEFT CATEGORY */}
         <div className="w-full md:w-[25%] pr-0 lg:pr-4 flex gap-2 md:gap-0 sm:flex-col text-md p-2 md:p-9 lg:pt-9 overflow-x-auto lg:overflow-visible bg-white rounded-2xl">
           <h2 className="text-red-500 text-sm font-semibold whitespace-nowrap">
@@ -159,31 +162,39 @@ function Home() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 w-full px-5 gap-5">
-        <div className="flex flex-col gap-5 bg-white rounded-lg">
-          <h2>FEATURED BRANDS</h2>
 
-          <div className="grid grid-cols-5 gap-4">
+      {/* Brand & Categories */}
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-5">
+        <div className="flex flex-col justify-center  gap-5 bg-white rounded-lg p-6">
+          <h2 className="font-semibold text-lg text-left">FEATURED BRANDS</h2>
+
+          <div className="grid grid-cols-5 gap-6 place-items-center">
             {brands.map((Logo, index) => (
-              <img src={Logo} alt="" key={index}/>
+              <img src={Logo} alt="" key={index} className="w-16" />
             ))}
           </div>
         </div>
 
-        <div className="flex flex-col gap-5 bg-white rounded-lg">
+        <div className="flex flex-col justify-center gap-5 bg-white rounded-lg p-6">
           <div>
-            <h2>TOP CATEGORIES</h2>
-            <div>
-
-            </div>
+            <h2 className="font-semibold text-lg text-left">TOP CATEGORIES</h2>
+            {/* <div>left right </div> */}
           </div>
 
-          <div className="grid grid-cols-4 gap-4">
-            {cats.map((Logo, index) => (
-              <img src={Logo} alt="" key={index}/>
+          <div className="grid grid-cols-4 gap-4 place-items-center">
+            {cats.map((logo, index) => (
+              <div key={index} className="flex flex-col justify-center items-center text-md">
+                <img src={logo.icon} alt={logo.name} />
+                <p>{logo.name}</p>
+              </div>
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Deal of the day */}
+      <div>
+
       </div>
     </section>
   );
