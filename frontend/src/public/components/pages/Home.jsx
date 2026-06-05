@@ -176,7 +176,7 @@ function Home() {
   ];
 
   return (
-    <section className="flex flex-col items-center">
+    <section className="flex flex-col items-center justify-center">
       <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row gap-9 mb-10 px-4">
         {/* LEFT SIDEBAR */}
         <ul className="w-full lg:w-1/5 border-b lg:border-b-0 lg:border-r border-gray-300 pr-0 lg:pr-4 flex flex-row lg:flex-col gap-4 text-md pt-4 lg:pt-9 overflow-x-auto lg:overflow-visible">
