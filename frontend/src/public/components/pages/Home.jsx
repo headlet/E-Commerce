@@ -24,8 +24,9 @@ import prod2 from "../../../assets/products/product1/prod6.png";
 import prod3 from "../../../assets/products/product1/prod7.png";
 import prod4 from "../../../assets/products/product1/prod8.png";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import ban1 from '../../../assets/banner/ban1.png';
-import ban2 from '../../../assets/banner/ban2.png';
+import ban1 from "../../../assets/banner/ban1.png";
+import ban2 from "../../../assets/banner/ban2.png";
+import main from "../../../assets/banner/main.png";
 
 function Home() {
   const brands = [
@@ -225,19 +226,18 @@ function Home() {
           <div className="flex flex-col md:flex-row justify-center items-center bg-white rounded-lg p-9 gap-10">
             <div className="flex w-full justify-center items-center">
               <div className="w-auto h-96 py-6 flex flex-col gap-3">
-              {dealsimg.map((deal, index) => (
-                <div key={index}>
-                  <img src={deal} alt={deal} className="hover:bg-[#1ABA1A]" />
-                </div>
-              ))}
-            </div>
-            <div className="relative py-15 w-[80%]">
-              <p className="absolute top-12 left-5 bg-[#1ABA1A] p-1 text-white font-semibold  rounded-2xl">
-                Save <span className="text-xl block">$199.00</span>
-              </p>
-              <img src={prod} alt="" className="w-auto h-72" />
-            </div>
-
+                {dealsimg.map((deal, index) => (
+                  <div key={index}>
+                    <img src={deal} alt={deal} className="hover:bg-[#1ABA1A]" />
+                  </div>
+                ))}
+              </div>
+              <div className="relative py-15 w-[80%]">
+                <p className="absolute top-12 left-5 bg-[#1ABA1A] p-1 text-white font-semibold  rounded-2xl">
+                  Save <span className="text-xl block">$199.00</span>
+                </p>
+                <img src={prod} alt="" className="w-auto h-72" />
+              </div>
             </div>
             <div className="flex flex-col gap-4 justify-center items-center md:justify-start md:items-start">
               <h2 className="font-bold text-xl w-92">
@@ -279,7 +279,7 @@ function Home() {
                 {/* Time countdown */}
               </div>
 
-              <div>
+              <div className="w-full">
                 <div className="w-[80%] h-2 bg-gray-300 rounded-full overflow-hidden border">
                   <div className="h-full w-[34.6%] bg-green-500"></div>
                 </div>
@@ -292,9 +292,18 @@ function Home() {
         </div>
 
         <div className="w-92 sm:w-[22%] flex flex-col gap-4 mx-auto">
-          <img src={ban1} alt="" className=" h-44"/>
-          <img src={ban2} alt="" className=" h-44"/>
+          <img src={ban1} alt="" className=" h-44" />
+          <img src={ban2} alt="" className=" h-44" />
         </div>
+      </div>
+
+      {/* break section */}
+      <div className="bg-[#1ABA1A] w-full p-6 h-20 rounded-lg text-white text-center bg-center bg-no-repeat bg-cover" style={{backgroundImage: `url(${main})`}}>
+        <p>Member get FREE SHIPPING* with no order minimumal, * Restriction apply free 30-day trial</p>
+      </div>
+
+      <div>
+        
       </div>
     </section>
   );
