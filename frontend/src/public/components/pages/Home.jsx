@@ -18,6 +18,12 @@ import cat1 from "../../../assets/categories/cat1.png";
 import cat2 from "../../../assets/categories/cat2.png";
 import cat3 from "../../../assets/categories/cat3.png";
 import cat4 from "../../../assets/categories/cat4.png";
+import prod from "../../../assets/products/product1/prod.png";
+import prod1 from "../../../assets/products/product1/prod5.png";
+import prod2 from "../../../assets/products/product1/prod6.png";
+import prod3 from "../../../assets/products/product1/prod7.png";
+import prod4 from "../../../assets/products/product1/prod8.png";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 function Home() {
   const brands = [
@@ -39,6 +45,8 @@ function Home() {
     { icon: cat3, name: "HeadPhone" },
     { icon: cat4, name: "Monitor" },
   ];
+
+  const dealsimg = [prod1, prod2, prod3, prod4];
   return (
     <section className="flex flex-col items-center justify-center gap-5 p-4">
       <div className="w-full mx-auto flex flex-col md:flex-row justify-center items-start gap-4 ">
@@ -85,8 +93,10 @@ function Home() {
               </button>
             </div>
 
-            <p className="bg-white text-black px-4 py-1 rounded-2xl w-fit absolute bottom-4 right-4 text-sm">
+            <p className="bg-white text-black px-4 py-1 rounded-2xl w-fit absolute bottom-4 right-4 text-sm flex justify-center items-center gap-1">
+              <FaChevronLeft />
               3 / 3
+              <FaChevronRight />
             </p>
           </div>
 
@@ -162,7 +172,6 @@ function Home() {
         </div>
       </div>
 
-
       {/* Brand & Categories */}
       <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-5">
         <div className="flex flex-col justify-center  gap-5 bg-white rounded-lg p-6">
@@ -176,14 +185,20 @@ function Home() {
         </div>
 
         <div className="flex flex-col justify-center gap-5 bg-white rounded-lg p-6">
-          <div>
+          <div className="flex justify-between items-center">
             <h2 className="font-semibold text-lg text-left">TOP CATEGORIES</h2>
-            {/* <div>left right </div> */}
+            <div className="flex gap-2 p-2 rounded-lg bg-[#1ABA1A] text-white">
+              <FaChevronLeft />
+              <FaChevronRight />
+            </div>
           </div>
 
           <div className="grid grid-cols-4 gap-4 place-items-center">
             {cats.map((logo, index) => (
-              <div key={index} className="flex flex-col justify-center items-center text-md">
+              <div
+                key={index}
+                className="flex flex-col justify-center items-center text-md"
+              >
                 <img src={logo.icon} alt={logo.name} />
                 <p>{logo.name}</p>
               </div>
@@ -193,8 +208,76 @@ function Home() {
       </div>
 
       {/* Deal of the day */}
-      <div>
+      <div className="w-full flex flex-col lg:flex-row">
+        <div className="flex flex-col justify-center lg:w-[74%]">
+          <div className="flex justify-between bg-[#1ABA1A] items-center p-4 rounded-2xl">
+            <div className=" font-semibold text-lg text-left text-white ">
+              <h2>DEALS OF THE DAY</h2>
+            </div>
+            <div className="flex gap-2 text-white">
+              <FaChevronLeft />
+              <FaChevronRight />
+            </div>
+          </div>
 
+          <div className="flex justify-center items-center bg-white rounded-lg p-9 gap-10">
+            <div className="w-auto h-96 py-6 flex flex-col gap-3">
+              {dealsimg.map((deal, index) => (
+                <div key={index}>
+                  <img src={deal} alt={deal} className="hover:bg-[#1ABA1A]"/>
+                </div>
+              ))}
+            </div>
+            <div className="relative py-15 w-[80%]">
+              <p className="absolute top-12 left-5 bg-[#1ABA1A] p-1 text-white font-semibold  rounded-2xl">
+                Save <span className="text-xl block">$199.00</span>
+              </p>
+              <img src={prod} alt="" className="w-auto h-72"/>
+            </div>
+
+
+            <div className="flex flex-col gap-4">
+              <h2 className="font-bold text-xl w-92">Xiomi Redmi Note 11 pro 256GB 2023, Black Smartphone</h2>
+              <p className="text-[#F1352B] text-xl font-bold">$569.00
+                <span className="text-gray-500 font-normal "> $759.00</span>
+              </p>
+              <ul className=" list-disc px-8" >
+                <li>
+                  Intel LGA 1700 Socket: Supports 13th & 12th Gen Intel Core
+                </li>
+                <li> DDR5 Compatible: 4*SMD DIMMs with XMP 3.0 Memory</li>
+                <li>Commanding Power Design: Twin 16+1+2 Phases Digital VRM</li>
+              </ul>
+
+              <div className="flex gap-4">
+                <p className="bg-green-100 p-2 rounded text-[#1ABA1A]">FREE SHIPPING</p>
+                <p className="bg-red-100 p-2 rounded text-[#F1352B]">FREE GIFT</p>
+              </div>
+
+              <div className="grid grid-cols-4">
+                <h2 className="font-semibold">HURRY UP! PROMORTION WILL EXPIRES IN</h2>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                {/* Time countdown */}
+              </div>
+
+              <div>
+                <div></div>
+                <p>
+                  SOLD: <span className="font-bold">26/75</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
     </section>
   );
