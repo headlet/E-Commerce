@@ -27,8 +27,56 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ban1 from "../../../assets/banner/ban1.png";
 import ban2 from "../../../assets/banner/ban2.png";
 import main from "../../../assets/banner/main.png";
+import prod5 from "../../../assets/products/product2/prod9.png.png";
+import prod6 from "../../../assets/products/product3/prod10.png.png";
+import prod7 from "../../../assets/products/product4/prod11.png.png";
+import prod8 from "../../../assets/products/product5/prod12.png.png";
+import prod9 from "../../../assets/products/product6/prod13.png.png";
 
 function Home() {
+  const bestprod = [
+    {
+      name: "BOSO 2 Wireless On Ear Headphone",
+      price: "$300.00",
+      org_price: "$400.00",
+      prodimg: prod5,
+      stock: "In Stock",
+      save: ''
+    },
+    {
+      name: "iPad Pro 11-inch",
+      price: "$899.00",
+      org_price: "$999.00",
+      prodimg: prod6,
+      stock: "In Stock",
+      save: '$400'
+    },
+    {
+      name: "uLosk Mini Case 2.0",
+      price: "$120.00",
+      org_price: "$150.00",
+      prodimg: prod7,
+      stock: "In Stock",
+       save: '$400'
+    },
+    {
+      name: "Xenon i10 / 32GB / SSD 512GB / VGA 8GB",
+      price: "$1,250.00",
+      org_price: "$1,400.00",
+      prodimg: prod8,
+      stock: "In Stock",
+       save: '$400'
+    },
+    {
+      name: "Opplo Watch Series 8 GPS + Cellular Stainless Steel Case with Milanese Loop",
+      price: "$599.00",
+      org_price: "$699.00",
+      prodimg: prod9,
+      stock: "In Stock",
+       save: '$400'
+    },
+  ];
+
   const brands = [
     brand1,
     brand2,
@@ -291,19 +339,82 @@ function Home() {
           </div>
         </div>
 
-        <div className="w-92 sm:w-[22%] flex flex-col gap-4 mx-auto">
+        <div className="w-92 lg:w-[22%] flex flex-col gap-4 mx-auto">
           <img src={ban1} alt="" className=" h-44" />
           <img src={ban2} alt="" className=" h-44" />
         </div>
       </div>
 
       {/* break section */}
-      <div className="bg-[#1ABA1A] w-full p-6 h-20 rounded-lg text-white text-center bg-center bg-no-repeat bg-cover" style={{backgroundImage: `url(${main})`}}>
-        <p>Member get FREE SHIPPING* with no order minimumal, * Restriction apply free 30-day trial</p>
+      <div
+        className="bg-[#1ABA1A] w-full p-6 h-20 rounded-lg text-white text-center bg-center bg-no-repeat bg-cover"
+        style={{ backgroundImage: `url(${main})` }}
+      >
+        <p>
+          Member get FREE SHIPPING* with no order minimumal, * Restriction apply
+          free 30-day trial
+        </p>
       </div>
 
-      <div>
-        
+      {/* Best seller */}
+      <div className="w-full ">
+        <div className="flex justify-between items-center p-7">
+          <div className="flex gap-6">
+            <h2 className="text-lg font-semibold">BEST SELLER</h2>
+            <p>NEW IN</p>
+            <p>POPULAR</p>
+          </div>
+          <button>View All</button>
+        </div>
+
+        <div className="flex md:justify-center  md:items-center w-full bg-white rounded-lg p-5">
+          <FaChevronLeft
+            size={40}
+            className="bg-gray-200 rounded-lg"
+          />
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 px-7 gap-4">
+            {bestprod.map((prod, index) => (
+              <div className="flex flex-col justify-center items-center gap-3 rounded-lg px-3">
+                <div className="relative ">
+                  <p className="absolute top-4 left-2 bg-[#1ABA1A] p-2 text-white  rounded-2xl text-xs">
+                    Save <span className="text-md block">{prod.save}</span>
+                  </p>
+                  <img src={prod.prodimg} alt="" className="h-52 w-48" />
+                  <div>
+                    <img
+                      src={prod.prodimg}
+                      alt=""
+                      className="w-10 h-10 hover:bg-[#1ABA1A] hover:border-[#1ABA1A] hover:border-2"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col justify-center gap-2" key={index}>
+                  <h2 className="w-full h-15 text-lg font-semibold block overflow-hidden">
+                    {prod.name}
+                  </h2>
+                  <div className="flex gap-3 text-lg">
+                    <p className="text-red-500">{prod.price}</p>
+                    <p className="line-through">{prod.org_price}</p>
+                  </div>
+                  <div className="flex gap-4">
+                    <p className="bg-green-100 p-2 rounded text-[#1ABA1A]">
+                      FREE SHIPPING
+                    </p>
+                    <p className="bg-red-100 p-2 rounded text-[#F1352B]">
+                      FREE GIFT
+                    </p>
+                  </div>
+                  <p>{prod.stock}</p> {/*add cross */}
+                </div>
+              </div>
+            ))}
+          </div>
+          <FaChevronRight
+            size={40}
+            className="bg-gray-200 rounded-lg"
+          />
+        </div>
       </div>
     </section>
   );
