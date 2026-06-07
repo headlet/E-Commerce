@@ -58,6 +58,170 @@ function Product() {
     },
   ];
 
+  const secondprod = [
+    {
+      name: "BOSO 2 Wireless On Ear Headphone",
+      price: "$300.00",
+      org_price: "$400.00",
+      prodimg: prod5,
+      stock: "In Stock",
+      save: "",
+    },
+    {
+      name: "iPad Pro 11-inch",
+      price: "$899.00",
+      org_price: "$999.00",
+      prodimg: prod6,
+      stock: "In Stock",
+      save: "$400",
+    },
+    {
+      name: "uLosk Mini Case 2.0",
+      price: "$120.00",
+      org_price: "$150.00",
+      prodimg: prod7,
+      stock: "In Stock",
+      save: "$400",
+    },
+    {
+      name: "Xenon i10 / 32GB / SSD 512GB / VGA 8GB",
+      price: "$1,250.00",
+      org_price: "$1,400.00",
+      prodimg: prod8,
+      stock: "In Stock",
+      save: "$400",
+    },
+    {
+      name: "Opplo Watch Series 8 GPS + Cellular Stainless Steel Case with Milanese Loop",
+      price: "$599.00",
+      org_price: "$699.00",
+      prodimg: prod9,
+      stock: "In Stock",
+      save: "$400",
+    },
+     {
+      name: "BOSO 2 Wireless On Ear Headphone",
+      price: "$300.00",
+      org_price: "$400.00",
+      prodimg: prod5,
+      stock: "In Stock",
+      save: "",
+    },
+    {
+      name: "iPad Pro 11-inch",
+      price: "$899.00",
+      org_price: "$999.00",
+      prodimg: prod6,
+      stock: "In Stock",
+      save: "$400",
+    },
+    {
+      name: "uLosk Mini Case 2.0",
+      price: "$120.00",
+      org_price: "$150.00",
+      prodimg: prod7,
+      stock: "In Stock",
+      save: "$400",
+    },
+    {
+      name: "Xenon i10 / 32GB / SSD 512GB / VGA 8GB",
+      price: "$1,250.00",
+      org_price: "$1,400.00",
+      prodimg: prod8,
+      stock: "In Stock",
+      save: "$400",
+    },
+    {
+      name: "Opplo Watch Series 8 GPS + Cellular Stainless Steel Case with Milanese Loop",
+      price: "$599.00",
+      org_price: "$699.00",
+      prodimg: prod9,
+      stock: "In Stock",
+      save: "$400",
+    },
+     {
+      name: "BOSO 2 Wireless On Ear Headphone",
+      price: "$300.00",
+      org_price: "$400.00",
+      prodimg: prod5,
+      stock: "In Stock",
+      save: "",
+    },
+    {
+      name: "iPad Pro 11-inch",
+      price: "$899.00",
+      org_price: "$999.00",
+      prodimg: prod6,
+      stock: "In Stock",
+      save: "$400",
+    },
+    {
+      name: "uLosk Mini Case 2.0",
+      price: "$120.00",
+      org_price: "$150.00",
+      prodimg: prod7,
+      stock: "In Stock",
+      save: "$400",
+    },
+    {
+      name: "Xenon i10 / 32GB / SSD 512GB / VGA 8GB",
+      price: "$1,250.00",
+      org_price: "$1,400.00",
+      prodimg: prod8,
+      stock: "In Stock",
+      save: "$400",
+    },
+    {
+      name: "Opplo Watch Series 8 GPS + Cellular Stainless Steel Case with Milanese Loop",
+      price: "$599.00",
+      org_price: "$699.00",
+      prodimg: prod9,
+      stock: "In Stock",
+      save: "$400",
+    },
+     {
+      name: "BOSO 2 Wireless On Ear Headphone",
+      price: "$300.00",
+      org_price: "$400.00",
+      prodimg: prod5,
+      stock: "In Stock",
+      save: "",
+    },
+    {
+      name: "iPad Pro 11-inch",
+      price: "$899.00",
+      org_price: "$999.00",
+      prodimg: prod6,
+      stock: "In Stock",
+      save: "$400",
+    },
+    {
+      name: "uLosk Mini Case 2.0",
+      price: "$120.00",
+      org_price: "$150.00",
+      prodimg: prod7,
+      stock: "In Stock",
+      save: "$400",
+    },
+    {
+      name: "Xenon i10 / 32GB / SSD 512GB / VGA 8GB",
+      price: "$1,250.00",
+      org_price: "$1,400.00",
+      prodimg: prod8,
+      stock: "In Stock",
+      save: "$400",
+    },
+    {
+      name: "Opplo Watch Series 8 GPS + Cellular Stainless Steel Case with Milanese Loop",
+      price: "$599.00",
+      org_price: "$699.00",
+      prodimg: prod9,
+      stock: "In Stock",
+      save: "$400",
+    },
+  ];
+
+
   const list = [
     {
       name: "Android",
@@ -285,7 +449,7 @@ function Product() {
                 <div className="flex md:justify-center  md:items-center w-full bg-white rounded-lg py-10">
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 px-7 gap-6">
-                    {bestprod.map((prod, index) => (
+                    {secondprod.map((prod, index) => (
                       <div className="flex flex-col justify-center items-center gap-4 rounded-lg px-3">
                         <div className="relative ">
                           <p className="absolute top-4 left-2 bg-[#1ABA1A] p-2 text-white  rounded-2xl text-xs">
