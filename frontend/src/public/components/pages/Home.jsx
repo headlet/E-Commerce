@@ -36,8 +36,48 @@ import prod10 from "../../../assets/products/prod14.png";
 import prod11 from "../../../assets/products/prod15.png";
 import prod12 from "../../../assets/products/prod16.png";
 import prod13 from "../../../assets/products/prod17.png";
+import prod14 from "../../../assets/products/prod18.png";
+import prod15 from "../../../assets/products/prod19.png";
+import prod16 from "../../../assets/products/prod20.png";
+import prod17 from "../../../assets/products/prod21.png";
+import prod18 from "../../../assets/products/prod22.png";
+import prod19 from "../../../assets/products/prod23.png";
+import prod20 from "../../../assets/products/prod24.png";
 
 function Home() {
+  const list = [
+    {
+      name: "Android",
+      img: prod15,
+      stock: 10
+    },
+
+    {
+      name: "Iphone",
+      img: prod16,
+      stock: 10
+    },
+    {
+      name: "Samsung",
+      img: prod17,
+      stock: 10
+    },
+    {
+      name: "ROG",
+      img: prod18,
+      stock: 10
+    },
+    {
+      name: "MI",
+      img: prod19,
+      stock: 10
+    },
+    {
+      name: "Oppo",
+      img: prod20,
+      stock: 10
+    },
+  ];
   const bestprod = [
     {
       name: "BOSO 2 Wireless On Ear Headphone",
@@ -384,7 +424,7 @@ function Home() {
       </div>
 
       {/* Best seller */}
-      <div className="w-full ">
+      <div className="w-full bg-white rounded-lg">
         <div className="flex justify-between items-center p-7">
           <div className="flex gap-6">
             <h2 className="text-lg font-semibold">BEST SELLER</h2>
@@ -439,7 +479,7 @@ function Home() {
       </div>
 
       {/* New brand */}
-      <div className="w-full bg-white p-10 flex flex-col gap-8 rounded-lg">
+      <div className="w-full bg-white p-7 flex flex-col gap-8 rounded-lg">
         <div className="flex justify-between items-center w-full">
           <h2 className="text-lg font-semibold">BRAND NEW FOR YOU</h2>
           <div className="flex gap-4">
@@ -459,7 +499,9 @@ function Home() {
                 alt=""
                 className="w-[302px] h-56 rounded-xl"
               />
-              <h2 className="text-lg font-semibold h-8 overflow-hidden w-80 ">{brand.name}</h2>
+              <h2 className="text-lg font-semibold h-8 overflow-hidden w-80 ">
+                {brand.name}
+              </h2>
               <p className="text-sm">{brand.desc} </p>
               <button className="border-2 border-[#1ABA1A] text-[#1ABA1A] rounded-lg p-1 text-sm">
                 SHOP NOW
@@ -467,6 +509,178 @@ function Home() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* top sells */}
+      <div className="w-full bg-white rounded-lg ">
+        <div className="flex justify-between items-center p-7">
+          <h2 className="text-lg font-semibold">TOP SELLING</h2>
+          <button>View All</button>
+        </div>
+
+        <div className="flex flex-col justify-center items-center w-full px-10 gap-6">
+          <div className="flex justify-between w-full gap-6">
+            <div className="flex w-[50%] px-10 rounded-lg justify-between items-center">
+              <div className="flex flex-col gap-3 justify-center items-start h-[200px] ">
+                <h2 className="text-xl font-semibold max-w-[180px]">
+                  REDMI NOTE 12 PRO+ 5G
+                </h2>
+                <p className="text-sm text-gray-400">Rise to the challenge</p>
+                <button className="bg-black text-white p-2 rounded-lg">
+                  SHOP NOW
+                </button>
+              </div>
+              <img src={prod13} alt="" />
+            </div>
+
+            <div className="grid grid-cols-3 grid-rows-2 h-[200px] gap-6 w-[50%]">
+              {list.map((items, index) => (
+                <div key={index} className="flex items-center gap-7">
+                  <div>
+                    <h2 className="text-md font-semibold">{items.name}</h2>
+                    <p className="text-xs text-gray-500">{items.stock} items</p>
+                  </div>
+                  <img src={items.img} alt="" className="w-14 h-14"/>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex md:justify-center  md:items-center w-full bg-white rounded-lg py-10">
+            <FaChevronLeft size={40} className="bg-gray-200 rounded-lg" />
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 px-7 gap-4">
+              {bestprod.map((prod, index) => (
+                <div className="flex flex-col justify-center items-center gap-3 rounded-lg px-3">
+                  <div className="relative ">
+                    <p className="absolute top-4 left-2 bg-[#1ABA1A] p-2 text-white  rounded-2xl text-xs">
+                      Save <span className="text-md block">{prod.save}</span>
+                    </p>
+                    <img src={prod.prodimg} alt="" className="h-52 w-48" />
+                    <div>
+                      <img
+                        src={prod.prodimg}
+                        alt=""
+                        className="w-10 h-10 hover:bg-[#1ABA1A] hover:border-[#1ABA1A] hover:border-2"
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    className="flex flex-col justify-center gap-2"
+                    key={index}
+                  >
+                    <h2 className="w-full h-15 text-lg font-semibold block overflow-hidden">
+                      {prod.name}
+                    </h2>
+                    <div className="flex gap-3 text-lg">
+                      <p className="text-red-500">{prod.price}</p>
+                      <p className="line-through">{prod.org_price}</p>
+                    </div>
+                    <div className="flex gap-4">
+                      <p className="bg-green-100 p-2 rounded text-[#1ABA1A]">
+                        FREE SHIPPING
+                      </p>
+                      <p className="bg-red-100 p-2 rounded text-[#F1352B]">
+                        FREE GIFT
+                      </p>
+                    </div>
+                    <p>{prod.stock}</p> {/*add cross */}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <FaChevronRight size={40} className="bg-gray-200 rounded-lg" />
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full bg-white rounded-lg ">
+        <div className="flex justify-between items-center p-7">
+          <h2 className="text-lg font-semibold">TOP SELLING</h2>
+          <button>View All</button>
+        </div>
+
+        <div className="flex flex-col justify-center items-center w-full px-10 gap-6">
+          <div className="flex justify-between w-full gap-6">
+            <div className="flex w-[50%] px-10 rounded-lg justify-between items-center">
+              <div className="flex flex-col gap-3 justify-center items-start h-[200px] ">
+                <h2 className="text-xl font-semibold max-w-[180px]">
+                  REDMI NOTE 12 PRO+ 5G
+                </h2>
+                <p className="text-sm text-gray-400">Rise to the challenge</p>
+                <button className="bg-black text-white p-2 rounded-lg">
+                  SHOP NOW
+                </button>
+              </div>
+              <img src={prod13} alt="" />
+            </div>
+
+            <div className="grid grid-cols-3 grid-rows-2 h-[200px] gap-6 w-[50%]">
+              {list.map((items, index) => (
+                <div key={index} className="flex items-center gap-7">
+                  <div>
+                    <h2 className="text-md font-semibold">{items.name}</h2>
+                    <p className="text-xs text-gray-500">{items.stock} items</p>
+                  </div>
+                  <img src={items.img} alt="" className="w-14 h-14"/>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex md:justify-center  md:items-center w-full bg-white rounded-lg py-10">
+            <FaChevronLeft size={40} className="bg-gray-200 rounded-lg" />
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 px-7 gap-4">
+              {bestprod.map((prod, index) => (
+                <div className="flex flex-col justify-center items-center gap-3 rounded-lg px-3">
+                  <div className="relative ">
+                    <p className="absolute top-4 left-2 bg-[#1ABA1A] p-2 text-white  rounded-2xl text-xs">
+                      Save <span className="text-md block">{prod.save}</span>
+                    </p>
+                    <img src={prod.prodimg} alt="" className="h-52 w-48" />
+                    <div>
+                      <img
+                        src={prod.prodimg}
+                        alt=""
+                        className="w-10 h-10 hover:bg-[#1ABA1A] hover:border-[#1ABA1A] hover:border-2"
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    className="flex flex-col justify-center gap-2"
+                    key={index}
+                  >
+                    <h2 className="w-full h-15 text-lg font-semibold block overflow-hidden">
+                      {prod.name}
+                    </h2>
+                    <div className="flex gap-3 text-lg">
+                      <p className="text-red-500">{prod.price}</p>
+                      <p className="line-through">{prod.org_price}</p>
+                    </div>
+                    <div className="flex gap-4">
+                      <p className="bg-green-100 p-2 rounded text-[#1ABA1A]">
+                        FREE SHIPPING
+                      </p>
+                      <p className="bg-red-100 p-2 rounded text-[#F1352B]">
+                        FREE GIFT
+                      </p>
+                    </div>
+                    <p>{prod.stock}</p> {/*add cross */}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <FaChevronRight size={40} className="bg-gray-200 rounded-lg" />
+          </div>
+        </div>
+      </div>
+
+
+      {/* 3card */}
+      <div>
+        <div>
+
+        </div>
+      
       </div>
     </section>
   );
