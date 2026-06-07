@@ -32,6 +32,10 @@ import prod6 from "../../../assets/products/product3/prod10.png.png";
 import prod7 from "../../../assets/products/product4/prod11.png.png";
 import prod8 from "../../../assets/products/product5/prod12.png.png";
 import prod9 from "../../../assets/products/product6/prod13.png.png";
+import prod10 from "../../../assets/products/prod14.png";
+import prod11 from "../../../assets/products/prod15.png";
+import prod12 from "../../../assets/products/prod16.png";
+import prod13 from "../../../assets/products/prod17.png";
 
 function Home() {
   const bestprod = [
@@ -41,7 +45,7 @@ function Home() {
       org_price: "$400.00",
       prodimg: prod5,
       stock: "In Stock",
-      save: ''
+      save: "",
     },
     {
       name: "iPad Pro 11-inch",
@@ -49,7 +53,7 @@ function Home() {
       org_price: "$999.00",
       prodimg: prod6,
       stock: "In Stock",
-      save: '$400'
+      save: "$400",
     },
     {
       name: "uLosk Mini Case 2.0",
@@ -57,7 +61,7 @@ function Home() {
       org_price: "$150.00",
       prodimg: prod7,
       stock: "In Stock",
-       save: '$400'
+      save: "$400",
     },
     {
       name: "Xenon i10 / 32GB / SSD 512GB / VGA 8GB",
@@ -65,7 +69,7 @@ function Home() {
       org_price: "$1,400.00",
       prodimg: prod8,
       stock: "In Stock",
-       save: '$400'
+      save: "$400",
     },
     {
       name: "Opplo Watch Series 8 GPS + Cellular Stainless Steel Case with Milanese Loop",
@@ -73,7 +77,30 @@ function Home() {
       org_price: "$699.00",
       prodimg: prod9,
       stock: "In Stock",
-       save: '$400'
+      save: "$400",
+    },
+  ];
+
+  const newBrand = [
+    {
+      name: "Zumac Steel Computer Case",
+      desc: "And an option to upgrade every three years",
+      img: prod10,
+    },
+    {
+      name: "Summer Sale with Sale up to 50% OFF for Foam Gaming Computer",
+      desc: "Limited time offer. Hurry up",
+      img: prod11,
+    },
+    {
+      name: "Summer Sale with Sale up to 50% OFF for Foam Gaming Chair",
+      desc: "Limited time offer. Hurry up",
+      img: prod12,
+    },
+    {
+      name: "IPad Pro Mini 8- Powerfull in hand",
+      desc: "Limited time offer. Hurry up",
+      img: prod13,
     },
   ];
 
@@ -367,11 +394,8 @@ function Home() {
           <button>View All</button>
         </div>
 
-        <div className="flex md:justify-center  md:items-center w-full bg-white rounded-lg p-5">
-          <FaChevronLeft
-            size={40}
-            className="bg-gray-200 rounded-lg"
-          />
+        <div className="flex md:justify-center  md:items-center w-full bg-white rounded-lg p-10">
+          <FaChevronLeft size={40} className="bg-gray-200 rounded-lg" />
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 px-7 gap-4">
             {bestprod.map((prod, index) => (
               <div className="flex flex-col justify-center items-center gap-3 rounded-lg px-3">
@@ -410,10 +434,38 @@ function Home() {
               </div>
             ))}
           </div>
-          <FaChevronRight
-            size={40}
-            className="bg-gray-200 rounded-lg"
-          />
+          <FaChevronRight size={40} className="bg-gray-200 rounded-lg" />
+        </div>
+      </div>
+
+      {/* New brand */}
+      <div className="w-full bg-white p-10 flex flex-col gap-8 rounded-lg">
+        <div className="flex justify-between items-center w-full">
+          <h2 className="text-lg font-semibold">BRAND NEW FOR YOU</h2>
+          <div className="flex gap-4">
+            <FaChevronLeft />
+            <FaChevronRight />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center">
+          {newBrand.map((brand, index) => (
+            <div
+              className="flex flex-col gap-2 items-start justify-center h-[377px]"
+              key={index}
+            >
+              <img
+                src={brand.img}
+                alt=""
+                className="w-[302px] h-56 rounded-xl"
+              />
+              <h2 className="text-lg font-semibold h-8 overflow-hidden w-80 ">{brand.name}</h2>
+              <p className="text-sm">{brand.desc} </p>
+              <button className="border-2 border-[#1ABA1A] text-[#1ABA1A] rounded-lg p-1 text-sm">
+                SHOP NOW
+              </button>
+            </div>
+          ))}
         </div>
       </div>
     </section>
