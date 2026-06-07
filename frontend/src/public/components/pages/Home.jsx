@@ -537,15 +537,23 @@ function Home() {
               </div>
               <img src={prod14} alt="" className="w-[60%]" />
             </div>
-
-            <div className="grid grid-cols-3 grid-rows-2 h-[200px] gap-6 md:w-[50%]">
-              {list.map((items, index) => (
-                <div key={index} className="flex items-center gap-7">
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:w-[50%]">
+              {list.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between p-3 rounded-lg"
+                >
                   <div>
-                    <h2 className="text-md font-semibold">{items.name}</h2>
-                    <p className="text-xs text-gray-500">{items.stock} items</p>
+                    <h2 className="text-md font-semibold">{item.name}</h2>
+                    <p className="text-xs text-gray-500">{item.stock} items</p>
                   </div>
-                  <img src={items.img} alt="" className="w-14 h-14" />
+
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    className="w-14 h-14 object-contain"
+                  />
                 </div>
               ))}
             </div>
@@ -718,18 +726,19 @@ function Home() {
 
       {/* end section */}
       <div className="flex justify-evenly items-center flex-col md:flex-row w-full gap-4 md:h-44">
-        <div className="w-full md:w-[60vw] border bg-cover bg-no-repeat bg-center rounded-lg h-full text-white text-right p-10" style={{backgroundImage: `url(${ban3})`}}>
-            <h2 className="text-2xl font-bold text-amber-400 pb-2">10% Back</h2>
-            <p className="text-sm">Earn 10% Cash back on Swootech. 'Learn How'</p>
+        <div
+          className="w-full md:w-[60vw] border bg-cover bg-no-repeat bg-center rounded-lg h-full text-white text-right p-10"
+          style={{ backgroundImage: `url(${ban3})` }}
+        >
+          <h2 className="text-2xl font-bold text-amber-400 pb-2">10% Back</h2>
+          <p className="text-sm">Earn 10% Cash back on Swootech. 'Learn How'</p>
         </div>
 
         <div className="w-full md:w-[35vw] h-full rounded-lg p-10 flex justify-between items-center">
           <h2 className="text-4xl font-bold text-gray-800">Download Our App</h2>
-          <img src={bar} alt="" className="h-44"/>
+          <img src={bar} alt="" className="h-44" />
         </div>
-        <div>
-
-        </div>
+        <div></div>
       </div>
     </section>
   );

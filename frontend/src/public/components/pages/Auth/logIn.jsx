@@ -5,7 +5,7 @@ import logo from "../../../../assets/logo.png";
 
 function logIn() {
   return (
-    <section className="flex flex-col items-center justify-center w-full p-4 gap-4">
+    <section className="flex flex-col items-center justify-center w-full p-4 gap-5">
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
         Home / pages /{" "}
         <span className="text-md font-semibold text-black">Login</span>
