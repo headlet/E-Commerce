@@ -44,11 +44,11 @@ function NavBar() {
       {/* 2. MAIN HEADER BAR */}
       <div className="flex justify-between items-center px-3 lg:px-4 py-4 relative">
         <div className="flex items-center gap-2">
-          <img
+          <Link to='/'><img
             src={logo || "/placeholder-logo.png"}
             alt="SWOO TECH MART"
             className="h-10 md:h-12 w-auto object-contain"
-          />
+          /></Link>
           <div className="flex flex-col leading-none">
             <span className="font-black text-xl tracking-tight text-gray-900">
               SPEED

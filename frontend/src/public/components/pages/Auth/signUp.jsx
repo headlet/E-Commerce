@@ -5,21 +5,20 @@ import logo from "../../../../assets/logo.png";
 
 function signUp() {
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gray-50 w-full">
-      <div className=" flex justify-center shadow-lg bg-white rounded-xl overflow-hidden">
-        <img
-          src={loginimg}
-          alt="login"
-          className="w-[60%] h-auto hidden md:flex"
-        />
+    <section className="flex flex-col items-center justify-center w-full p-4 gap-4">
+      <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
+        Home / pages /{" "}
+        <span className="text-md font-semibold text-black">SignUp</span>
+      </div>
 
+      <div className="flex flex-col md:flex-row justify-center items-center shadow-lg bg-white rounded-xl overflow-hidden w-full">
         {/* LEFT SIDE - FORM */}
-        <div className="w-full lg:w-[40%] flex flex-col justify-center items-center p-8">
+        <div className="w-full md:w-[50%] flex flex-col justify-center items-center px-6 md:px-12 py-10">
           <img src={logo} alt="logo" className="h-12 mb-4" />
 
           <h2 className="text-2xl font-semibold mb-6">SignUp To Account</h2>
 
-          {/* Google Login */}
+          {/* Google Signup */}
           <div className="flex items-center gap-2 border px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-100 mb-4">
             <p>SignUp with Google</p>
             <FaGoogle size={20} className="text-amber-500" />
@@ -28,7 +27,7 @@ function signUp() {
           <p className="mb-4 text-gray-500">Or</p>
 
           {/* FORM */}
-          <form className="flex flex-col w-full gap-4">
+          <form className="flex flex-col w-full sm:w-[80%] md:w-[60%] gap-4">
             <div className="flex flex-col">
               <label>Email Address</label>
               <input
@@ -61,12 +60,17 @@ function signUp() {
             </button>
           </form>
 
-          <p className="mt-4 text-sm">
-           Already have an accout? 
+          <p className="mt-4 text-sm text-center">
+            Already have an account?{" "}
             <Link to="/login" className="text-blue-500 hover:underline">
               Login
             </Link>
           </p>
+        </div>
+
+        {/* RIGHT SIDE IMAGE */}
+        <div className="hidden md:flex justify-center items-center w-[50%]">
+          <img src={loginimg} alt="signup" className="w-[60%]" />
         </div>
       </div>
     </section>
