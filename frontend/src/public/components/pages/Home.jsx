@@ -43,39 +43,42 @@ import prod17 from "../../../assets/products/prod21.png";
 import prod18 from "../../../assets/products/prod22.png";
 import prod19 from "../../../assets/products/prod23.png";
 import prod20 from "../../../assets/products/prod24.png";
+import prod21 from "../../../assets/products/div.banner.png";
+import prod22 from "../../../assets/products/prod46.png.png";
 
 function Home() {
+  const demo = ["", "", ""];
   const list = [
     {
       name: "Android",
       img: prod15,
-      stock: 10
+      stock: 10,
     },
 
     {
       name: "Iphone",
       img: prod16,
-      stock: 10
+      stock: 10,
     },
     {
       name: "Samsung",
       img: prod17,
-      stock: 10
+      stock: 10,
     },
     {
       name: "ROG",
       img: prod18,
-      stock: 10
+      stock: 10,
     },
     {
       name: "MI",
       img: prod19,
-      stock: 10
+      stock: 10,
     },
     {
       name: "Oppo",
       img: prod20,
-      stock: 10
+      stock: 10,
     },
   ];
   const bestprod = [
@@ -519,8 +522,8 @@ function Home() {
         </div>
 
         <div className="flex flex-col justify-center items-center w-full px-10 gap-6">
-          <div className="flex justify-between w-full gap-6">
-            <div className="flex w-[50%] px-10 rounded-lg justify-between items-center">
+          <div className="flex flex-col md:flex-row justify-center md:justify-between w-full gap-6">
+            <div className="flex md:w-[50%] px-10 rounded-lg justify-between items-center">
               <div className="flex flex-col gap-3 justify-center items-start h-[200px] ">
                 <h2 className="text-xl font-semibold max-w-[180px]">
                   REDMI NOTE 12 PRO+ 5G
@@ -530,17 +533,17 @@ function Home() {
                   SHOP NOW
                 </button>
               </div>
-              <img src={prod13} alt="" />
+              <img src={prod14} alt="" className="w-[60%]" />
             </div>
 
-            <div className="grid grid-cols-3 grid-rows-2 h-[200px] gap-6 w-[50%]">
+            <div className="grid grid-cols-3 grid-rows-2 h-[200px] gap-6 md:w-[50%]">
               {list.map((items, index) => (
                 <div key={index} className="flex items-center gap-7">
                   <div>
                     <h2 className="text-md font-semibold">{items.name}</h2>
                     <p className="text-xs text-gray-500">{items.stock} items</p>
                   </div>
-                  <img src={items.img} alt="" className="w-14 h-14"/>
+                  <img src={items.img} alt="" className="w-14 h-14" />
                 </div>
               ))}
             </div>
@@ -593,6 +596,7 @@ function Home() {
         </div>
       </div>
 
+      {/* top sells 2nd */}
       <div className="w-full bg-white rounded-lg ">
         <div className="flex justify-between items-center p-7">
           <h2 className="text-lg font-semibold">TOP SELLING</h2>
@@ -600,8 +604,8 @@ function Home() {
         </div>
 
         <div className="flex flex-col justify-center items-center w-full px-10 gap-6">
-          <div className="flex justify-between w-full gap-6">
-            <div className="flex w-[50%] px-10 rounded-lg justify-between items-center">
+          <div className="flex flex-col md:flex-row justify-center md:justify-between w-full gap-6">
+            <div className="flex md:w-[50%] px-10 rounded-lg justify-between items-center">
               <div className="flex flex-col gap-3 justify-center items-start h-[200px] ">
                 <h2 className="text-xl font-semibold max-w-[180px]">
                   REDMI NOTE 12 PRO+ 5G
@@ -611,17 +615,20 @@ function Home() {
                   SHOP NOW
                 </button>
               </div>
-              <img src={prod13} alt="" />
+              <img src={prod14} alt="" className="w-[60%]" />
             </div>
 
-            <div className="grid grid-cols-3 grid-rows-2 h-[200px] gap-6 w-[50%]">
+            <div className="grid grid-cols-3 grid-rows-2 md:h-[200px] gap-6 md:w-[50%]">
               {list.map((items, index) => (
-                <div key={index} className="flex items-center gap-7">
+                <div
+                  key={index}
+                  className="flex flex-col-reverse lg:flex-row items-center gap-7"
+                >
                   <div>
                     <h2 className="text-md font-semibold">{items.name}</h2>
                     <p className="text-xs text-gray-500">{items.stock} items</p>
                   </div>
-                  <img src={items.img} alt="" className="w-14 h-14"/>
+                  <img src={items.img} alt="" className="w-14 h-14" />
                 </div>
               ))}
             </div>
@@ -674,13 +681,37 @@ function Home() {
         </div>
       </div>
 
-
       {/* 3card */}
-      <div>
-        <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-4">
+        {demo.map((_, index) => (
+          <div
+            key={index}
+            className="bg-white rounded-lg p-8 flex flex-col justify-evenly gap-4"
+          >
+            <div className="flex justify-between items-center">
+              <h2 className="text-lg font-semibold">AUDIOS & CAMERAS</h2>
+              <button>View All</button>
+            </div>
 
-        </div>
-      
+            <div className="flex flex-col gap-10">
+              <img src={prod21} alt="" className="lg:h-48 rounded-lg" />
+
+              <div className="grid grid-cols-2 place-items-center gap-4">
+                {demo.map((_, i) => (
+                  <div key={i} className="text-center">
+                    <img
+                      src={prod22}
+                      alt=""
+                      className="h-32 w-32 rounded-full bg-gray-300"
+                    />
+                    <h2 className="font-semibold">Speaker</h2>
+                    <p>9 items</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
