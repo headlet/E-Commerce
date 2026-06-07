@@ -4,7 +4,7 @@ import { FaFacebook, FaYoutube, FaInstagram, FaTwitter } from "react-icons/fa";
 
 function Footer() {
   return (
-    <footer className="bg-black text-white w-full px-6 py-12">
+    <footer className="bg-white text-black w-full px-6 py-12 my-2">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-10">
         {/* Logo + Subscribe */}
         <div className="flex flex-col gap-4">
@@ -16,7 +16,7 @@ function Footer() {
           <input
             type="text"
             placeholder="Enter your email"
-            className="bg-transparent border border-gray-500 px-3 py-2 rounded-md text-md focus:outline-none focus:border-white"
+            className="bg-transparent border border-gray-500 px-3 py-2 rounded-md text-md focus:outline-none"
           />
         </div>
 
@@ -32,12 +32,12 @@ function Footer() {
         <div className="flex flex-col gap-3">
           <h2 className="text-lg font-bold">Account</h2>
           <ul className="space-y-2 text-md ">
-            <li className="hover:text-white cursor-pointer">My Account</li>
-            <li className="hover:text-white cursor-pointer">
+            <li className="hover:text-green-700 cursor-pointer">My Account</li>
+            <li className="hover:text-green-700 cursor-pointer">
               Login / Register
             </li>
-            <li className="hover:text-white cursor-pointer">Cart</li>
-            <li className="hover:text-white cursor-pointer">Shop</li>
+            <li className="hover:text-green-700 cursor-pointer">Cart</li>
+            <li className="hover:text-green-700 cursor-pointer">Shop</li>
           </ul>
         </div>
 
@@ -45,10 +45,10 @@ function Footer() {
         <div className="flex flex-col gap-3">
           <h2 className="text-lg font-bold">Quick Links</h2>
           <ul className="space-y-2 text-md ">
-            <li className="hover:text-white cursor-pointer">Privacy Policy</li>
-            <li className="hover:text-white cursor-pointer">Terms of Use</li>
-            <li className="hover:text-white cursor-pointer">FAQ</li>
-            <li className="hover:text-white cursor-pointer">Contact</li>
+            <li className="hover:text-green-700 cursor-pointer">Privacy Policy</li>
+            <li className="hover:text-green-700 cursor-pointer">Terms of Use</li>
+            <li className="hover:text-green-700 cursor-pointer">FAQ</li>
+            <li className="hover:text-green-700 cursor-pointer">Contact</li>
           </ul>
         </div>
 
