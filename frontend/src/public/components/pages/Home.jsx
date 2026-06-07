@@ -26,6 +26,8 @@ import prod4 from "../../../assets/products/product1/prod8.png";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ban1 from "../../../assets/banner/ban1.png";
 import ban2 from "../../../assets/banner/ban2.png";
+import ban3 from "../../../assets/banner/ban3.png";
+import bar from "../../../assets/banner/bar.jpg";
 import main from "../../../assets/banner/main.png";
 import prod5 from "../../../assets/products/product2/prod9.png.png";
 import prod6 from "../../../assets/products/product3/prod10.png.png";
@@ -712,6 +714,22 @@ function Home() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* end section */}
+      <div className="flex justify-evenly items-center flex-col md:flex-row w-full gap-4 md:h-44">
+        <div className="w-full md:w-[60vw] border bg-cover bg-no-repeat bg-center rounded-lg h-full text-white text-right p-10" style={{backgroundImage: `url(${ban3})`}}>
+            <h2 className="text-2xl font-bold text-amber-400 pb-2">10% Back</h2>
+            <p className="text-sm">Earn 10% Cash back on Swootech. 'Learn How'</p>
+        </div>
+
+        <div className="w-full md:w-[35vw] h-full rounded-lg p-10 flex justify-between items-center">
+          <h2 className="text-4xl font-bold text-gray-800">Download Our App</h2>
+          <img src={bar} alt="" className="h-44"/>
+        </div>
+        <div>
+
+        </div>
       </div>
     </section>
   );
