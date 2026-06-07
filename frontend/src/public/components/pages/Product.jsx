@@ -99,7 +99,7 @@ function Product() {
       stock: "In Stock",
       save: "$400",
     },
-     {
+    {
       name: "BOSO 2 Wireless On Ear Headphone",
       price: "$300.00",
       org_price: "$400.00",
@@ -139,7 +139,7 @@ function Product() {
       stock: "In Stock",
       save: "$400",
     },
-     {
+    {
       name: "BOSO 2 Wireless On Ear Headphone",
       price: "$300.00",
       org_price: "$400.00",
@@ -179,7 +179,7 @@ function Product() {
       stock: "In Stock",
       save: "$400",
     },
-     {
+    {
       name: "BOSO 2 Wireless On Ear Headphone",
       price: "$300.00",
       org_price: "$400.00",
@@ -220,7 +220,6 @@ function Product() {
       save: "$400",
     },
   ];
-
 
   const list = [
     {
@@ -282,7 +281,7 @@ function Product() {
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
         Home / pages /{" "}
         <span className="text-md font-semibold text-black">
-          Top Cell Phone &Tablets
+          Top Cell Phone & Tablet
         </span>
       </div>
 
@@ -364,7 +363,6 @@ function Product() {
         </div>
       </div>
 
-
       <div className="flex flex-col gap-6 bg-white rounded-lg p-7 w-full">
         <div className="w-full flex  gap-4">
           <div className="w-[25%] bg-gray-200 rounded-lg p-4">
@@ -374,9 +372,7 @@ function Product() {
           <div className="w-[70%] rounded-lg p-4">
             <div className="w-full">
               <div className="flex flex-col  justify-center gap-4">
-                <h2 className="text-lg font-semibold">
-          
-                </h2>
+                <h2 className="text-lg font-semibold"></h2>
                 <div className="flex md:justify-center  md:items-center w-full bg-white rounded-lg py-10">
                   <FaChevronLeft size={30} className="bg-gray-200 rounded-lg" />
                   <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 px-7 gap-6">
@@ -432,13 +428,10 @@ function Product() {
           </div>
         </div>
 
-        
-     
-
         <div className="w-full flex  gap-4">
           <div className="w-[25%] bg-gray-200 rounded-lg p-4">
             <h2 className="text-lg font-semibold">CATEGORIES</h2>
-            <div></div>
+            <Link>Reset All</Link>
           </div>
           <div className="w-[70%] p-4  border-t">
             <div className="w-full">
@@ -447,7 +440,6 @@ function Product() {
                   BEST SELLER IN THIS CATEGORY
                 </h2>
                 <div className="flex md:justify-center  md:items-center w-full bg-white rounded-lg py-10">
-                  
                   <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 px-7 gap-6">
                     {secondprod.map((prod, index) => (
                       <div className="flex flex-col justify-center items-center gap-4 rounded-lg px-3">
@@ -474,7 +466,7 @@ function Product() {
                           className="flex flex-col justify-center gap-1 w-48"
                           key={index}
                         >
-                          <h2 className="w-full h-15 text-md font-semibold block overflow-hidden">
+                          <h2 className="w-full h-12 text-md font-semibold block overflow-hidden">
                             {prod.name}
                           </h2>
                           <div className="flex gap-3 text-md">
@@ -491,7 +483,6 @@ function Product() {
                       </div>
                     ))}
                   </div>
-                
                 </div>
               </div>
             </div>
