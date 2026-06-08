@@ -33,11 +33,11 @@ function Contact() {
         <span className="text-md font-semibold text-black">Contact</span>
       </div>
 
-      <div className="bg-white rounded-lg w-full p-8 flex flex-col gap-2 ">
+      <div className="bg-white rounded-lg w-full p-8 flex flex-col gap-2 justify-center  ">
         <h2 className="text-lg font-semibold">READY TO WORK WITH US</h2>
         <p>Contact us for all your questions and opinions</p>
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 place-items-center gap-5">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full p-6">
             {/* firstname */} {/* lastname */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -171,7 +171,7 @@ function Contact() {
           </form>
 
           {/* right section */}
-          <div className=" flex flex-col justify-center space-y-6">
+          <div className=" flex flex-col justify-center space-y-6 w-[80%]">
             {/* Info Box */}
             <div className="bg-[#f0f2f9] rounded-lg p-8 sm:p-10 space-y-8">
               {/* HQ Info */}
