@@ -362,9 +362,10 @@ function Product() {
           ))}
         </div>
       </div>
-
+      {/* 
+product */}
       <div className="flex flex-col gap-6 bg-white rounded-lg p-7 w-full">
-        <div className="w-full flex flex-col md:flex-row justify-center items-center gap-4">
+        <div className="w-full flex flex-col md:flex-row justify-center gap-4">
           <div className="w-full md:w-[25%] bg-gray-200 rounded-lg p-4 flex flex-col">
             <h2 className="text-lg font-semibold">CATEGORIES</h2>
             <ul className="flex flex-row md:flex-col gap-4 text-md pt-1 lg:pt-4 overflow-x-auto lg:overflow-visible font-semibold">
@@ -379,122 +380,119 @@ function Product() {
               <li className="whitespace-nowrap">Health & Beauty</li>
             </ul>
           </div>
-          <div className="w-[70%] rounded-lg p-4">
-            <div className="w-full">
-              <div className="flex flex-col  justify-center gap-4">
-                <h2 className="text-lg font-semibold"></h2>
-                <div className="flex md:justify-center  md:items-center w-full bg-white rounded-lg py-10">
-                  <FaChevronLeft size={30} className="bg-gray-200 rounded-lg" />
-                  <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 px-7 gap-6">
-                    {bestprod.map((prod, index) => (
-                      <div className="flex flex-col justify-center items-center gap-4 rounded-lg px-3">
-                        <div className="relative ">
-                          <p className="absolute top-4 left-2 bg-[#1ABA1A] p-2 text-white  rounded-2xl text-xs">
-                            Save{" "}
-                            <span className="text-md block">{prod.save}</span>
-                          </p>
+
+          <div className="w-full md:w-[70%] rounded-lg p-4 flex flex-col items-center justify-center gap-4">
+              <h2 className="text-lg font-semibold">
+                BEST SELLER IN THIS CATEGORY
+              </h2>
+              <div className="flex justify-center  items-center w-full bg-white rounded-lg py-10">
+                <FaChevronLeft size={30} className="bg-gray-200 rounded-lg" />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 px-7 place-items-center gap-6">
+                  {bestprod.map((prod, index) => (
+                    <div className="flex flex-col justify-center items-center gap-4 rounded-lg px-3">
+                      <div className="relative ">
+                        <p className="absolute top-4 left-2 bg-[#1ABA1A] p-2 text-white  rounded-2xl text-xs">
+                          Save{" "}
+                          <span className="text-md block">{prod.save}</span>
+                        </p>
+                        <img src={prod.prodimg} alt="" className="h-48 w-48" />
+                        <div>
                           <img
                             src={prod.prodimg}
                             alt=""
-                            className="h-48 w-48"
+                            className="w-10 h-10 hover:bg-[#1ABA1A] hover:border-[#1ABA1A] hover:border-2"
                           />
-                          <div>
-                            <img
-                              src={prod.prodimg}
-                              alt=""
-                              className="w-10 h-10 hover:bg-[#1ABA1A] hover:border-[#1ABA1A] hover:border-2"
-                            />
-                          </div>
-                        </div>
-
-                        <div
-                          className="flex flex-col justify-center gap-1 w-48"
-                          key={index}
-                        >
-                          <h2 className="w-full h-15 text-md font-semibold block overflow-hidden">
-                            {prod.name}
-                          </h2>
-                          <div className="flex gap-3 text-md">
-                            <p className="text-red-500">{prod.price}</p>
-                            <p className="line-through">{prod.org_price}</p>
-                          </div>
-                          <div className="flex gap-4">
-                            <p className="bg-green-100 rounded text-[#1ABA1A]">
-                              FREE SHIPPING
-                            </p>
-                          </div>
-                          <p>{prod.stock}</p> {/*add cross */}
                         </div>
                       </div>
-                    ))}
-                  </div>
-                  <FaChevronRight
-                    size={30}
-                    className="bg-gray-200 rounded-lg"
-                  />
+
+                      <div
+                        className="flex flex-col justify-center gap-1 w-48"
+                        key={index}
+                      >
+                        <h2 className="w-full h-15 text-md font-semibold block overflow-hidden">
+                          {prod.name}
+                        </h2>
+                        <div className="flex gap-3 text-md">
+                          <p className="text-red-500">{prod.price}</p>
+                          <p className="line-through">{prod.org_price}</p>
+                        </div>
+                        <div className="flex gap-4">
+                          <p className="bg-green-100 rounded text-[#1ABA1A]">
+                            FREE SHIPPING
+                          </p>
+                        </div>
+                        <p>{prod.stock}</p> {/*add cross */}
+                      </div>
+                    </div>
+                  ))}
                 </div>
+                <FaChevronRight size={30} className="bg-gray-200 rounded-lg" />
               </div>
-            </div>
           </div>
         </div>
 
-        <div className="w-full flex  gap-4">
-          <div className="w-[25%] bg-gray-200 rounded-lg p-4">
-            <h2 className="text-lg font-semibold">CATEGORIES</h2>
-            <Link>Reset All</Link>
+        {/* second product */}
+        <div className="w-full flex  flex-col md:flex-row justify-center  gap-4">
+          <div className="w-full md:w-[25%] bg-gray-200 rounded-lg p-4 ">
+            <div className="flex justify-between items-center">
+              <h2 className="text-md font-semibold">CATEGORIES</h2>
+              <Link className="text-sm">Reset All</Link>
+            </div>
+            <ul className="flex flex-row md:flex-col gap-4 text-md pt-1 lg:pt-4 overflow-x-auto lg:overflow-visible font-semibold">
+              <li className="whitespace-nowrap">Women's Fashion</li>
+              <li className="whitespace-nowrap">Men's Fashion</li>
+              <li className="whitespace-nowrap">Electronics</li>
+              <li className="whitespace-nowrap">Home & Lifestyle</li>
+              <li className="whitespace-nowrap">Medicine</li>
+              <li className="whitespace-nowrap">Sports & Outdoor</li>
+              <li className="whitespace-nowrap">Baby's & Toys</li>
+              <li className="whitespace-nowrap">Groceries & Pets</li>
+              <li className="whitespace-nowrap">Health & Beauty</li>
+            </ul>
           </div>
-          <div className="w-[70%] p-4  border-t">
-            <div className="w-full">
-              <div className="flex flex-col  justify-center gap-4">
-                <h2 className="text-lg font-semibold">
-                  BEST SELLER IN THIS CATEGORY
-                </h2>
-                <div className="flex md:justify-center  md:items-center w-full bg-white rounded-lg py-10">
-                  <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 px-7 gap-6">
-                    {secondprod.map((prod, index) => (
-                      <div className="flex flex-col justify-center items-center gap-4 rounded-lg px-3">
-                        <div className="relative ">
-                          <p className="absolute top-4 left-2 bg-[#1ABA1A] p-2 text-white  rounded-2xl text-xs">
-                            Save{" "}
-                            <span className="text-md block">{prod.save}</span>
-                          </p>
-                          <img
-                            src={prod.prodimg}
-                            alt=""
-                            className="h-48 w-48"
-                          />
-                          <div>
-                            <img
-                              src={prod.prodimg}
-                              alt=""
-                              className="w-10 h-10 hover:bg-[#1ABA1A] hover:border-[#1ABA1A] hover:border-2"
-                            />
-                          </div>
-                        </div>
 
-                        <div
-                          className="flex flex-col justify-center gap-1 w-48"
-                          key={index}
-                        >
-                          <h2 className="w-full h-12 text-md font-semibold block overflow-hidden">
-                            {prod.name}
-                          </h2>
-                          <div className="flex gap-3 text-md">
-                            <p className="text-red-500">{prod.price}</p>
-                            <p className="line-through">{prod.org_price}</p>
-                          </div>
-                          <div className="flex gap-4">
-                            <p className="bg-green-100 rounded text-[#1ABA1A]">
-                              FREE SHIPPING
-                            </p>
-                          </div>
-                          <p>{prod.stock}</p> {/*add cross */}
-                        </div>
-                      </div>
-                    ))}
+          <div className="w-full md:w-[70%] p-4  border-t flex flex-col justify-center items-center gap-4">
+            <h2 className="text-lg font-semibold">
+              BEST SELLER IN THIS CATEGORY
+            </h2>
+
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 place-items-center px-7 gap-6 py-10">
+              {secondprod.map((prod, index) => (
+                <div className="flex flex-col justify-center items-center gap-4 rounded-lg px-3">
+                  <div className="relative ">
+                    <p className="absolute top-4 left-2 bg-[#1ABA1A] p-2 text-white  rounded-2xl text-xs">
+                      Save <span className="text-md block">{prod.save}</span>
+                    </p>
+                    <img src={prod.prodimg} alt="" className="h-48 w-48" />
+                    <div>
+                      <img
+                        src={prod.prodimg}
+                        alt=""
+                        className="w-10 h-10 hover:bg-[#1ABA1A] hover:border-[#1ABA1A] hover:border-2"
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    className="flex flex-col justify-center gap-1 w-48"
+                    key={index}
+                  >
+                    <h2 className="w-full h-12 text-md font-semibold block overflow-hidden">
+                      {prod.name}
+                    </h2>
+                    <div className="flex gap-3 text-md">
+                      <p className="text-red-500">{prod.price}</p>
+                      <p className="line-through">{prod.org_price}</p>
+                    </div>
+                    <div className="flex gap-4">
+                      <p className="bg-green-100 rounded text-[#1ABA1A]">
+                        FREE SHIPPING
+                      </p>
+                    </div>
+                    <p>{prod.stock}</p> {/*add cross */}
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
