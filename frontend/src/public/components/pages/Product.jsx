@@ -366,7 +366,7 @@ function Product() {
 product */}
       <div className="flex flex-col gap-6 bg-white rounded-lg p-7 w-full">
         <div className="w-full flex flex-col md:flex-row justify-center gap-4">
-          <div className="w-full md:w-[25%] bg-gray-200 rounded-lg p-4 flex flex-col">
+          <div className="w-full md:w-[20%] bg-gray-200 rounded-lg p-4 flex flex-col">
             <h2 className="text-lg font-semibold">CATEGORIES</h2>
             <ul className="flex flex-row md:flex-col gap-4 text-md pt-1 lg:pt-4 overflow-x-auto lg:overflow-visible font-semibold">
               <li className="whitespace-nowrap">Women's Fashion</li>
@@ -381,7 +381,7 @@ product */}
             </ul>
           </div>
 
-          <div className="w-full md:w-[70%] rounded-lg p-4 flex flex-col items-center justify-center gap-4">
+          <div className="w-full md:w-[75%] rounded-lg p-4 flex flex-col items-center justify-center gap-4">
               <h2 className="text-lg font-semibold">
                 BEST SELLER IN THIS CATEGORY
               </h2>
@@ -433,7 +433,7 @@ product */}
 
         {/* second product */}
         <div className="w-full flex  flex-col md:flex-row justify-center  gap-4">
-          <div className="w-full md:w-[25%] bg-gray-200 rounded-lg p-4 ">
+          <div className="w-full md:w-[20%] bg-gray-200 rounded-lg p-4 ">
             <div className="flex justify-between items-center">
               <h2 className="text-md font-semibold">CATEGORIES</h2>
               <Link className="text-sm">Reset All</Link>
@@ -451,7 +451,7 @@ product */}
             </ul>
           </div>
 
-          <div className="w-full md:w-[70%] p-4  border-t flex flex-col justify-center items-center gap-4">
+          <div className="w-full md:w-[75%] p-4  border-t flex flex-col justify-center items-center gap-4">
             <h2 className="text-lg font-semibold">
               BEST SELLER IN THIS CATEGORY
             </h2>
