@@ -51,6 +51,24 @@ function About() {
           </div>
         </div>
       </div>
+
+      {/* second section */}
+      <div>
+        <img src="" alt="" />
+        <div>
+          <h2>
+            We connect millions of buyers and sellers around the world,
+            empowering people & creating economic opportunity for all.
+          </h2>
+          <p>
+            Within our markets, millions of people around the world connect,
+            both online and offline, to make, sell and buy unique goods. We also
+            offer a wide range of Seller Services and tools that help creative
+            entrepreneurs start, manage & scale their businesses.
+          </p>
+          <a href="" className="">OUR SHOWREEL</a>
+        </div>
+      </div>
     </section>
   );
 }
