@@ -364,10 +364,20 @@ function Product() {
       </div>
 
       <div className="flex flex-col gap-6 bg-white rounded-lg p-7 w-full">
-        <div className="w-full flex  gap-4">
-          <div className="w-[25%] bg-gray-200 rounded-lg p-4">
+        <div className="w-full flex flex-col md:flex-row justify-center items-center gap-4">
+          <div className="w-full md:w-[25%] bg-gray-200 rounded-lg p-4 flex flex-col">
             <h2 className="text-lg font-semibold">CATEGORIES</h2>
-            <div></div>
+            <ul className="flex flex-row md:flex-col gap-4 text-md pt-1 lg:pt-4 overflow-x-auto lg:overflow-visible font-semibold">
+              <li className="whitespace-nowrap">Women's Fashion</li>
+              <li className="whitespace-nowrap">Men's Fashion</li>
+              <li className="whitespace-nowrap">Electronics</li>
+              <li className="whitespace-nowrap">Home & Lifestyle</li>
+              <li className="whitespace-nowrap">Medicine</li>
+              <li className="whitespace-nowrap">Sports & Outdoor</li>
+              <li className="whitespace-nowrap">Baby's & Toys</li>
+              <li className="whitespace-nowrap">Groceries & Pets</li>
+              <li className="whitespace-nowrap">Health & Beauty</li>
+            </ul>
           </div>
           <div className="w-[70%] rounded-lg p-4">
             <div className="w-full">
