@@ -6,6 +6,7 @@ import Contact from "../pages/Contact";
 import Login from "../pages/Auth/logIn";
 import Signup from '../pages/Auth/signUp';
 import Profile from '../pages/Profile';
+import Cart from '../pages/Cart';
 
 function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ function AppRoutes() {
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<Signup/>}/>
       <Route path='/profile' element={<Profile/>}></Route>
+      <Route path='/cart' element={<Cart />}></Route>
     </Routes>
   );
 }

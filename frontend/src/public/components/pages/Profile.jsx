@@ -6,7 +6,7 @@ function Profile() {
   const [formdata, setFormData] = useState({});
 
   const handleChange = (e) => {
-    const {name, type, value} = e.target;
+    const {name, value} = e.target;
     setFormData((values) => ({...values, [name] : value}));
   };
 

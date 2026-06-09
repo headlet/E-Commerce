@@ -94,7 +94,7 @@ function NavBar() {
           </div>
 
           {/* Shopping Cart Widget */}
-          <div className="flex items-center gap-2 pl-2">
+          <Link to='/Cart' className="flex items-center gap-2 pl-2">
             <div className="relative w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-700">
               <MdOutlineShoppingCart size={20} />
               <span className="absolute -top-1 -right-1 bg-[#1ABA1A] text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">
@@ -107,7 +107,7 @@ function NavBar() {
               </span>
               <span className="text-sm font-bold text-gray-900">$1,689.00</span>
             </div>
-          </div>
+          </Link>
         </div>
 
         {/* Mobile View Burger & Cart indicators */}
