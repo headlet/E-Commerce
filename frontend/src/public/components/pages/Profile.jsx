@@ -22,12 +22,12 @@ function Profile() {
         <span className="text-md font-semibold text-black">Profile</span>
       </div>
 
-      <div className="bg-white rounded-lg p-6 w-full flex justify-evenly gap-4">
-        <div className="flex flex-col gap-4 justify-center bg-gray-200 p-6 rounded-lg w-[18%]">
+      <div className="bg-white rounded-lg p-6 w-full flex flex-col lg:flex-row justify-evenly gap-4">
+        <div className="flex flex-col gap-4 justify-center bg-gray-200 p-6 rounded-lg lg:w-[18%]">
           <img
             src={avatar}
             alt=""
-            className="rounded-full bg-gray-600 h-[200px]"
+            className="rounded-full bg-gray-600 lg:h-[200px]"
           />
           <h2 className="text-xl font-semibold">Ajay Bhayadyo</h2>
           <p className="text-sm text-gray-600">bhayadyo@gmail.com</p>
