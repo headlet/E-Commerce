@@ -57,7 +57,6 @@ function Cart() {
 
   const [cartData, setCartData] = useState(initialCart);
 
-  // ✅ input change handler
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -67,7 +66,6 @@ function Cart() {
     }));
   };
 
-  // ➕ increase quantity
   const increaseQty = (id) => {
     setCartData((prev) => ({
       ...prev,
@@ -75,7 +73,6 @@ function Cart() {
     }));
   };
 
-  // ➖ decrease quantity (min 1)
   const decreaseQty = (id) => {
     setCartData((prev) => ({
       ...prev,
@@ -104,8 +101,8 @@ function Cart() {
                 <p className="text-lg">${prod.price}</p>
 
                 {/* UI UNCHANGED (only logic added) */}
-                <div className="bg-white rounded-lg">
-                  <button onClick={() => decreaseQty(prod.id)}>
+                <div className="bg-white rounded-lg w-fit ">
+                  <button onClick={() => decreaseQty(prod.id)} className="w-fit">
                     <FaMinus />
                   </button>
 
@@ -114,6 +111,7 @@ function Cart() {
                     name={`cart${prod.id}`}
                     value={cartData[`cart${prod.id}`] || 1}
                     onChange={handleChange}
+                    className="text-center w-16"
                   />
 
                   <button onClick={() => increaseQty(prod.id)}>
@@ -126,6 +124,10 @@ function Cart() {
                 </p>
 
                 <p>{prod.stock} In Stock</p>
+              </div>
+
+              <div>
+                x
               </div>
             </div>
           ))}
