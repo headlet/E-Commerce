@@ -1,5 +1,6 @@
 import aboutimg from "../../../assets/div.about.png";
-import ban2 from '../../../assets/banner/aboutimg.png'
+import ban2 from "../../../assets/banner/aboutimg.png";
+import { FaThumbsUp, FaTruck, FaDollarSign } from "react-icons/fa";
 function About() {
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-5">
@@ -55,9 +56,9 @@ function About() {
 
       {/* second section */}
       <div className="bg-white rounded-lg w-full p-6 grid grid-cols-1 md:grid-cols-2 place-items-center gap-2">
-        <img src={ban2} alt="" className=" h-[420px] rounded-lg"/>
+        <img src={ban2} alt="" className=" h-[420px] rounded-lg" />
         <div className=" md:h-[420px] flex flex-col justify-center  gap-4 bg-gray-300 rounded-lg p-16">
-          <h2  className="text-lg font-bold ">
+          <h2 className="text-lg font-bold ">
             We connect millions of buyers and sellers around the world,
             empowering people & creating economic opportunity for all.
           </h2>
@@ -74,8 +75,47 @@ function About() {
       </div>
 
       {/* third section */}
-      <div>
-        
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+        <div className="bg-white rounded-lg p-6 flex flex-col justify-center gap-8">
+          <div className="flex justify-between items-center text-xl font-semibold">
+            <h2>100% AUTHENTIC PRODUCTS</h2>
+            <div className="bg-[#1ABA1A] rounded-full p-2 text-center">
+              <FaThumbsUp />
+            </div>
+          </div>
+          <p>
+            Swoo Tech Mart just distribute 100% authorized products & guarantee
+            quality. Nulla porta nulla nec orci vulputate, id rutrum sapien
+            varius.
+          </p>
+        </div>
+
+        <div className="bg-white rounded-lg p-6 flex flex-col justify-center gap-8">
+          <div className="flex justify-between items-center text-xl font-semibold">
+            <h2>100% AUTHENTIC PRODUCTS</h2>
+            <div className="bg-[#1ABA1A] rounded-full p-2 text-center">
+              <FaTruck/>
+            </div>
+          </div>
+          <p>
+            Swoo Tech Mart just distribute 100% authorized products & guarantee
+            quality. Nulla porta nulla nec orci vulputate, id rutrum sapien
+            varius.
+          </p>
+        </div>
+        <div className="bg-white rounded-lg p-6 flex flex-col justify-center gap-8">
+          <div className="flex justify-between items-center text-xl font-semibold">
+            <h2>100% AUTHENTIC PRODUCTS</h2>
+            <div className="bg-[#1ABA1A] rounded-full p-2 text-center">
+              <FaDollarSign />
+            </div>
+          </div>
+          <p>
+            Swoo Tech Mart just distribute 100% authorized products & guarantee
+            quality. Nulla porta nulla nec orci vulputate, id rutrum sapien
+            varius.
+          </p>
+        </div>
       </div>
     </section>
   );
