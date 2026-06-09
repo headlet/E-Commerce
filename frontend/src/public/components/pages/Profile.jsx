@@ -1,7 +1,20 @@
 import { NavLink } from "react-router";
 import avatar from "../../../assets/avatars.jpg";
+import { useState } from "react";
 
 function Profile() {
+  const [formdata, setFormData] = useState({});
+
+  const handleChange = (e) => {
+    const {name, type, value} = e.target;
+    setFormData((values) => ({...values, [name] : value}));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Submitted:", formdata);
+  };
+
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-5">
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
@@ -58,37 +71,74 @@ function Profile() {
         {/* Form */}
         <div className="w-[80%] p-8 flex flex-col gap-4">
           <h2 className="text-2xl font-semibold">Account Info</h2>
-          <form action="" className="flex flex-col gap-4 ">
-            <div className="flex w-full">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-4 w-full p-6"
+          >
+            {/* firstname */} {/* lastname */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label>
-                  First Name <span>*</span>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  First Name <span className="text-red-500">*</span>
                 </label>
-                <input type="text" name="firstname" />
+                <input
+                  type="text"
+                  name="firstname"
+                  value={formdata.firstname}
+                  onChange={handleChange}
+                  className="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
+                />
               </div>
+
               <div>
-                <label>
-                  Last Name <span>*</span>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Last Name <span className="text-red-500">*</span>
                 </label>
-                <input type="text" name="lastname" />
+                <input
+                  type="text"
+                  name="lastname"
+                  value={formdata.lastname}
+                  onChange={handleChange}
+                  className="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
+                />
               </div>
             </div>
-
+            {/* email */}
             <div>
-              <label>
-                Email Address <span>*</span>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Email <span className="text-red-500">*</span>
               </label>
-              <input type="email" name="email" />
+              <input
+                type="email"
+                value={formdata.email}
+                name="email"
+                onChange={handleChange}
+                className="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
+              />
             </div>
-
+            {/* number */}
             <div>
-              <label>
-                Phone Number <span>(Optional)</span>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Phone Number<span className="text-red-500">(optional)</span>
               </label>
-              <input type="tel" name="phone" />
+              <input
+                type="tel"
+                name="phonenumber"
+                value={formdata.phonenumber}
+                onChange={handleChange}
+                className="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
+              />
             </div>
-
-            <button type="submit" className="w-fit bg-[#1ABA1A] p-3 text-white rounded-lg">SAVE</button>
+        
+            {/* submit */}
+            <div className="pt-4">
+              <button
+                type="submit"
+                className="w-auto bg-[#13b41d] hover:bg-green-600 text-white font-semibold text-xs tracking-wider uppercase py-3.5 px-6 rounded-md transition duration-200 shadow-sm"
+              >
+                SAVE
+              </button>
+            </div>
           </form>
         </div>
       </div>
