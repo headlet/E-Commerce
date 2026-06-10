@@ -1,4 +1,11 @@
+import product1 from "../../../assets/products/product1/prod.png";
+import product2 from "../../../assets/products/product1/prod5.png";
+import product3 from "../../../assets/products/product1/prod6.png";
+import product4 from "../../../assets/products/product1/prod7.png";
+import product5 from "../../../assets/products/product1/prod8.png";
+
 function SingleProduct() {
+  const img = [product2, product3, product4, product5];
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-5">
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
@@ -8,11 +15,13 @@ function SingleProduct() {
         </span>
       </div>
 
-      <div className="w-full bg-white rounded-lg">
-        <div>
-          <img src="" alt="" />
-          <div>
-            <img src="" alt="" />
+      <div className="w-full bg-white rounded-lg flex p-4">
+        <div className="flex flex-col gap-6">
+          <img src={product1} alt="" className=""/>
+          <div className="flex justify-center gap-6">
+            {img.map((img) => (
+              <img src={img} alt="" />
+            ))}
           </div>
         </div>
 
@@ -31,10 +40,19 @@ function SingleProduct() {
               <li>Design: Twin 16+1+2 Phases Digital VRM</li>
             </ul>
 
-            <p className="bg-green-100 rounded text-[#1ABA1A] w-fit">FREE SHIPPING</p>
+            <p className="bg-green-100 rounded text-[#1ABA1A] w-fit">
+              FREE SHIPPING
+            </p>
           </div>
 
-          <div></div>
+          <div>
+            <h2>COLOR: <span>Midnight Blue</span></h2>
+            <div>
+              <img src="" alt="" />
+              <p>Midnight Blue</p>
+              <p>$556</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
