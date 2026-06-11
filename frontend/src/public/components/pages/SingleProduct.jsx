@@ -393,6 +393,8 @@ function SingleProduct() {
           </label>
         </div>
       </div>
+
+      <div></div>
     </section>
   );
 }
