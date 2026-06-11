@@ -27,6 +27,7 @@ import prod6 from "../../../assets/products/product3/prod10.png.png";
 import prod7 from "../../../assets/products/product4/prod11.png.png";
 import prod8 from "../../../assets/products/product5/prod12.png.png";
 import prod9 from "../../../assets/products/product6/prod13.png.png";
+import { useState } from "react";
 
 function SingleProduct() {
   const img = [product2, product3, product4, product5];
@@ -73,6 +74,33 @@ function SingleProduct() {
       save: "$400",
     },
   ];
+
+  // Initialize state with default quantity of 1
+  const [cartData, setCartData] = useState({ quantity: 1 });
+
+  const handleData = (e) => {
+    const { name, value } = e.target; // Fixed: object destructuring instead of array
+
+    // Enforce minimum value of 1
+    const targetValue = Math.max(1, Number(value) || 1);
+
+    setCartData((values) => ({ ...values, [name]: targetValue }));
+  };
+
+  const handleMinus = () => {
+    setCartData((prev) => ({
+      ...prev,
+      quantity: Math.max(1, (prev?.quantity || 1) - 1), // Decrease, but never below 1
+    }));
+  };
+
+  const handlePlus = () => {
+    setCartData((prev) => ({
+      ...prev,
+      quantity: (prev?.quantity || 1) + 1, // Increase quantity
+    }));
+  };
+
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-5">
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
@@ -225,18 +253,31 @@ function SingleProduct() {
             </p>
 
             <div className="flex items-center justify-between bg-white rounded-lg p-2 border border-gray-300">
-              <button className="px-2 text-gray-600 hover:text-black">
-                <FaMinus />
+              <button
+                className="px-2 text-gray-600 hover:text-black transition-colors"
+                onClick={handleMinus}
+                type="button"
+              >
+                <FaMinus size={12} />
               </button>
+
+              {/* Quantity Input */}
               <input
-                type="text"
+                type="number"
                 name="quantity"
-                value="1"
-                readOnly
-                className="w-12 text-center font-semibold focus:outline-none"
+                value={cartData?.quantity || 1} // Fixed: Passed as a dynamic expression, not a string literal
+                onChange={handleData}
+                min="1"
+                className="w-12 text-center font-semibold focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
-              <button className="px-2 text-gray-600 hover:text-black">
-                <FaPlus />
+
+              {/* Plus Button */}
+              <button
+                className="px-2 text-gray-600 hover:text-black transition-colors"
+                onClick={handlePlus}
+                type="button"
+              >
+                <FaPlus size={12} />
               </button>
             </div>
 
