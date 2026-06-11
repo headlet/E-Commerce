@@ -4,6 +4,9 @@ import product3 from "../../../assets/products/product1/prod6.png";
 import product4 from "../../../assets/products/product1/prod7.png";
 import product5 from "../../../assets/products/product1/prod8.png";
 import gift from "../../../assets/gift.png";
+import det1 from "../../../assets/det1.png";
+import det2 from "../../../assets/det2.png";
+import det3 from "../../../assets/det3.png";
 import {
   FaFacebook,
   FaYoutube,
@@ -16,6 +19,7 @@ import {
   FaTruck,
 } from "react-icons/fa";
 import pay5 from "../../../assets/pay.png";
+import { Link } from "react-router";
 
 function SingleProduct() {
   const img = [product2, product3, product4, product5];
@@ -42,7 +46,7 @@ function SingleProduct() {
 
         {/* Second Section: Details */}
         <div className="flex flex-col">
-          <div className="flex flex-col gap-2 border-b border-gray-400 p-6">
+          <div className="flex flex-col gap-2 border-b border-gray-400 p-2">
             <h2 className="text-lg font-bold">
               Somseng Galatero X6 Ultra LTE 4G/128GB, Black Smartphone
             </h2>
@@ -170,7 +174,7 @@ function SingleProduct() {
               Stock
             </p>
 
-            <div className="flex items-center justify-center bg-white rounded-lg p-2 border border-gray-300">
+            <div className="flex items-center justify-between bg-white rounded-lg p-2 border border-gray-300">
               <button className="px-2 text-gray-600 hover:text-black">
                 <FaMinus />
               </button>
@@ -394,7 +398,56 @@ function SingleProduct() {
         </div>
       </div>
 
-      <div></div>
+      <div className="bg-white rounded-lg p-6 flex flex-col gap-6">
+        <div className="flex gap-4 text-lg ">
+          <button className="font-bold">DESCTIPTION</button>
+          <button className="text-gray-500 hover:text-green-400">REVIEWS(5)</button>
+          <button className="text-gray-500 hover:text-green-400">ADDITIONAL INFORMATION</button>
+        </div>
+
+        <p>
+          Built for ultra-fast performance, the thin and lightweight Samsung
+          Galaxy Tab S2 goes anywhere you go. Photos, movies and documents pop
+          on a crisp, clear Super AMOLED display. Expandable memory lets you
+          enjoy more of your favorite content. And connecting and sharing
+          between all your Samsung devices is easier than ever. Welcome to life
+          with the reimagined Samsung Galaxy Tab S2. Watch thev world come to
+          life on your tablet's Super AMOLED display * . With deep contrast,
+          rich colors and crisp details, you won't miss a thing
+        </p>
+        <img src={det1} alt="" />
+        <h2 className="text-lg font-bold">From the manufacturer</h2>
+        <p>
+          Dive into the blockbuster movies you can't wait to see. Switch between
+          your favorite apps quickly and easily. The new and improved octa-core
+          processor gives you the power and speed you need to see more and do
+          more. Expand your tablet's memory from 32GB to up to an additional
+          128GB and enjoy more of your favorite music, photos, movies and games
+          on the go with a microSD card. With Quick Connect, start a show on
+          your Smart TV and, with the touch of a button, take it with you by
+          moving it to your Galaxy Tab S2.Or send videos and photos from your
+          tablet screen to your TV screen to share with everyone in the room.
+          Work effortlessly between your Samsung tablet and Samsung smartphone
+          with SideSync. Quickly drag and drop photos between devices. And even
+          respond to a call from your smartphone right on your tablet screen.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 place-items-center w-full gap-4">
+          <img src={det2} alt="" className="w-full"/>
+          <img src={det3} alt="" className="w-full"/>
+        </div>
+        <h2 className="text-lg font-bold">Semsong Galaxy Tab S2, 8-Inch, White</h2>
+        <p>
+          The Samsung Galaxy Tab S2 offers dual cameras: a rear-facing
+          8-megapixel camera with Auto Focus and a 2.1-megapixel camera on the
+          front. Take high-quality pictures and video or video chat with
+          friends, family, and colleagues. Customize your Galaxy Tab S2 with the
+          apps you use most. The Samsung Galaxy Essentials widget provides a
+          collection of premium complimentary apps optimized for your tablet
+          screen. Select and download the apps you want to instantly upgrade
+          your tablet experience.
+        </p>
+        <Link to='/' className="text-blue-400 hover:text-green-400">SHOW MORE</Link>
+      </div>
     </section>
   );
 }
