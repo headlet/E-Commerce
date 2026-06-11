@@ -17,12 +17,62 @@ import {
   FaPlus,
   FaHeart,
   FaTruck,
+  FaChevronLeft,
+  FaChevronRight,
 } from "react-icons/fa";
 import pay5 from "../../../assets/pay.png";
 import { Link } from "react-router";
+import prod5 from "../../../assets/products/product2/prod9.png.png";
+import prod6 from "../../../assets/products/product3/prod10.png.png";
+import prod7 from "../../../assets/products/product4/prod11.png.png";
+import prod8 from "../../../assets/products/product5/prod12.png.png";
+import prod9 from "../../../assets/products/product6/prod13.png.png";
 
 function SingleProduct() {
   const img = [product2, product3, product4, product5];
+
+  const bestprod = [
+    {
+      name: "BOSO 2 Wireless On Ear Headphone",
+      price: "$300.00",
+      org_price: "$400.00",
+      prodimg: prod5,
+      stock: "In Stock",
+      save: "",
+    },
+    {
+      name: "iPad Pro 11-inch",
+      price: "$899.00",
+      org_price: "$999.00",
+      prodimg: prod6,
+      stock: "In Stock",
+      save: "$400",
+    },
+    {
+      name: "uLosk Mini Case 2.0",
+      price: "$120.00",
+      org_price: "$150.00",
+      prodimg: prod7,
+      stock: "In Stock",
+      save: "$400",
+    },
+    {
+      name: "Xenon i10 / 32GB / SSD 512GB / VGA 8GB",
+      price: "$1,250.00",
+      org_price: "$1,400.00",
+      prodimg: prod8,
+      stock: "In Stock",
+      save: "$400",
+    },
+    {
+      name: "Opplo Watch Series 8 GPS + Cellular Stainless Steel Case with Milanese Loop",
+      price: "$599.00",
+      org_price: "$699.00",
+      prodimg: prod9,
+      stock: "In Stock",
+      save: "$400",
+    },
+  ];
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-5">
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
@@ -401,8 +451,12 @@ function SingleProduct() {
       <div className="bg-white rounded-lg p-6 flex flex-col gap-6">
         <div className="flex gap-4 text-lg ">
           <button className="font-bold">DESCTIPTION</button>
-          <button className="text-gray-500 hover:text-green-400">REVIEWS(5)</button>
-          <button className="text-gray-500 hover:text-green-400">ADDITIONAL INFORMATION</button>
+          <button className="text-gray-500 hover:text-green-400">
+            REVIEWS(5)
+          </button>
+          <button className="text-gray-500 hover:text-green-400">
+            ADDITIONAL INFORMATION
+          </button>
         </div>
 
         <p>
@@ -432,10 +486,12 @@ function SingleProduct() {
           respond to a call from your smartphone right on your tablet screen.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 place-items-center w-full gap-4">
-          <img src={det2} alt="" className="w-full"/>
-          <img src={det3} alt="" className="w-full"/>
+          <img src={det2} alt="" className="w-full" />
+          <img src={det3} alt="" className="w-full" />
         </div>
-        <h2 className="text-lg font-bold">Semsong Galaxy Tab S2, 8-Inch, White</h2>
+        <h2 className="text-lg font-bold">
+          Semsong Galaxy Tab S2, 8-Inch, White
+        </h2>
         <p>
           The Samsung Galaxy Tab S2 offers dual cameras: a rear-facing
           8-megapixel camera with Auto Focus and a 2.1-megapixel camera on the
@@ -446,7 +502,55 @@ function SingleProduct() {
           screen. Select and download the apps you want to instantly upgrade
           your tablet experience.
         </p>
-        <Link to='/' className="text-blue-400 hover:text-green-400">SHOW MORE</Link>
+        <Link to="/" className="text-blue-400 hover:text-green-400">
+          SHOW MORE
+        </Link>
+      </div>
+
+      <div className="w-full bg-white rounded-lg p-10">
+        <h2 className="text-lg font-bold">RELATED PRODUCTS</h2>
+        <div className="flex md:justify-center  md:items-center w-full bg-white rounded-lg p-10">
+          <FaChevronLeft size={40} className="bg-gray-200 rounded-lg" />
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 px-7 gap-4">
+            {bestprod.map((prod, index) => (
+              <div className="flex flex-col justify-center items-center gap-3 rounded-lg px-3">
+                <div className="relative ">
+                  <p className="absolute top-4 left-2 bg-[#1ABA1A] p-2 text-white  rounded-2xl text-xs">
+                    Save <span className="text-md block">{prod.save}</span>
+                  </p>
+                  <img src={prod.prodimg} alt="" className="h-52 w-48" />
+                  <div>
+                    <img
+                      src={prod.prodimg}
+                      alt=""
+                      className="w-10 h-10 hover:bg-[#1ABA1A] hover:border-[#1ABA1A] hover:border-2"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col justify-center gap-2" key={index}>
+                  <h2 className="w-full h-15 text-lg font-semibold block overflow-hidden">
+                    {prod.name}
+                  </h2>
+                  <div className="flex gap-3 text-lg">
+                    <p className="text-red-500">{prod.price}</p>
+                    <p className="line-through">{prod.org_price}</p>
+                  </div>
+                  <div className="flex gap-4">
+                    <p className="bg-green-100 p-2 rounded text-[#1ABA1A]">
+                      FREE SHIPPING
+                    </p>
+                    <p className="bg-red-100 p-2 rounded text-[#F1352B]">
+                      FREE GIFT
+                    </p>
+                  </div>
+                  <p>{prod.stock}</p> {/*add cross */}
+                </div>
+              </div>
+            ))}
+          </div>
+          <FaChevronRight size={40} className="bg-gray-200 rounded-lg" />
+        </div>
       </div>
     </section>
   );
