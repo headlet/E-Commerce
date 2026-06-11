@@ -13,7 +13,7 @@ import {
   FaMinus,
   FaPlus,
   FaHeart,
-  FaTruck
+  FaTruck,
 } from "react-icons/fa";
 import pay5 from "../../../assets/pay.png";
 
@@ -30,13 +30,12 @@ function SingleProduct() {
 
       {/* Main Grid: 1 col on mobile, 2 cols on tablet, explicit 2fr_2fr_1fr track sizing on desktop */}
       <div className="w-full bg-white rounded-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_2fr_1fr] p-8 justify-center gap-6">
-        
         {/* First Section: Images */}
         <div className="flex flex-col">
           <img src={product1} alt="" className="" />
           <div className="flex justify-center items-center gap-8 mt-20">
             {img.map((img, index) => (
-              <img key={index} src={img} alt="" className="w-[10%]"/>
+              <img key={index} src={img} alt="" className="w-[10%]" />
             ))}
           </div>
         </div>
@@ -49,20 +48,30 @@ function SingleProduct() {
             </h2>
             <p className="text-lg font-bold">$300.00-$600.00</p>
             <ul className="p-4 list-disc text-sm flex flex-col gap-2">
-              <li>Intel LGA 1700 Socket: Supports 13th & 12th Gen Intel Core DDR5</li>
-              <li>Compatible: 4*SMD DIMMs with XMP 3.0 Memory Commanding Power</li>
+              <li>
+                Intel LGA 1700 Socket: Supports 13th & 12th Gen Intel Core DDR5
+              </li>
+              <li>
+                Compatible: 4*SMD DIMMs with XMP 3.0 Memory Commanding Power
+              </li>
               <li>Design: Twin 16+1+2 Phases Digital VRM</li>
             </ul>
 
             <div className="flex gap-4">
-              <p className="bg-green-100 rounded text-[#1ABA1A] w-fit px-2 py-0.5">FREE SHIPPING</p>
-              <p className="bg-red-100 rounded text-red-500 w-fit px-2 py-0.5">FREE Gift</p>
+              <p className="bg-green-100 rounded text-[#1ABA1A] w-fit px-2 py-0.5">
+                FREE SHIPPING
+              </p>
+              <p className="bg-red-100 rounded text-red-500 w-fit px-2 py-0.5">
+                FREE Gift
+              </p>
             </div>
           </div>
 
           <div className="border-b border-gray-400 p-6 flex flex-col gap-4">
             <div className="flex flex-col gap-3">
-              <h2>COLOR: <span>Midnight Blue</span></h2>
+              <h2>
+                COLOR: <span>Midnight Blue</span>
+              </h2>
               <div className="flex flex-row gap-6">
                 <div className="border border-[#1ABA1A] p-3 rounded-xl text-center font-semibold">
                   <p>Midnight Blue</p>
@@ -80,7 +89,9 @@ function SingleProduct() {
             </div>
 
             <div className="flex flex-col gap-4">
-              <h2>MEMORY SIZE: <span>128GB</span></h2>
+              <h2>
+                MEMORY SIZE: <span>128GB</span>
+              </h2>
               <div className="flex gap-6">
                 <div className="border border-gray-400 p-3 rounded-xl text-center font-semibold">
                   <p>64GB</p>
@@ -105,16 +116,43 @@ function SingleProduct() {
             </div>
 
             <div>
-              <h2 className="font-bold">SKU: <span className="font-normal">ABC12391290</span></h2>
-              <h2 className="font-bold">CATEGORY: <span className="font-normal">Cell Phones & Tablets</span></h2>
-              <h2 className="font-bold">Brand: <span className="font-normal">Sumsong</span></h2>
+              <h2 className="font-bold">
+                SKU: <span className="font-normal">ABC12391290</span>
+              </h2>
+              <h2 className="font-bold">
+                CATEGORY:{" "}
+                <span className="font-normal">Cell Phones & Tablets</span>
+              </h2>
+              <h2 className="font-bold">
+                Brand: <span className="font-normal">Sumsong</span>
+              </h2>
             </div>
 
             <div className="flex gap-8 text-3xl">
-              <a href="#" className="hover:text-blue-500 transition rounded-full bg-gray-200 p-3"><FaFacebook /></a>
-              <a href="#" className="hover:text-red-500 transition rounded-full bg-gray-200 p-3"><FaYoutube /></a>
-              <a href="#" className="hover:text-pink-500 transition rounded-full bg-gray-200 p-3"><FaInstagram /></a>
-              <a href="#" className="hover:text-sky-400 transition rounded-full bg-gray-200 p-3"><FaTwitter /></a>
+              <a
+                href="#"
+                className="hover:text-blue-500 transition rounded-full bg-gray-200 p-3"
+              >
+                <FaFacebook />
+              </a>
+              <a
+                href="#"
+                className="hover:text-red-500 transition rounded-full bg-gray-200 p-3"
+              >
+                <FaYoutube />
+              </a>
+              <a
+                href="#"
+                className="hover:text-pink-500 transition rounded-full bg-gray-200 p-3"
+              >
+                <FaInstagram />
+              </a>
+              <a
+                href="#"
+                className="hover:text-sky-400 transition rounded-full bg-gray-200 p-3"
+              >
+                <FaTwitter />
+              </a>
             </div>
           </div>
         </div>
@@ -128,7 +166,8 @@ function SingleProduct() {
             </div>
 
             <p className="flex gap-2 items-center">
-              <FaCheck className="bg-green-400 rounded-full w-6 h-6 p-1" /> In Stock
+              <FaCheck className="bg-green-400 rounded-full w-6 h-6 p-1" /> In
+              Stock
             </p>
 
             <div className="flex items-center justify-center bg-white rounded-lg p-2 border border-gray-300">
@@ -154,7 +193,7 @@ function SingleProduct() {
             {/* Payment Methods */}
             <div className="space-y-4 pt-2 border-t border-gray-300/60">
               <h2 className="font-semibold text-md">BUY WITH</h2>
-              
+
               <div className="space-y-1">
                 <label className="flex items-center gap-2 cursor-pointer font-semibold text-sm text-gray-800">
                   <input
@@ -189,7 +228,12 @@ function SingleProduct() {
                   />
                   <span>
                     Paypal
-                    <a href="#" className="text-xs text-blue-500 underline font-normal ml-1">What's Paypal?</a>
+                    <a
+                      href="#"
+                      className="text-xs text-blue-500 underline font-normal ml-1"
+                    >
+                      What's Paypal?
+                    </a>
                   </span>
                 </label>
                 <span className="text-blue-600 font-bold italic tracking-tight text-xs bg-white px-2 py-0.5 rounded border shadow-sm">
@@ -204,21 +248,150 @@ function SingleProduct() {
             </div>
 
             <div className="flex flex-col gap-3">
-              <p className="text-sm font-semibold text-gray-600">Guaranteed Safe Checkout</p>
-              <img src={pay5} alt="Payment Gateways" className="w-full object-contain" />
+              <p className="text-sm font-semibold text-gray-600">
+                Guaranteed Safe Checkout
+              </p>
+              <img
+                src={pay5}
+                alt="Payment Gateways"
+                className="w-full object-contain"
+              />
             </div>
           </div>
 
           <div className="flex flex-col justify-center items-center gap-4 bg-gray-200 rounded-lg p-6 w-full">
-            <p className="bg-black text-white p-2 rounded-lg text-sm font-semibold">Quick Order 24/7</p>
-            <h2 className="text-2xl font-bold">+01-49234823</h2>   
+            <p className="bg-black text-white p-2 rounded-lg text-sm font-semibold">
+              Quick Order 24/7
+            </p>
+            <h2 className="text-2xl font-bold">+01-49234823</h2>
           </div>
 
           <h2 className="flex justify-center items-center gap-2 text-sm text-gray-700">
-            <FaTruck/> Ships from <span className="font-bold">NEPAL</span>
+            <FaTruck /> Ships from <span className="font-bold">NEPAL</span>
           </h2>
         </div>
+      </div>
 
+      {/* Frequently Bought Together Section */}
+      <div className="w-full bg-white rounded-lg p-6 shadow-sm border border-gray-100 flex flex-col gap-6">
+        {/* Section Title */}
+        <h2 className="font-bold text-base md:text-lg text-gray-900 tracking-tight">
+          FREQUENTLY BOUGHT TOGETHER
+        </h2>
+
+        {/* Top Row: Product Images + Total Actions */}
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-8 pb-6 border-b border-gray-200">
+          {/* Left Side: Images and Plus Connectors */}
+          <div className="flex flex-wrap md:flex-nowrap items-center justify-center gap-4 md:gap-6">
+            {/* Product 1 */}
+            <div className="w-28 h-28 flex items-center justify-center p-2">
+              <img
+                src={product1}
+                alt="Smartphone"
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+
+            {/* Plus Divider */}
+            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 text-gray-700 font-bold text-sm shadow-sm">
+              <FaPlus size={12} />
+            </div>
+
+            {/* Product 2 */}
+            <div className="w-28 h-28 flex items-center justify-center p-2">
+              <img
+                src={product2}
+                alt="Headphones"
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+
+            {/* Plus Divider */}
+            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 text-gray-700 font-bold text-sm shadow-sm">
+              <FaPlus size={12} />
+            </div>
+
+            {/* Product 3 */}
+            <div className="w-28 h-28 flex items-center justify-center p-2">
+              <img
+                src={product3}
+                alt="Smartwatch"
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+          </div>
+
+          {/* Right Side: Total Pricing & Add to Cart Action */}
+          <div className="flex flex-col gap-3 w-full lg:w-64">
+            <div>
+              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                TOTAL PRICE:
+              </p>
+              <h3 className="text-3xl font-extrabold text-gray-900 tracking-tight">
+                $609.00
+              </h3>
+            </div>
+
+            <button className="w-full bg-[#1ABA1A] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#159615] transition-colors duration-200 text-sm tracking-wide shadow-sm">
+              ADD TO CART
+            </button>
+
+            <button className="flex items-center justify-center lg:justify-start gap-2 text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors">
+              <FaHeart size={14} className="text-gray-400" />
+              <span>Ad all to Wishlist</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Bottom Row: Item Selection Checkbox List */}
+        <div className="flex flex-col gap-3.5 pt-2">
+          {/* Item 1 */}
+          <label className="flex items-start gap-3 cursor-pointer text-sm text-gray-600 hover:text-gray-900 transition-colors">
+            <input
+              type="checkbox"
+              defaultChecked
+              className="mt-1 h-4 w-4 rounded border-gray-300 text-[#1ABA1A] focus:ring-[#1ABA1A]"
+            />
+            <span>
+              <span className="font-bold text-gray-800">This item:</span>{" "}
+              Somseng Galatero X6 Ultra LTE 4G/128 Gb, Black Smartphone
+              <span className="text-red-500 font-semibold ml-1">
+                ( $569.00 )
+              </span>
+            </span>
+          </label>
+
+          {/* Item 2 */}
+          <label className="flex items-start gap-3 cursor-pointer text-sm text-gray-600 hover:text-gray-900 transition-colors">
+            <input
+              type="checkbox"
+              defaultChecked
+              className="mt-1 h-4 w-4 rounded border-gray-300 text-[#1ABA1A] focus:ring-[#1ABA1A]"
+            />
+            <span>
+              BOSO 2 Wireless On Ear Headphone
+              <span className="text-red-500 font-semibold ml-1">
+                ( $369.00 )
+              </span>
+            </span>
+          </label>
+
+          {/* Item 3 */}
+          <label className="flex items-start gap-3 cursor-pointer text-sm text-gray-600 hover:text-gray-900 transition-colors">
+            <input
+              type="checkbox"
+              defaultChecked
+              className="mt-1 h-4 w-4 rounded border-gray-300 text-[#1ABA1A] focus:ring-[#1ABA1A]"
+            />
+            <span>
+              Opplo Watch Series 8 GPS + Cellular Stainless Stell Case with
+              Milanese Loop
+              <span className="text-red-500 font-semibold ml-1">
+                ( $129.00 )
+              </span>
+            </span>
+          </label>
+        </div>
       </div>
     </section>
   );
