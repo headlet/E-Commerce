@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import { FaUser, FaBars, FaTimes, FaHeart, FaSearch } from "react-icons/fa";
 import { FiChevronDown } from "react-icons/fi";
@@ -61,12 +61,12 @@ function NavBar() {
 
         {/* Desktop Menu */}
         <ul className="hidden lg:flex items-center gap-8 font-bold text-sm text-gray-800 uppercase tracking-wide">
-          <li className="flex items-center gap-1 cursor-pointer hover:text-[#1ABA1A]">
-            <Link to="/">Homes</Link>
-          </li>
-          <li className="flex items-center gap-1 cursor-pointer hover:text-[#1ABA1A]">
-            <Link to="/product">Products</Link>
-          </li>
+          <NavLink to="/" className={({isActive}) =>  `flex items-center gap-1 cursor-pointer hover:text-[#1ABA1A] ${(isActive) ? "text-[#1ABA1A]" : 'text-black'}`}>
+            Homes
+          </NavLink>
+          <NavLink to="/product" className={({isActive}) => `flex items-center gap-1 cursor-pointer hover:text-[#1ABA1A] ${(isActive) ? "text-[#1ABA1A]" : 'text-black'}`}>
+            Products
+          </NavLink>
           <li className="flex items-center gap-1 cursor-pointer hover:text-[#1ABA1A]">
             <Link to="/about">About</Link>
           </li>
