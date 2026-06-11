@@ -127,15 +127,15 @@ function SingleProduct() {
                 COLOR: <span>Midnight Blue</span>
               </h2>
               <div className="flex flex-row gap-6">
-                <div className="border border-[#1ABA1A] p-3 rounded-xl text-center font-semibold">
+                <div className="border-2 border-[#1ABA1A] p-3 rounded-xl text-center font-semibold hover:border-green-300">
                   <p>Midnight Blue</p>
                   <p>$556</p>
                 </div>
-                <div className="border border-gray-400 p-3 rounded-xl text-center font-semibold">
+                <div className="border-2 border-gray-400 p-3 rounded-xl text-center font-semibold hover:border-[#1ABA1A]">
                   <p>Midnight Red</p>
                   <p>$556</p>
                 </div>
-                <div className="border border-gray-400 p-3 rounded-xl text-center font-semibold">
+                <div className="border-2 border-gray-400 p-3 rounded-xl text-center font-semibold hover:border-[#1ABA1A]">
                   <p>Midnight Green</p>
                   <p>$556</p>
                 </div>
@@ -147,13 +147,13 @@ function SingleProduct() {
                 MEMORY SIZE: <span>128GB</span>
               </h2>
               <div className="flex gap-6">
-                <div className="border border-gray-400 p-3 rounded-xl text-center font-semibold">
+                <div className="border-2 border-gray-400 p-3 rounded-xl text-center font-semibold hover:border-[#1ABA1A]">
                   <p>64GB</p>
                 </div>
-                <div className="border border-[#1ABA1A] p-3 rounded-xl text-center font-semibold">
+                <div className="border-2 border-[#1ABA1A] p-3 rounded-xl text-center font-semibold">
                   <p>128GB</p>
                 </div>
-                <div className="border border-gray-400 p-3 rounded-xl text-center font-semibold">
+                <div className="border-2 border-gray-400 p-3 rounded-xl text-center font-semibold hover:border-[#1ABA1A]">
                   <p>256GB</p>
                 </div>
               </div>
