@@ -43,37 +43,59 @@ function NavBar() {
 
       {/* 2. MAIN HEADER BAR */}
       <div className="flex justify-between items-center px-3 lg:px-4 py-4 relative">
-        <div className="flex items-center gap-2">
-          <Link to='/'><img
-            src={logo || "/placeholder-logo.png"}
-            alt="SWOO TECH MART"
-            className="h-10 md:h-12 w-auto object-contain"
-          /></Link>
-          <div className="flex flex-col leading-none">
-            <span className="font-black text-xl tracking-tight text-gray-900">
-              SPEED
-            </span>
-            <span className="text-xs font-semibold text-gray-400 tracking-widest">
-              MART
-            </span>
+        <Link to="/">
+          <div className="flex items-center gap-2">
+            <img
+              src={logo || "/placeholder-logo.png"}
+              alt="SWOO TECH MART"
+              className="h-10 md:h-12 w-auto object-contain"
+            />
+            <div className="flex flex-col leading-none">
+              <span className="font-black text-xl tracking-tight text-gray-900">
+                SPEED
+              </span>
+              <span className="text-xs font-semibold text-gray-400 tracking-widest">
+                MART
+              </span>
+            </div>
           </div>
-        </div>
+        </Link>
 
         {/* Desktop Menu */}
         <ul className="hidden lg:flex items-center gap-8 font-bold text-sm text-gray-800 uppercase tracking-wide">
-          <NavLink to="/" className={({isActive}) =>  `flex items-center gap-1 cursor-pointer hover:text-[#1ABA1A] ${(isActive) ? "text-[#1ABA1A]" : 'text-black'}`}>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `flex items-center gap-1 cursor-pointer hover:text-[#1ABA1A] ${isActive ? "text-[#1ABA1A]" : "text-black"}`
+            }
+          >
             Homes
           </NavLink>
-          <NavLink to="/product" className={({isActive}) => `flex items-center gap-1 cursor-pointer hover:text-[#1ABA1A] ${(isActive) ? "text-[#1ABA1A]" : 'text-black'}`}>
+          <NavLink
+            to="/product"
+            className={({ isActive }) =>
+              `flex items-center gap-1 cursor-pointer hover:text-[#1ABA1A] ${isActive ? "text-[#1ABA1A]" : "text-black"}`
+            }
+          >
             Products
           </NavLink>
-          <li className="flex items-center gap-1 cursor-pointer hover:text-[#1ABA1A]">
-            <Link to="/about">About</Link>
-          </li>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              `flex items-center gap-1 cursor-pointer hover:text-[#1ABA1A] ${isActive ? "text-[#1ABA1A]" : "text-black"}`
+            }
+          >
+            About
+          </NavLink>
 
-          <li className="cursor-pointer hover:text-[#1ABA1A]">
-            <Link to="/contact">Contact</Link>
-          </li>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              `flex items-center gap-1 cursor-pointer hover:text-[#1ABA1A] ${isActive ? "text-[#1ABA1A]" : "text-black"}`
+            }
+          >
+            Contact
+          </NavLink>
         </ul>
 
         {/* Action Buttons (Search, Wishlist, Auth, Cart) */}
@@ -83,18 +105,25 @@ function NavBar() {
               <FaHeart size={16} />
             </button>
 
-            <Link to="/login" className="flex flex-col text-left group">
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                `flex flex-col text-left group cursor-pointer hover:text-[#1ABA1A] ${isActive ? "text-[#1ABA1A]" : "text-black"}`
+              }
+            >
               <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider leading-none">
                 Welcome
               </span>
-              <span className="text-xs font-bold text-gray-900 group-hover:text-[#1ABA1A] uppercase tracking-wide">
+              <span className="text-xs font-bold  group-hover:text-[#1ABA1A] uppercase tracking-wide">
                 Log In / Register
               </span>
-            </Link>
+            </NavLink>
           </div>
 
           {/* Shopping Cart Widget */}
-          <Link to='/Cart' className="flex items-center gap-2 pl-2">
+          <NavLink to="/Cart" className={({ isActive }) =>
+              `flex items-center gap-2 pl-2 cursor-pointer hover:text-[#1ABA1A] ${isActive ? "text-[#1ABA1A]" : "text-black"}`
+            } >
             <div className="relative w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-700">
               <MdOutlineShoppingCart size={20} />
               <span className="absolute -top-1 -right-1 bg-[#1ABA1A] text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">
@@ -105,9 +134,9 @@ function NavBar() {
               <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
                 Cart
               </span>
-              <span className="text-sm font-bold text-gray-900">$1,689.00</span>
+              <span className="text-sm font-bold ">$1,689.00</span>
             </div>
-          </Link>
+          </NavLink>
         </div>
 
         {/* Mobile View Burger & Cart indicators */}
