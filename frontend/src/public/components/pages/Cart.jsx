@@ -6,6 +6,7 @@ import prod9 from "../../../assets/products/product6/prod13.png.png";
 
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { useState, useMemo } from "react";
+import { NavLink } from "react-router";
 
 function Cart() {
   const cartProducts = [
@@ -175,9 +176,9 @@ function Cart() {
             <span>${total}</span>
           </div>
 
-          <button className="w-full bg-[#1ABA1A] hover:bg-[#159415] text-white font-semibold py-3 rounded-lg mt-2 transition-colors duration-200 shadow-sm">
+          <NavLink to='/checkout' className="w-full bg-[#1ABA1A] hover:bg-[#159415] text-white font-semibold py-3 text-center rounded-lg mt-2 transition-colors duration-200 shadow-sm">
             Proceed to Checkout
-          </button>
+          </NavLink>
         </div>
       </div>
     </section>
