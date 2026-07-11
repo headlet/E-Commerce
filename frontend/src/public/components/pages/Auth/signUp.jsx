@@ -28,6 +28,42 @@ function signUp() {
 
           {/* FORM */}
           <form className="flex flex-col w-full sm:w-[80%] md:w-[60%] gap-4">
+            <div className="w-fit flex gap-2">
+              <div className="flex flex-col">
+                <label>First Name</label>
+                <input
+                  type="text"
+                  className="border p-1 rounded-md outline-none"
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label>Last Name</label>
+                <input
+                  type="text"
+                  className="border p-1 rounded-md outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="w-fit flex gap-2">
+              <div className="flex flex-col">
+                <label>Username</label>
+                <input
+                  type="text"
+                  className="border p-1 rounded-md outline-none"
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label>Phone Number</label>
+                <input
+                  type="tel"
+                  className="border p-1 rounded-md outline-none"
+                />
+              </div>
+            </div>
+
             <div className="flex flex-col">
               <label>Email Address</label>
               <input
@@ -37,11 +73,15 @@ function signUp() {
             </div>
 
             <div className="flex flex-col">
-              <label>Full Name</label>
-              <input
-                type="text"
-                className="border p-2 rounded-md outline-none"
-              />
+              <label>Gender</label>
+              <select id="gender" name="gender"  className="border p-2 rounded-md outline-none">
+                <option value="" disabled selected>
+                  Select gender
+                </option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
             </div>
 
             <div className="flex flex-col">

@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import {Title} from 'react-head'
 import slider1 from "../../../assets/sliders/slider1.png";
 import slider2 from "../../../assets/sliders/slider2.png";
 import slider3 from "../../../assets/sliders/slider3.png";
@@ -172,6 +173,7 @@ function Home() {
   const dealsimg = [prod1, prod2, prod3, prod4];
   return (
     <section className="flex flex-col items-center justify-center gap-5 p-4">
+      <title>Home | Market</title>
       <div className="w-full mx-auto flex flex-col md:flex-row justify-center items-start gap-4 ">
         {/* LEFT CATEGORY */}
         <div className="w-full md:w-[25%] pr-0 lg:pr-4 flex gap-2 md:gap-0 sm:flex-col text-md p-2 md:p-9 lg:pt-9 overflow-x-auto lg:overflow-visible bg-white rounded-2xl">
