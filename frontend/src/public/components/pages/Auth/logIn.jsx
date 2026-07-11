@@ -2,8 +2,34 @@ import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router";
 import loginimg from "../../../../assets/login.png";
 import logo from "../../../../assets/logo.png";
+import {login} from "../../../../api/auth"
+import {useState} from 'react'
 
 function logIn() {
+  const [LoginForm, setLoginForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(LoginForm);
+    try {
+      const response = await login(LoginForm);
+
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoginForm((e) => ({
+      ...e,
+      [name]: value,
+    }));
+  };
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-5">
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
@@ -29,11 +55,14 @@ function logIn() {
 
           <p className="mb-4 text-gray-500">Or</p>
 
-          <form className="flex flex-col w-full sm:w-[80%] md:w-[60%] gap-4">
+          <form className="flex flex-col w-full sm:w-[80%] md:w-[60%] gap-4" onSubmit={handleSubmit}>
             <div className="flex flex-col">
               <label>Email Address</label>
               <input
                 type="email"
+                name="email"
+                value={LoginForm.email}
+                onChange={handleChange}
                 className="border p-2 rounded-md outline-none"
               />
             </div>
@@ -42,6 +71,9 @@ function logIn() {
               <label>Password</label>
               <input
                 type="password"
+                name="password"
+                value={LoginForm.password}
+                onChange={handleChange}
                 className="border p-2 rounded-md outline-none"
               />
             </div>

@@ -2,8 +2,44 @@ import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router";
 import loginimg from "../../../../assets/login.png";
 import logo from "../../../../assets/logo.png";
+import { register } from "../../../../api/auth";
+import { useState } from "react";
 
 function signUp() {
+  const [form, setForm] = useState({
+    first_name: "",
+    last_name: "",
+    username: "",
+    dob: "",
+    phone: "",
+    gender: "",
+    role_id: 1,
+    email: "",
+    password: "",
+    password_confirmation: "",
+    status: "active",
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(form);
+    try {
+      const response = await register(form);
+
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((e) => ({
+      ...e,
+      [name]: value,
+    }));
+  };
+
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-4">
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
@@ -27,12 +63,18 @@ function signUp() {
           <p className="mb-4 text-gray-500">Or</p>
 
           {/* FORM */}
-          <form className="flex flex-col w-full sm:w-[80%] md:w-[60%] gap-4">
-            <div className="w-fit flex gap-2">
+          <form
+            className="flex flex-col w-full sm:w-[80%] md:w-[60%] gap-4"
+            onSubmit={handleSubmit}
+          >
+            <div className="w-fit flex md:flex-row flex-col gap-2">
               <div className="flex flex-col">
                 <label>First Name</label>
                 <input
                   type="text"
+                  name="first_name"
+                  value={form.first_name}
+                  onChange={handleChange}
                   className="border p-1 rounded-md outline-none"
                 />
               </div>
@@ -41,6 +83,9 @@ function signUp() {
                 <label>Last Name</label>
                 <input
                   type="text"
+                  name="last_name"
+                  value={form.last_name}
+                  onChange={handleChange}
                   className="border p-1 rounded-md outline-none"
                 />
               </div>
@@ -51,6 +96,9 @@ function signUp() {
                 <label>Username</label>
                 <input
                   type="text"
+                  name="username"
+                  value={form.username}
+                  onChange={handleChange}
                   className="border p-1 rounded-md outline-none"
                 />
               </div>
@@ -59,6 +107,9 @@ function signUp() {
                 <label>Phone Number</label>
                 <input
                   type="tel"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
                   className="border p-1 rounded-md outline-none"
                 />
               </div>
@@ -68,13 +119,33 @@ function signUp() {
               <label>Email Address</label>
               <input
                 type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                className="border p-2 rounded-md outline-none"
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <label>dob</label>
+              <input
+                type="date"
+                name="dob"
+                value={form.dob}
+                onChange={handleChange}
                 className="border p-2 rounded-md outline-none"
               />
             </div>
 
             <div className="flex flex-col">
               <label>Gender</label>
-              <select id="gender" name="gender"  className="border p-2 rounded-md outline-none">
+              <select
+                id="gender"
+                name="gender"
+                value={form.gender}
+                onChange={handleChange}
+                className="border p-2 rounded-md outline-none"
+              >
                 <option value="" disabled selected>
                   Select gender
                 </option>
@@ -84,12 +155,28 @@ function signUp() {
               </select>
             </div>
 
-            <div className="flex flex-col">
-              <label>Password</label>
-              <input
-                type="password"
-                className="border p-2 rounded-md outline-none"
-              />
+            <div className="w-fit flex md:flex-row flex-col gap-2">
+              <div className="flex flex-col">
+                <label>Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={form.password}
+                  onChange={handleChange}
+                  className="border p-2 rounded-md outline-none"
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label>Confirm Password</label>
+                <input
+                  type="password"
+                  name="password_confirmation"
+                  value={form.password_confirmation}
+                  onChange={handleChange}
+                  className="border p-2 rounded-md outline-none"
+                />
+              </div>
             </div>
 
             <button
