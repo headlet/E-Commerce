@@ -28,8 +28,12 @@ function signUp() {
       const response = await register(form);
 
       console.log(response.data);
-      if (response.data.user) {
-        return <Navigate to="/login" replace />;
+
+      if (response.data && response.data.access_token) {
+        const { access_token, user } = response.data;
+        localStorage.setItem("token", access_token);
+        localStorage.setItem("user", JSON.stringify(user));
+        window.location.href = "/profile";
       }
     } catch (error) {
       console.log(error.response.data);

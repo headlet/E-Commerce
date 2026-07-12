@@ -29,7 +29,7 @@ class AuthServices
         ]);
 
         // Generate JWT Token
-        $token = JWTAuth::login($user);
+        $token = JWTAuth::fromUser($user);
 
         return response()->json([
             'message' => 'User registered successfully',

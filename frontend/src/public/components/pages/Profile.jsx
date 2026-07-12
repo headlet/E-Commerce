@@ -1,19 +1,46 @@
 import { NavLink } from "react-router";
 import avatar from "../../../assets/avatars.jpg";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { Title } from "react-head";
+ import api from './api'; 
+import { useAuth } from './AuthContext';
 
 function Profile() {
-  const [formdata, setFormData] = useState({});
+
+
+const Profile = () => {
+  const { user, setUser } = useAuth();
+  const [formData, setFormData] = useState({
+    first_name: '',
+    last_name: '',
+    email: '',
+  });
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        first_name: user.first_name || '',
+        last_name: user.last_name || '',
+        email: user.email || '',
+      });
+    }
+  }, [user]);
 
   const handleChange = (e) => {
-    const {name, value} = e.target;
-    setFormData((values) => ({...values, [name] : value}));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formdata);
+    try {
+      const response = await api.put('/user/update', formData);
+      setUser(response.data.user); 
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+      setMessage('Profile updated successfully!');
+    } catch (error) {
+      setMessage(error.response?.data?.message || 'Failed to update profile.');
+    }
   };
 
   return (
@@ -25,11 +52,11 @@ function Profile() {
       </div>
 
       <div className="bg-white rounded-lg p-6 w-full flex flex-col lg:flex-row justify-evenly gap-4">
-        <div className="flex flex-col gap-4 justify-center bg-gray-200 p-6 rounded-lg lg:w-[18%]">
+        <div className="flex flex-col gap-4 justify-center items-center bg-gray-200 p-6 rounded-lg lg:w-[18%]">
           <img
             src={avatar}
             alt=""
-            className="rounded-full bg-gray-600 lg:h-[200px]"
+            className="rounded-full bg-gray-600 lg:h-[200px]  w-[50%]]"
           />
           <h2 className="text-xl font-semibold">Ajay Bhayadyo</h2>
           <p className="text-sm text-gray-600">bhayadyo@gmail.com</p>
