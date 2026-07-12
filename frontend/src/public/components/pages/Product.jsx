@@ -8,6 +8,7 @@ import slider1 from "../../../assets/sliders/slider1.png";
 import slider5 from "../../../assets/sliders/slider5.png";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router";
+import { Title } from "react-head";
 import prod5 from "../../../assets/products/product2/prod9.png.png";
 import prod6 from "../../../assets/products/product3/prod10.png.png";
 import prod7 from "../../../assets/products/product4/prod11.png.png";
@@ -278,6 +279,7 @@ function Product() {
 
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-5">
+      <Title>Product | SpeedMart</Title>
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
         Home / pages /{" "}
         <span className="text-md font-semibold text-black">

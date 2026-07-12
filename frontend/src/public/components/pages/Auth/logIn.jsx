@@ -2,8 +2,9 @@ import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router";
 import loginimg from "../../../../assets/login.png";
 import logo from "../../../../assets/logo.png";
-import {login} from "../../../../api/auth"
-import {useState} from 'react'
+import { login } from "../../../../api/auth";
+import { useState } from "react";
+import { Title } from "react-head";
 
 function logIn() {
   const [LoginForm, setLoginForm] = useState({
@@ -13,13 +14,19 @@ function logIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(LoginForm);
+
     try {
       const response = await login(LoginForm);
 
-      console.log(response.data);
+      if (response.data && response.data.access_token) {
+        const { access_token, user } = response.data;
+        localStorage.setItem("token", access_token);
+        localStorage.setItem("user", JSON.stringify(user));
+        window.location.href = "/profile";
+      }
     } catch (error) {
-      console.log(error.response.data);
+      const errorMsg = error.response?.data?.message || "Login failed";
+      console.error(errorMsg);
     }
   };
 
@@ -32,6 +39,7 @@ function logIn() {
   };
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-5">
+      <Title>Login | SpeedMart</Title>
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
         Home / pages /{" "}
         <span className="text-md font-semibold text-black">Login</span>
@@ -55,7 +63,10 @@ function logIn() {
 
           <p className="mb-4 text-gray-500">Or</p>
 
-          <form className="flex flex-col w-full sm:w-[80%] md:w-[60%] gap-4" onSubmit={handleSubmit}>
+          <form
+            className="flex flex-col w-full sm:w-[80%] md:w-[60%] gap-4"
+            onSubmit={handleSubmit}
+          >
             <div className="flex flex-col">
               <label>Email Address</label>
               <input

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import contact from "../../../assets/contact.png";
+import { Title } from "react-head";
 
 function Contact() {
   const [formdata, setFormData] = useState({
@@ -28,6 +29,7 @@ function Contact() {
 
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-5">
+      <Title>Contact | SpeedMart</Title>
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
         Home / pages /{" "}
         <span className="text-md font-semibold text-black">Contact</span>

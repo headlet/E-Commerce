@@ -3,10 +3,10 @@ import prod6 from "../../../assets/products/product3/prod10.png.png";
 import prod7 from "../../../assets/products/product4/prod11.png.png";
 import prod8 from "../../../assets/products/product5/prod12.png.png";
 import prod9 from "../../../assets/products/product6/prod13.png.png";
-
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { useState, useMemo } from "react";
 import { NavLink } from "react-router";
+import { Title } from "react-head";
 
 function Cart() {
   const cartProducts = [
@@ -89,6 +89,7 @@ function Cart() {
 
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-5">
+      <Title>Cart | SpeedMart</Title>
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
         Home / pages /{" "}
         <span className="text-md font-semibold text-black">My Cart</span>

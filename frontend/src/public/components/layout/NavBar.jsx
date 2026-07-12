@@ -62,7 +62,7 @@ function NavBar() {
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden lg:flex items-center gap-8 font-bold text-sm text-gray-800 uppercase tracking-wide">
+        <ul className="hidden md:flex items-center gap-8 font-bold text-sm text-gray-800 uppercase tracking-wide">
           <NavLink
             to="/"
             className={({ isActive }) =>

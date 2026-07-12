@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Title } from "react-head";
 
 function Checkout() {
   const [formdata, setFormData] = useState({
@@ -32,6 +33,7 @@ function Checkout() {
 
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-5 bg-gray-100 min-h-screen">
+      <Title>Checkout | SpeedMart</Title>
       {/* Top Banner Information */}
       <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
         <div className="bg-[#f2f2f6] rounded p-4 border-t-2 border-gray-300">

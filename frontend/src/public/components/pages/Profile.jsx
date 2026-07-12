@@ -1,6 +1,7 @@
 import { NavLink } from "react-router";
 import avatar from "../../../assets/avatars.jpg";
 import { useState } from "react";
+import { Title } from "react-head";
 
 function Profile() {
   const [formdata, setFormData] = useState({});
@@ -17,6 +18,7 @@ function Profile() {
 
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-5">
+      <Title>Profile | SpeedMart</Title>
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
         Home / pages /{" "}
         <span className="text-md font-semibold text-black">Profile</span>

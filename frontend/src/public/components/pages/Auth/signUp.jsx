@@ -1,9 +1,10 @@
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, Navigate } from "react-router";
 import loginimg from "../../../../assets/login.png";
 import logo from "../../../../assets/logo.png";
 import { register } from "../../../../api/auth";
 import { useState } from "react";
+import { Title } from "react-head";
 
 function signUp() {
   const [form, setForm] = useState({
@@ -27,6 +28,9 @@ function signUp() {
       const response = await register(form);
 
       console.log(response.data);
+      if (response.data.user) {
+        return <Navigate to="/login" replace />;
+      }
     } catch (error) {
       console.log(error.response.data);
     }
@@ -42,6 +46,7 @@ function signUp() {
 
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-4">
+      <Title>SignUp | SpeedMart</Title>
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
         Home / pages /{" "}
         <span className="text-md font-semibold text-black">SignUp</span>

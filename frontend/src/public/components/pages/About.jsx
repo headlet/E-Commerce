@@ -3,6 +3,8 @@ import ban2 from "../../../assets/banner/aboutimg.png";
 import { FaThumbsUp, FaTruck, FaDollarSign } from "react-icons/fa";
 import ban3 from "../../../assets/banner/about3.png";
 import avatar from "../../../assets/avatars.jpg";
+import { Title } from "react-head";
+
 function About() {
   const Owner = [
     {
@@ -39,6 +41,7 @@ function About() {
 
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-5">
+      <Title>About | SpeedMart</Title>
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
         Home / pages /
         <span className="text-md font-semibold text-black">About</span>

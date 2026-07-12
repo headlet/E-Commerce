@@ -28,6 +28,7 @@ import prod7 from "../../../assets/products/product4/prod11.png.png";
 import prod8 from "../../../assets/products/product5/prod12.png.png";
 import prod9 from "../../../assets/products/product6/prod13.png.png";
 import { useState } from "react";
+import { Title } from "react-head";
 
 function SingleProduct() {
   const img = [product2, product3, product4, product5];
@@ -103,6 +104,7 @@ function SingleProduct() {
 
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-5">
+      <Title>SingleProuddct | SpeedMart</Title>
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
         Home / pages / Top Cell Phone & Tablet / {""}
         <span className="text-md font-semibold text-black">
