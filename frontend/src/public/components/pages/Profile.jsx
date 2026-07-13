@@ -1,28 +1,53 @@
 import { NavLink } from "react-router";
 import avatar from "../../../assets/avatars.jpg";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { Title } from "react-head";
- import api from './api'; 
-import { useAuth } from './AuthContext';
-
+import api from "../../../api/axios";
+import { useAuth } from "../../../api/authContext.jsx";
+import { useNavigate } from "react-router";
 function Profile() {
+  const { user, setUser, logoutUser } = useAuth();
+  const navigate = useNavigate();
 
+  const handleSignOut = async () => {
+    console.log('running')
+    // 1. Trigger the unified logout function from context
+    await logoutUser();
 
-const Profile = () => {
-  const { user, setUser } = useAuth();
+    // 2. Safely bounce user back to login screen once state is cleared
+    navigate("/login");
+  };
+
   const [formData, setFormData] = useState({
-    first_name: '',
-    last_name: '',
-    email: '',
+    first_name: "",
+    last_name: "",
+    username: "",
+    dob: "",
+    phone: "",
+    gender: "",
+    role_id: 1,
+    email: "",
+    password: "",
+    password_confirmation: "",
+    status: "active",
   });
-  const [message, setMessage] = useState('');
+
+  const [message, setMessage] = useState("");
+  const [isSuccess, setIsSuccess] = useState(true);
 
   useEffect(() => {
     if (user) {
       setFormData({
-        first_name: user.first_name || '',
-        last_name: user.last_name || '',
-        email: user.email || '',
+        first_name: user.first_name || "",
+        last_name: user.last_name || "",
+        email: user.email || "",
+        username: user.username || "",
+        dob: user.dob || "",
+        phone: user.phone || "",
+        gender: user.gender || "",
+        password: "",
+        password_confirmation: "",
+        status: user.status || "active",
       });
     }
   }, [user]);
@@ -33,78 +58,112 @@ const Profile = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+    setMessage("");
+
     try {
-      const response = await api.put('/user/update', formData);
-      setUser(response.data.user); 
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-      setMessage('Profile updated successfully!');
+      const response = await api.put("/user/update", formData);
+
+      // Update our central auth provider context tracking state wrapper
+      setUser(response.data.user);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+
+      setIsSuccess(true);
+      setMessage("Profile updated successfully!");
     } catch (error) {
-      setMessage(error.response?.data?.message || 'Failed to update profile.');
+      setIsSuccess(false);
+      setMessage(error.response?.data?.message || "Failed to update profile.");
     }
   };
 
   return (
     <section className="flex flex-col items-center justify-center w-full p-4 gap-5">
       <Title>Profile | SpeedMart</Title>
+
       <div className="text-sm text-gray-500 w-full bg-white rounded-lg p-5">
         Home / pages /{" "}
         <span className="text-md font-semibold text-black">Profile</span>
       </div>
 
       <div className="bg-white rounded-lg p-6 w-full flex flex-col lg:flex-row justify-evenly gap-4">
-        <div className="flex flex-col gap-4 justify-center items-center bg-gray-200 p-6 rounded-lg lg:w-[18%]">
+        {/* Left Card: Summary Sidebar View */}
+        <div className="flex flex-col gap-4 justify-center items-center bg-gray-200 p-6 rounded-lg lg:w-[22%] w-full">
           <img
             src={avatar}
-            alt=""
-            className="rounded-full bg-gray-600 lg:h-[200px]  w-[50%]]"
+            alt="Profile Avatar"
+            className="rounded-full bg-gray-600 lg:h-[150px] lg:w-[150px] w-[120px] h-[120px] object-cover"
           />
-          <h2 className="text-xl font-semibold">Ajay Bhayadyo</h2>
-          <p className="text-sm text-gray-600">bhayadyo@gmail.com</p>
-          <NavLink
-            to="/profile"
-            className={({ isActive }) =>
-              `p-3  ${isActive ? "bg-[#1ABA1A] text-white" : "bg-gray-100 text-black hover:bg-green-100"}`
-            }
-          >
-            Account Info
-          </NavLink>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `p-3 ${isActive ? "bg-[#1ABA1A] text-white" : "bg-gray-100 text-black hover:bg-green-100"}`
-            }
-          >
-            {" "}
-            My order
-          </NavLink>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `p-3 ${isActive ? "bg-[#1ABA1A] text-white" : "bg-gray-100 text-black hover:bg-green-100"}`
-            }
-          >
-            {" "}
-            My address
-          </NavLink>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `p-3 ${isActive ? "bg-[#1ABA1A] text-white" : "bg-gray-100 text-black hover:bg-green-100"}`
-            }
-          >
-            {" "}
-            Change Password
-          </NavLink>
+          {/* Dynamic display blocks showing real login values */}
+          <h2 className="text-xl font-semibold text-center">
+            {user ? `${user.first_name} ${user.last_name}` : "Loading..."}
+          </h2>
+          <p className="text-sm text-gray-600 truncate max-w-full">
+            {user?.email || "No Email Provided"}
+          </p>
+
+          <div className="flex flex-col gap-2 w-full mt-4">
+            <NavLink
+              to="/profile"
+              className={({ isActive }) =>
+                `p-3 rounded-md text-center text-sm font-medium transition ${
+                  isActive
+                    ? "bg-[#1ABA1A] text-white"
+                    : "bg-gray-100 text-black hover:bg-green-100"
+                }`
+              }
+            >
+              Account Info
+            </NavLink>
+            <NavLink
+              to="/orders"
+              className={({ isActive }) =>
+                `p-3 rounded-md text-center text-sm font-medium transition ${
+                  isActive
+                    ? "bg-[#1ABA1A] text-white"
+                    : "bg-gray-100 text-black hover:bg-green-100"
+                }`
+              }
+            >
+              My order
+            </NavLink>
+            <NavLink
+              to="/address"
+              className={({ isActive }) =>
+                `p-3 rounded-md text-center text-sm font-medium transition ${
+                  isActive
+                    ? "bg-[#1ABA1A] text-white"
+                    : "bg-gray-100 text-black hover:bg-green-100"
+                }`
+              }
+            >
+              My address
+            </NavLink>
+          </div>
         </div>
 
-        {/* Form */}
-        <div className="w-[80%] p-8 flex flex-col gap-4">
+        {/* Right Card: Editable Form Inputs */}
+        <div className="lg:w-[75%] w-full p-4 lg:p-8 flex flex-col gap-4">
           <h2 className="text-2xl font-semibold">Account Info</h2>
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col gap-4 w-full p-6"
+
+          {/* Status feedback block banner notifications */}
+          {message && (
+            <div
+              className={`p-4 rounded-md text-sm font-medium ${
+                isSuccess
+                  ? "bg-green-50 text-green-800 border border-green-200"
+                  : "bg-red-50 text-red-800 border border-red-200"
+              }`}
+            >
+              {message}
+            </div>
+          )}
+          <button
+            onClick={handleSignOut}
+            className="w-full bg-red-600 hover:bg-red-700 text-white font-medium text-sm py-2 px-4 rounded transition duration-200"
           >
-            {/* firstname */} {/* lastname */}
+            Log Out
+          </button>
+          <form onSubmit={handleUpdate} className="flex flex-col gap-4 w-full">
+            {/* First Name & Last Name Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -112,9 +171,10 @@ const Profile = () => {
                 </label>
                 <input
                   type="text"
-                  name="firstname"
-                  value={formdata.firstname}
+                  name="first_name"
+                  value={formData.first_name}
                   onChange={handleChange}
+                  required
                   className="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
                 />
               </div>
@@ -125,47 +185,99 @@ const Profile = () => {
                 </label>
                 <input
                   type="text"
-                  name="lastname"
-                  value={formdata.lastname}
+                  name="last_name"
+                  value={formData.last_name}
                   onChange={handleChange}
+                  required
                   className="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
                 />
               </div>
             </div>
-            {/* email */}
+
+            {/* Username Field */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Username <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                required
+                className="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
+              />
+            </div>
+
+            {/* Email Field */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Email <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
-                value={formdata.email}
                 name="email"
+                value={formData.email}
                 onChange={handleChange}
+                required
                 className="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
               />
             </div>
-            {/* number */}
+
+            {/* Phone Field */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Phone Number<span className="text-red-500">(optional)</span>
+                Phone Number <span className="text-gray-400">(optional)</span>
               </label>
               <input
                 type="tel"
-                name="phonenumber"
-                value={formdata.phonenumber}
+                name="phone"
+                value={formData.phone}
                 onChange={handleChange}
                 className="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
               />
             </div>
-        
-            {/* submit */}
+
+            {/* DOB & Gender Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Date of Birth
+                </label>
+                <input
+                  type="date"
+                  name="dob"
+                  value={formData.dob}
+                  onChange={handleChange}
+                  className="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Gender
+                </label>
+                <select
+                  name="gender"
+                  value={formData.gender}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
+                >
+                  <option value="">Select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Save Button */}
             <div className="pt-4">
               <button
                 type="submit"
                 className="w-auto bg-[#13b41d] hover:bg-green-600 text-white font-semibold text-xs tracking-wider uppercase py-3.5 px-6 rounded-md transition duration-200 shadow-sm"
               >
-                SAVE
+                SAVE CHANGES
               </button>
             </div>
           </form>

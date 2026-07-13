@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { HeadProvider } from "react-head";
-import { AuthProvider } from "./api/authContext.js";
+import { AuthProvider } from "./api/authContext.jsx";
 
 import "./index.css";
 import App from "./App.jsx";

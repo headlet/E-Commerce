@@ -56,7 +56,7 @@ class AuthServices
             'user' => JWTAuth::user(),
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'expires_in' => JWTAuth::factory()->getTTL() * 60,
+            'expires_in' => JWTAuth::factory()->getTTL() * 20,
         ], 200);
     }
 

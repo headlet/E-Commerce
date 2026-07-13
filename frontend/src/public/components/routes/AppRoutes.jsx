@@ -9,6 +9,7 @@ import Profile from "../pages/Profile";
 import Cart from "../pages/Cart";
 import SingleProduct from "../pages/SingleProduct";
 import Checkout from "../pages/Checkout";
+import ProtectionRoute from "./ProtectionRoute";
 
 function AppRoutes() {
   return (
@@ -19,10 +20,14 @@ function AppRoutes() {
       <Route path="/contact" element={<Contact />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/profile" element={<Profile />}></Route>
-      <Route path="/cart" element={<Cart />}></Route>
-      <Route path="/product/id" element={<SingleProduct/>}> </Route>
-      <Route path="/checkout" element={<Checkout/>}></Route>
+      <Route path="/product/id" element={<SingleProduct />}/>
+    
+      <Route element={<ProtectionRoute/>}>
+        <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/cart" element={<Cart />}></Route>
+
+        <Route path="/checkout" element={<Checkout />}></Route>
+      </Route>
     </Routes>
   );
 }
