@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Http\Controllers\Services;
 
-use App\Http\Resources\UserResource;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Attributes\UseResource;
 use Illuminate\Support\Facades\Hash;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 

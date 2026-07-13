@@ -5,12 +5,13 @@ import { Title } from "react-head";
 import api from "../../../api/axios";
 import { useAuth } from "../../../api/authContext.jsx";
 import { useNavigate } from "react-router";
+
 function Profile() {
   const { user, setUser, logoutUser } = useAuth();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
-    console.log('running')
+    console.log('running');
     // 1. Trigger the unified logout function from context
     await logoutUser();
 
@@ -34,6 +35,9 @@ function Profile() {
 
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(true);
+  
+  // State to capture validation error arrays returned from Laravel
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (user) {
@@ -54,14 +58,21 @@ function Profile() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    
+    // Clear the individual field error message as the user updates the text
+    if (errors[e.target.name]) {
+      setErrors({ ...errors, [e.target.name]: null });
+    }
   };
 
   const handleUpdate = async (e) => {
     e.preventDefault();
     setMessage("");
+    setErrors({}); // Clear old validations on every new submission attempt
 
     try {
-      const response = await api.put("/user/update", formData);
+      // Fix: Use template literals backticks to evaluate the user id variable properly
+      const response = await api.put(`/user/${user.id}`, formData);
 
       // Update our central auth provider context tracking state wrapper
       setUser(response.data.user);
@@ -71,7 +82,15 @@ function Profile() {
       setMessage("Profile updated successfully!");
     } catch (error) {
       setIsSuccess(false);
-      setMessage(error.response?.data?.message || "Failed to update profile.");
+      
+      if (error.response && error.response.status === 422) {
+        // Validation failed on Laravel side -> set the field-specific error dictionary
+        setErrors(error.response.data.errors);
+        setMessage("Please resolve the input validation errors listed below.");
+      } else {
+        // Fallback for general exceptions or network issues
+        setMessage(error.response?.data?.message || "Failed to update profile.");
+      }
     }
   };
 
@@ -92,7 +111,6 @@ function Profile() {
             alt="Profile Avatar"
             className="rounded-full bg-gray-600 lg:h-[150px] lg:w-[150px] w-[120px] h-[120px] object-cover"
           />
-          {/* Dynamic display blocks showing real login values */}
           <h2 className="text-xl font-semibold text-center">
             {user ? `${user.first_name} ${user.last_name}` : "Loading..."}
           </h2>
@@ -174,9 +192,12 @@ function Profile() {
                   name="first_name"
                   value={formData.first_name}
                   onChange={handleChange}
-                  required
-                  className="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
+                  
+                  className={`w-full appearance-none px-4 py-2.5 border rounded-md bg-white focus:outline-none focus:ring-1 text-gray-700 ${
+                    errors.first_name ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-green-500'
+                  }`}
                 />
+                {errors.first_name && <p className="text-xs text-red-500 mt-1 font-medium">{errors.first_name[0]}</p>}
               </div>
 
               <div>
@@ -188,9 +209,12 @@ function Profile() {
                   name="last_name"
                   value={formData.last_name}
                   onChange={handleChange}
-                  required
-                  className="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
+                  
+                  className={`w-full appearance-none px-4 py-2.5 border rounded-md bg-white focus:outline-none focus:ring-1 text-gray-700 ${
+                    errors.last_name ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-green-500'
+                  }`}
                 />
+                {errors.last_name && <p className="text-xs text-red-500 mt-1 font-medium">{errors.last_name[0]}</p>}
               </div>
             </div>
 
@@ -204,9 +228,12 @@ function Profile() {
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
-                required
-                className="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
+                
+                className={`w-full appearance-none px-4 py-2.5 border rounded-md bg-white focus:outline-none focus:ring-1 text-gray-700 ${
+                  errors.username ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-green-500'
+                }`}
               />
+              {errors.username && <p className="text-xs text-red-500 mt-1 font-medium">{errors.username[0]}</p>}
             </div>
 
             {/* Email Field */}
@@ -219,9 +246,12 @@ function Profile() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                required
-                className="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
+                
+                className={`w-full appearance-none px-4 py-2.5 border rounded-md bg-white focus:outline-none focus:ring-1 text-gray-700 ${
+                  errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-green-500'
+                }`}
               />
+              {errors.email && <p className="text-xs text-red-500 mt-1 font-medium">{errors.email[0]}</p>}
             </div>
 
             {/* Phone Field */}
@@ -234,8 +264,11 @@ function Profile() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
+                className={`w-full appearance-none px-4 py-2.5 border rounded-md bg-white focus:outline-none focus:ring-1 text-gray-700 ${
+                  errors.phone ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-green-500'
+                }`}
               />
+              {errors.phone && <p className="text-xs text-red-500 mt-1 font-medium">{errors.phone[0]}</p>}
             </div>
 
             {/* DOB & Gender Grid */}
@@ -249,8 +282,11 @@ function Profile() {
                   name="dob"
                   value={formData.dob}
                   onChange={handleChange}
-                  className="w-full appearance-none px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
+                  className={`w-full appearance-none px-4 py-2.5 border rounded-md bg-white focus:outline-none focus:ring-1 text-gray-700 ${
+                    errors.dob ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-green-500'
+                  }`}
                 />
+                {errors.dob && <p className="text-xs text-red-500 mt-1 font-medium">{errors.dob[0]}</p>}
               </div>
 
               <div>
@@ -261,13 +297,16 @@ function Profile() {
                   name="gender"
                   value={formData.gender}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 text-gray-700"
+                  className={`w-full px-4 py-2.5 border rounded-md bg-white focus:outline-none focus:ring-1 text-gray-700 ${
+                    errors.gender ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-green-500'
+                  }`}
                 >
                   <option value="">Select Gender</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="other">Other</option>
                 </select>
+                {errors.gender && <p className="text-xs text-red-500 mt-1 font-medium">{errors.gender[0]}</p>}
               </div>
             </div>
 
