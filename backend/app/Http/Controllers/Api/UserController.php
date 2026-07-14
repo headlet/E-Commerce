@@ -17,4 +17,8 @@ class UserController extends ResourcesController
     public function getValidationRequest(){
         return UserRequest::class;
     }
+
+    public function getName(){
+        return 'User Details';
+    }
 }

@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from "react";
-import api from "./axios"; // Adjust path to point to your axios configuration file above
+import api from "./axios";
 
 const AuthContext = createContext(null);
 
@@ -9,39 +9,53 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (token) {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) {
+    const storedUser = localStorage.getItem("user");
+
+    if (token && storedUser) {
+      try {
         setUser(JSON.parse(storedUser));
+      } catch (error) {
+        console.error("Invalid user data in localStorage:", error);
+
+        // Remove corrupted data
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+
+        setUser(null);
+        setToken(null);
       }
     }
+
     setLoading(false);
   }, [token]);
 
   const loginUser = (accessToken, userData) => {
+    if (!accessToken) {
+      console.error("No access token received.");
+      return;
+    }
+
+    if (!userData) {
+      console.error("No user data received.");
+      return;
+    }
+
     localStorage.setItem("token", accessToken);
     localStorage.setItem("user", JSON.stringify(userData));
+
     setToken(accessToken);
     setUser(userData);
   };
 
   const logoutUser = async () => {
-    console.log("running1");
-
     try {
-      // Wrap the call with a 2-second timeout so it cannot hang indefinitely
       await api.post("/logout", {}, { timeout: 2000 });
-      console.log("completed");
     } catch (error) {
-      console.error(
-        "Backend logout network request timed out or failed:",
-        error.message,
-      );
+      console.error("Logout failed:", error);
     } finally {
-      console.log("Running frontend cleanup now");
-      // This will now ALWAYS execute, freeing your UI state
       localStorage.removeItem("token");
       localStorage.removeItem("user");
+
       setToken(null);
       setUser(null);
     }
@@ -49,7 +63,14 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, token, loading, loginUser, logoutUser, setUser }}
+      value={{
+        user,
+        token,
+        loading,
+        loginUser,
+        logoutUser,
+        setUser,
+      }}
     >
       {!loading && children}
     </AuthContext.Provider>

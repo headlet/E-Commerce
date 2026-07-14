@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Services;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserServices extends Controller
+class UserServices extends Services
 {
 
     public function __construct(User $model)
@@ -15,20 +14,23 @@ class UserServices extends Controller
     }
 
 
-    public function getById(string $id)
-    {
-        return [
-            'user' => User::where('id', $id)->first(),
-        ];
-    }
+
 
     public function update(string $id, Request $request)
     {
 
         $user = User::findorFail($id);
 
-        $data = $request->except('_token');
+        $data = $request->except([
+            '_token',
+            'password_confirmation'
+        ]);
 
+        if (empty($data['password'])) {
+            unset($data['password']);
+        } else {
+            $data['password'] = bcrypt($data['password']);
+        }
         // if ($request->hasFile('image')) {
         //     if ($campaign->image && Storage::disk('public')->exists($campaign->image)) {
         //         Storage::disk('public')->delete($campaign->image);

@@ -20,6 +20,10 @@ class ResourcesController extends Controller
         return '';
     }
 
+    public function getName(){
+        return '';
+    }
+
     public function index() {}
 
     public function edit() {}
@@ -42,7 +46,7 @@ class ResourcesController extends Controller
 
                 // This automatically stops code execution and sends a 422 JSON if validation fails
                 $request->validate(
-                    $validator->rules(),
+                    $validator->rules($id),
                     $validator->messages() ?? [],
                     $validator->attributes() ?? []
                 );
@@ -57,18 +61,21 @@ class ResourcesController extends Controller
             }
 
             return response()->json([
-                'message' => 'Resource updated successfully',
+                'message' => $this->getName() . ' updated successfully',
                 'data' => $response, // Changed from $user to make it a generic resource response
             ], 200);
-
         } catch (ValidationException $e) {
             // 2. Re-throw this exception so Laravel can handle and send the 422 validation error to React
             throw $e;
+
         } catch (\Throwable $th) {
-            // 3. Handle unexpected system or database errors safely
             return response()->json([
-                'message' => 'An unexpected error occurred',
-                'error' => $th->getMessage()
+                'message' => $th->getMessage(),
+                'file' => $th->getFile(),
+                'line' => $th->getLine(),
+                'trace' => $th->getTraceAsString(),
+
+
             ], 500);
         }
     }
