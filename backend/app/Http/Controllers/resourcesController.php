@@ -24,7 +24,9 @@ class ResourcesController extends Controller
         return '';
     }
 
-    public function index() {}
+    public function index() {
+        
+    }
 
     public function edit() {}
 

@@ -22,7 +22,7 @@ function LogIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
-    setErrors({}); 
+    setErrors({});
 
     try {
       const response = await login(LoginForm);
@@ -33,13 +33,12 @@ function LogIn() {
         localStorage.setItem("user", JSON.stringify(user));
         setIsSuccess(true);
         setMessage(response.data.message || "Logged in successfully!");
-        
-        // Use client-side navigation instead of window.location.href to preserve state
-        navigate("/profile");
+
+        window.location.href = "/profile";
       }
     } catch (error) {
       setIsSuccess(false);
-      
+
       // FIX 2: Safeguard against empty or unexpected API error formats using || {}
       if (error.response && error.response.status === 422) {
         setErrors(error.response.data.errors || {});
@@ -47,7 +46,9 @@ function LogIn() {
       } else {
         // Handle incorrect credentials (401) or other server errors gracefully
         setErrors({});
-        setMessage(error.response?.data?.message || "Invalid email or password.");
+        setMessage(
+          error.response?.data?.message || "Invalid email or password.",
+        );
       }
     }
   };
@@ -76,7 +77,6 @@ function LogIn() {
 
       {/* Main Container */}
       <div className="flex flex-col lg:flex-row justify-center items-stretch shadow-lg bg-white rounded-xl overflow-hidden w-full border border-gray-100">
-        
         {/* LEFT SIDE - FORM */}
         <div className="w-full lg:w-[50%] flex flex-col justify-center items-center px-4 sm:px-8 md:px-12 py-10">
           <img src={logo} alt="logo" className="h-12 mb-4 object-contain" />
@@ -84,7 +84,9 @@ function LogIn() {
           <h2 className="text-[#1ABA1A] text-3xl font-semibold mb-1">
             Welcome Back
           </h2>
-          <p className="text-gray-500 mb-6 text-sm sm:text-base">Login To Account</p>
+          <p className="text-gray-500 mb-6 text-sm sm:text-base">
+            Login To Account
+          </p>
 
           {/* Google Login */}
           <div className="flex items-center gap-2 border px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-50 transition mb-4">
@@ -114,37 +116,49 @@ function LogIn() {
           >
             {/* Email Field */}
             <div className="flex flex-col gap-1">
-              <label className="text-sm font-medium text-gray-700">Email Address</label>
+              <label className="text-sm font-medium text-gray-700">
+                Email Address
+              </label>
               <input
                 type="email"
                 name="email"
                 value={LoginForm.email}
                 onChange={handleChange}
                 className={`border p-2.5 rounded-md outline-none focus:border-black transition text-sm ${
-                  errors?.email ? "border-red-500 focus:border-red-500" : "border-gray-300"
+                  errors?.email
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-gray-300"
                 }`}
               />
               {/* FIX 3: Safe optional chaining checks */}
               {errors?.email && errors.email[0] && (
-                <span className="text-xs text-red-500 mt-1">{errors.email[0]}</span>
+                <span className="text-xs text-red-500 mt-1">
+                  {errors.email[0]}
+                </span>
               )}
             </div>
 
             {/* Password Field */}
             <div className="flex flex-col gap-1">
-              <label className="text-sm font-medium text-gray-700">Password</label>
+              <label className="text-sm font-medium text-gray-700">
+                Password
+              </label>
               <input
                 type="password"
                 name="password"
                 value={LoginForm.password}
                 onChange={handleChange}
                 className={`border p-2.5 rounded-md outline-none focus:border-black transition text-sm ${
-                  errors?.password ? "border-red-500 focus:border-red-500" : "border-gray-300"
+                  errors?.password
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-gray-300"
                 }`}
               />
               {/* FIX 3: Safe optional chaining checks */}
               {errors?.password && errors.password[0] && (
-                <span className="text-xs text-red-500 mt-1">{errors.password[0]}</span>
+                <span className="text-xs text-red-500 mt-1">
+                  {errors.password[0]}
+                </span>
               )}
             </div>
 
@@ -158,7 +172,10 @@ function LogIn() {
 
           <p className="mt-6 text-sm text-center text-gray-600">
             Don't have an account?{" "}
-            <Link to="/signup" className="text-blue-600 font-medium hover:underline">
+            <Link
+              to="/signup"
+              className="text-blue-600 font-medium hover:underline"
+            >
               SignUp
             </Link>
           </p>
@@ -166,7 +183,11 @@ function LogIn() {
 
         {/* RIGHT SIDE IMAGE */}
         <div className="hidden lg:flex justify-center items-center w-[50%] bg-gray-50 p-12">
-          <img src={loginimg} alt="login" className="max-w-[80%] h-auto object-contain" />
+          <img
+            src={loginimg}
+            alt="login"
+            className="max-w-[80%] h-auto object-contain"
+          />
         </div>
       </div>
     </section>
