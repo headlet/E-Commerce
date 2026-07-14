@@ -68,7 +68,7 @@ function Profile() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     setMessage("");
-    setErrors({}); // Clear old validations on every new submission attempt
+    setErrors({});
 
     try {
       // Fix: Use template literals backticks to evaluate the user id variable properly

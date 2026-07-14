@@ -62,10 +62,9 @@ class ResourcesController extends Controller
 
             return response()->json([
                 'message' => $this->getName() . ' updated successfully',
-                'data' => $response, // Changed from $user to make it a generic resource response
+                'data' => $response,
             ], 200);
         } catch (ValidationException $e) {
-            // 2. Re-throw this exception so Laravel can handle and send the 422 validation error to React
             throw $e;
 
         } catch (\Throwable $th) {
