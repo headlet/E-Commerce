@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 import avatar from "../../../assets/avatars.jpg";
 import { useState, useEffect } from "react";
 import { Title } from "react-head";
-import api from "../../../api/axios";
+import api from "../../../api/axios.js";
 import { useAuth } from "../../../api/authContext.jsx";
 import { useNavigate } from "react-router";
 

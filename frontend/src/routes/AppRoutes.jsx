@@ -1,14 +1,14 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import Product from "../pages/Product";
-import About from "../pages/About";
-import Contact from "../pages/Contact";
-import Login from "../pages/Auth/logIn";
-import Signup from "../pages/Auth/signUp";
-import Profile from "../pages/Profile";
-import Cart from "../pages/Cart";
-import SingleProduct from "../pages/SingleProduct";
-import Checkout from "../pages/Checkout";
+import Home from "../pages/public/page/Home";
+import Product from "../pages/public/page/Product";
+import About from "../pages/public/page/About";
+import Contact from "../pages/public/page/Contact";
+import Login from "../pages/public/page/Auth/logIn";
+import Signup from "../pages/public/page/Auth/signUp";
+import Profile from "../pages/public/page/Profile";
+import Cart from "../pages/public/page/Cart";
+import SingleProduct from "../pages/public/page/SingleProduct";
+import Checkout from "../pages/public/page/Checkout";
 import ProtectionRoute from "./ProtectionRoute";
 
 function AppRoutes() {

@@ -25,8 +25,14 @@ class ResourcesController extends Controller
     }
 
     public function index() {
-        
+
     }
+
+    public function create(){
+
+    }
+
+    public function store(){}
 
     public function edit() {}
 
