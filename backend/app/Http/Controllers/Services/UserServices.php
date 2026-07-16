@@ -13,9 +13,6 @@ class UserServices extends Services
         parent::__construct($model);
     }
 
-
-
-
     public function update(string $id, Request $request)
     {
 
@@ -37,10 +34,7 @@ class UserServices extends Services
         //     }
         //     $data['image'] = $request->file('image')->store('uploads/campaign', 'public');
         // }
-
-
         $user->update($data);
-
         return $user;
     }
 }

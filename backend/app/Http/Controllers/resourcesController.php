@@ -20,19 +20,39 @@ class ResourcesController extends Controller
         return '';
     }
 
-    public function getName(){
+    public function getName()
+    {
         return '';
     }
 
-    public function index() {
+    public function index()
+    {
+        try {
+            $resources = $this->service->getAllData(20);
+            if ($resources->isEmpty()) {
+                return response()->json([
+                    'message' => 'There are no ' . $this->getName() . ' currently.',
+                    'data' => [],
+                ], 200);
+            }
 
+            return response()->json([
+                'message' => 'Successfully fetch all ' . $this->getName(),
+                'data' => $resources,
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage(),
+                'file' => $th->getFile(),
+                'line' => $th->getLine(),
+                'trace' => $th->getTraceAsString(),
+            ], 500);
+        }
     }
 
-    public function create(){
+    public function create() {}
 
-    }
-
-    public function store(){}
+    public function store() {}
 
     public function edit() {}
 
@@ -74,18 +94,44 @@ class ResourcesController extends Controller
             ], 200);
         } catch (ValidationException $e) {
             throw $e;
-
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => $th->getMessage(),
                 'file' => $th->getFile(),
                 'line' => $th->getLine(),
                 'trace' => $th->getTraceAsString(),
-
-
             ], 500);
         }
     }
 
-    public function delete() {}
+    public function destroy(String $id)
+    {
+        try {
+            $resource = $this->service->getById($id);
+
+            if(!$resource){
+                return response()->json([
+                    'message' => $this->getName() . 'not found',
+                ], 404);
+            }
+            $response = $this->service->destroy($id);
+
+            if (isset($response['error'])) {
+                return response()->json([
+                    'message' => $response['error'],
+                ],400);
+            }
+
+            return response()->json([
+                'message' => $this->getName() . 'Deleted Successfully'
+            ],200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage(),
+                'file' => $th->getFile(),
+                'line' => $th->getLine(),
+                'trace' => $th->getTraceAsString(),
+            ], 500);
+        }
+    }
 }

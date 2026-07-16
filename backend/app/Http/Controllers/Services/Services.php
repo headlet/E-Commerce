@@ -9,15 +9,18 @@ class Services extends Controller
 {
     protected $model;
 
-    public function __construct( $model)
+    public function __construct($model)
     {
         $this->model = $model;
     }
 
-      public function getById(string $id)
+    public function getById(string $id)
     {
-        return [
-            'user' => $this->model::where('id', $id)->first(),
-        ];
+        return $this->model::where('id', $id)->first();
+    }
+
+    public function getAllData(int $pagination)
+    {
+        return $this->model::latest()->paginate($pagination);
     }
 }

@@ -17,7 +17,7 @@ import SingleProduct from "../pages/public/page/SingleProduct";
 import Checkout from "../pages/public/page/Checkout";
 
 // Admin Pages
-// import Dashboard from "../pages/admin/page/Dashboard";
+import Dashboard from "../pages/admin/page/DashBoard";
 // import Users from "../pages/admin/page/Users";
 
 import ProtectionRoute from "./ProtectionRoute";
@@ -44,10 +44,10 @@ function AppRoutes() {
       </Route>
 
       {/* Admin Layout */}
-      {/* <Route path="/admin" element={<AdminLayout />}>
+      <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<Dashboard />} />
-        <Route path="users" element={<Users />} />
-      </Route> */}
+        {/* <Route path="users" element={<Users />} /> */}
+      </Route>
 
     </Routes>
   );

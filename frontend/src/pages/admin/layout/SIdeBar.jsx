@@ -2,7 +2,7 @@ function SideBar(){
 
 return (
     <aside>
-        \
+        Hello
     </aside>
 );
 }
