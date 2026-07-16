@@ -23,4 +23,14 @@ class Services extends Controller
     {
         return $this->model::latest()->paginate($pagination);
     }
+
+     public function destroy(String $id)
+    {
+
+        $data = $this->getById($id);
+        if (!$data) {
+            return false;
+        }
+        return $data->delete();
+    }
 }
