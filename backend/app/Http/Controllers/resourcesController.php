@@ -50,11 +50,45 @@ class ResourcesController extends Controller
         }
     }
 
-    public function create() {}
 
-    public function store() {}
+    public function store(Request $request)
+    {
+        try {
+            $validationRequestClass = $this->getValidationRequest();
 
-    public function edit() {}
+            if (!empty($validationRequestClass) && class_exists($validationRequestClass)) {
+                $validator = new $validationRequestClass();
+
+                $request->validate(
+                    $validator->rules(),
+                    $validator->messages() ?? [],
+                    $validator->attributes() ?? []
+                );
+            }
+
+            $response = $this->service->store($request);
+
+            if (isset($response['error'])) {
+                return response()->json([
+                    'message' => 'Error while storing ' . $response['error'],
+                ], 400);
+            }
+
+            return response()->json([
+                'message' => $this->getName() . ' ' . 'Stored Successfully',
+            ]);
+        } catch (ValidationException $e) {
+            throw $e;
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage(),
+                'file' => $th->getFile(),
+                'line' => $th->getLine(),
+                'trace' => $th->getTraceAsString(),
+            ], 500);
+        }
+    }
+
 
     public function update(Request $request, String $id)
     {
@@ -109,7 +143,7 @@ class ResourcesController extends Controller
         try {
             $resource = $this->service->getById($id);
 
-            if(!$resource){
+            if (!$resource) {
                 return response()->json([
                     'message' => $this->getName() . 'not found',
                 ], 404);
@@ -119,12 +153,12 @@ class ResourcesController extends Controller
             if (isset($response['error'])) {
                 return response()->json([
                     'message' => $response['error'],
-                ],400);
+                ], 400);
             }
 
             return response()->json([
-                'message' => $this->getName() . 'Deleted Successfully'
-            ],200);
+                'message' => $this->getName() . " " .  'Deleted Successfully'
+            ], 200);
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => $th->getMessage(),

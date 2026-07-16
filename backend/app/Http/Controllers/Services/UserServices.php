@@ -37,4 +37,15 @@ class UserServices extends Services
         $user->update($data);
         return $user;
     }
+
+
+    public function destroy(String $id)
+    {
+
+        $user = $this->getById($id);
+        if (!$user) {
+            return false;
+        }
+        return $user->delete();
+    }
 }
