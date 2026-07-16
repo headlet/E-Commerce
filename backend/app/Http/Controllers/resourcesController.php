@@ -89,6 +89,32 @@ class ResourcesController extends Controller
         }
     }
 
+    public function edit(String $id)
+    {
+        try {
+            $resources = $this->service->getById($id);
+
+            if (!$resources) {
+                return response()->json([
+                    'message' => $this->getName() . ' ' . "not found",
+                ], 404);
+            }
+
+            $response = $this->service->edit($id);
+
+            return response()->json([
+                'message' => $this->getName() . '' . 'found successfully for edit.',
+                'data' => $response,
+            ],200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage(),
+                'file' => $th->getFile(),
+                'line' => $th->getLine(),
+                'trace' => $th->getTraceAsString(),
+            ], 500);
+        }
+    }
 
     public function update(Request $request, String $id)
     {
