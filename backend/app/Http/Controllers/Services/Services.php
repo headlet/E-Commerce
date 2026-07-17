@@ -24,7 +24,13 @@ class Services extends Controller
         return $this->model::latest()->paginate($pagination);
     }
 
-     public function destroy(String $id)
+    public function edit(String $id)
+    {
+        $data = $this->getById($id);
+        return $data;
+    }
+
+    public function destroy(String $id)
     {
 
         $data = $this->getById($id);
