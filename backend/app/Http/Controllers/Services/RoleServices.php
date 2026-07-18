@@ -11,21 +11,27 @@ class RoleServices extends Services
 {
     public function __construct(Role $model)
     {
-      parent::__construct($model);
+        parent::__construct($model);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $roles = $request->except('__token');
 
         return $this->model::create($roles);
     }
 
-    public function edit(String $id){
+    public function edit(String $id)
+    {
         $role = $this->getById($id);
         return $role;
     }
 
-    public function update(){
+    public function update(Request $request, String $id)
+    {
+        $role = $this->getById($id);
+        $data = $request->except('_token');
 
+        return $role->update($data);
     }
 }

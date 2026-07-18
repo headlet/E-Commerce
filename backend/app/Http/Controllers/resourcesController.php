@@ -103,7 +103,7 @@ class ResourcesController extends Controller
             $response = $this->service->edit($id);
 
             return response()->json([
-                'message' => $this->getName() . '' . 'found successfully for edit.',
+                'message' => $this->getName() . ' ' . 'found successfully for edit.',
                 'data' => $response,
             ],200);
         } catch (\Throwable $th) {
@@ -140,7 +140,7 @@ class ResourcesController extends Controller
                 );
             }
 
-            $response = $this->service->update($id, $request);
+            $response = $this->service->update($request, $id);
 
             if (isset($response['error'])) {
                 return response()->json([
@@ -149,7 +149,7 @@ class ResourcesController extends Controller
             }
 
             return response()->json([
-                'message' => $this->getName() . ' updated successfully',
+                'message' => $this->getName() . " ". ' updated successfully',
                 'data' => $response,
             ], 200);
         } catch (ValidationException $e) {

@@ -36,7 +36,7 @@ class AuthServices
                 'data' => $user,
                 'access_token' => $token,
                 'token_type' => 'Bearer',
-                'expires_in' => JWTAuth::factory()->getTTL() * 60,
+                'expires_in' => JWTAuth::factory()->getTTL() * 20,
             ], 201);
         } catch (ValidationException $e) {
             throw $e;
