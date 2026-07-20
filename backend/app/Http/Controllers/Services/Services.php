@@ -24,6 +24,13 @@ class Services extends Controller
         return $this->model::latest()->paginate($pagination);
     }
 
+    public function store(Request $request)
+    {
+        $roles = $request->except('__token');
+
+        return $this->model::create($roles);
+    }
+
     public function edit(String $id)
     {
         $data = $this->getById($id);

@@ -23,7 +23,23 @@ class AddressRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => ['required', 'exists:users,id'],
+
+            'line1' => ['required', 'string', 'max:255'],
+            'line2' => ['nullable', 'string', 'max:255'],
+
+            'city' => ['required', 'string', 'max:100'],
+            'state' => ['required', 'string', 'max:100'],
+            'postal_code' => ['required', 'string', 'max:20'],
+            'country' => ['required', 'string', 'max:100'],
+
+            'type' => [
+                'required',
+                'string',
+                'in:home,office,billing,shipping'
+            ],
+
+            'is_default' => ['sometimes', 'boolean'],
         ];
     }
 }
