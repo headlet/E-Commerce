@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AddressController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\api\RoleController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
@@ -15,4 +16,5 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('user', UserController::class)->except("show",'create','store');
     Route::resource('role', RoleController::class)->except('show');
     Route::resource('address', AddressController::class)->except('show');
+    Route::resource('category', CategoryController::class)->except('show');
 });
