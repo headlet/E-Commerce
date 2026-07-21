@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Services;
-
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +12,7 @@ class UserServices extends Services
         parent::__construct($model);
     }
 
-    public function update(string $id, Request $request)
+    public function update(Request $request, String $id)
     {
 
         $user = User::findorFail($id);

@@ -26,37 +26,49 @@ class ProductRequest extends FormRequest
         return [
 
             'category_id' => [
-                'required',
-                'exists:categories,id',
+                'required','exists:categories,id',
             ],
 
             'name' => [
-                'required',
-                'string',
-                'max:255',
+                'required','string','max:255',
             ],
 
             'slug' => [
-                'required',
-                'string',
-                'max:255',
-                Rule::unique('products', 'slug')->ignore($id),
+                'required','string','max:255',Rule::unique('products', 'slug')->ignore($id),
             ],
 
             'description' => [
-                'nullable',
-                'string',
+                'nullable','string',
             ],
 
             'brand' => [
-                'nullable',
-                'string',
-                'max:255',
+                'nullable','string','max:255',
             ],
 
             'is_active' => [
-                'sometimes',
-                'boolean',
+                'sometimes','boolean',
+            ],
+
+            //Product image
+
+            'product_id' => [
+                'required','exists:products,id',
+            ],
+
+            'url' => [
+                'required','string','max:255',
+            ],
+
+            'alt_text' => [
+                'nullable','string','max:255',
+            ],
+
+            'sort_order' => [
+                'nullable','integer','min:0',
+            ],
+
+            'is_primary' => [
+                'sometimes','boolean',
             ],
 
         ];
