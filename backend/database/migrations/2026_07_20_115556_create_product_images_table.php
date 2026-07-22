@@ -18,7 +18,7 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
 
-            $table->string('url');
+            $table->string('file');
 
             $table->string('alt_text')->nullable();
 

@@ -78,7 +78,7 @@ class ProductServices extends Services
                     }
 
                     $product->image()->create([
-                        'url'        => $path,
+                        'file'        => $path,
                         'alt_text'   => $imageData['alt_text'] ?? null,
                         'sort_order' => $imageData['sort_order'] ?? ($index + 1),
                         'is_primary' => $imageData['is_primary'] ?? false,
