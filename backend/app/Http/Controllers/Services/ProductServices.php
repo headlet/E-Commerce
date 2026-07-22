@@ -98,14 +98,10 @@ class ProductServices extends Services
     public function update(Request $request, String $id)
     {
 
-        return DB::transaction(function () use ($request, $id) {
-            $product = $this->getById($id);
-            $data = $request->except("__token");
+        $product = $this->getById($id);
+        $productData = $request->except('__token');
 
-            $productdata = Arr::except($data, ['image']);
-
- 
-        });
+        return  $product->update($productData);
     }
 
     public function destroy(String $id)

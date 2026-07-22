@@ -4,16 +4,15 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class ProductRequest extends FormRequest
+class ProductImageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,45 +20,45 @@ class ProductRequest extends FormRequest
      *
      * @return array<string, ValidationRule|array<mixed>|string>
      */
-    public function rules($id = null): array
+    public function rules(): array
     {
         return [
+            //Product image
 
-            'category_id' => [
+            'product_id' => [
                 'required',
-                'exists:categories,id',
+                'exists:products,id',
             ],
 
-            'name' => [
+            'images' => [
                 'required',
-                'string',
-                'max:255',
+                'array',
+                'min:1',
             ],
 
-            'slug' => [
+            'images.*.file' => [
                 'required',
-                'string',
-                'max:255',
-                Rule::unique('products', 'slug')->ignore($id),
+                'image',
+                'mimes:jpg,jpeg,png,webp',
+                'max:2048',
             ],
 
-            'description' => [
-                'nullable',
-                'string',
-            ],
-
-            'brand' => [
+            'images.*.alt_text' => [
                 'nullable',
                 'string',
                 'max:255',
             ],
 
-            'is_active' => [
+            'images.*.sort_order' => [
+                'nullable',
+                'integer',
+                'min:0',
+            ],
+
+            'images.*.is_primary' => [
                 'sometimes',
                 'boolean',
             ],
-
-           
         ];
     }
 }
