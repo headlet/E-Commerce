@@ -25,46 +25,64 @@ class ProductVariantRequest extends FormRequest
     {
         return [
 
+            /*
+            |--------------------------------------------------------------------------
+            | Product
+            |--------------------------------------------------------------------------
+            */
+
             'product_id' => [
                 'required',
-                'exists:products,id'
+                'exists:products,id',
             ],
 
-            'sku' => [
+            /*
+            |--------------------------------------------------------------------------
+            | Variants
+            |--------------------------------------------------------------------------
+            */
+
+            'variants' => [
+                'required',
+                'array',
+                'min:1',
+            ],
+
+            'variants.*.sku' => [
                 'required',
                 'string',
                 'max:100',
-                Rule::unique('product_variants', 'sku')->ignore($id)
+                Rule::unique('product_variants', 'sku'),
             ],
 
-            'option_values' => [
+            'variants.*.option_values' => [
                 'required',
                 'string',
-                'max:255'
+                'max:255',
             ],
 
-            'price' => [
+            'variants.*.price' => [
                 'required',
                 'numeric',
-                'min:0'
+                'min:0',
             ],
 
-            'compare_at_price' => [
+            'variants.*.compare_at_price' => [
                 'nullable',
                 'numeric',
-                'gte:price'
+                'gte:variants.*.price',
             ],
 
-            'weight' => [
+            'variants.*.weight' => [
                 'nullable',
                 'numeric',
-                'min:0'
+                'min:0',
             ],
 
-            'is_active' => [
+            'variants.*.is_active' => [
                 'sometimes',
-                'boolean'
-            ]
+                'boolean',
+            ],
         ];
     }
 }
