@@ -68,10 +68,11 @@ class ProductRequest extends FormRequest
                 'min:1',
             ],
 
-            'images.*.url' => [
+            'images.*.file' => [
                 'required',
-                'string',
-                'max:255',
+                'image',
+                'mimes:jpg,jpeg,png,webp',
+                'max:2048',
             ],
 
             'images.*.alt_text' => [
@@ -90,7 +91,6 @@ class ProductRequest extends FormRequest
                 'sometimes',
                 'boolean',
             ],
-
         ];
     }
 }
