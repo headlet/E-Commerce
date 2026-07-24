@@ -26,7 +26,6 @@ class AllProductRequest extends FormRequest
             ProductRequest::rules(),
             ProductImageRequest::rules(),
             ProductVariantRequest::rules(),
-            InventoryRequest::rules()
         );
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -13,15 +12,13 @@ class ProductVariantRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array<string, ValidationRule|array<mixed>|string>
      */
-    public function rules($id = null): array
+    public function rules(): array
     {
         return [
 
@@ -38,7 +35,7 @@ class ProductVariantRequest extends FormRequest
 
             /*
             |--------------------------------------------------------------------------
-            | Variants
+            | Product Variants
             |--------------------------------------------------------------------------
             */
 
@@ -70,7 +67,7 @@ class ProductVariantRequest extends FormRequest
             'variants.*.compare_at_price' => [
                 'nullable',
                 'numeric',
-                'gte:variants.*.price',
+                'min:0',
             ],
 
             'variants.*.weight' => [
@@ -83,6 +80,51 @@ class ProductVariantRequest extends FormRequest
                 'sometimes',
                 'boolean',
             ],
+
+            /*
+            |--------------------------------------------------------------------------
+            | Inventory
+            |--------------------------------------------------------------------------
+            */
+
+            'variants.*.quantity' => [
+                'required',
+                'integer',
+                'min:0',
+            ],
+
+            'variants.*.reorder_point' => [
+                'required',
+                'integer',
+                'min:0',
+            ],
+        ];
+    }
+
+    /**
+     * Custom validation messages.
+     */
+    public function messages(): array
+    {
+        return [
+            'product_id.exists' => 'The selected product does not exist.',
+
+            'variants.required' => 'At least one product variant is required.',
+            'variants.array' => 'Variants must be an array.',
+
+            'variants.*.sku.required' => 'Each variant must have a SKU.',
+            'variants.*.sku.unique' => 'The SKU has already been taken.',
+
+            'variants.*.price.required' => 'Each variant must have a price.',
+            'variants.*.price.numeric' => 'Price must be a number.',
+
+            'variants.*.quantity.required' => 'Each variant must have a quantity.',
+            'variants.*.quantity.integer' => 'Quantity must be an integer.',
+            'variants.*.quantity.min' => 'Quantity cannot be negative.',
+
+            'variants.*.reorder_point.required' => 'Each variant must have a reorder point.',
+            'variants.*.reorder_point.integer' => 'Reorder point must be an integer.',
+            'variants.*.reorder_point.min' => 'Reorder point cannot be negative.',
         ];
     }
 }
