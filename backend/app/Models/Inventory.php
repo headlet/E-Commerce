@@ -11,7 +11,6 @@ class Inventory extends Model
 
     protected $fillable = [
         'product_variant_id',
-        'location',
         'quantity',
         'reserved_quantity',
         'reorder_point',

@@ -19,12 +19,6 @@ class InventoryRequest extends FormRequest
                 'exists:product_variants,id',
             ],
 
-            'location' => [
-                'required',
-                'string',
-                'max:255',
-            ],
-
             'quantity' => [
                 'required',
                 'integer',

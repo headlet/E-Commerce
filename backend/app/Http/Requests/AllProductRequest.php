@@ -25,7 +25,8 @@ class AllProductRequest extends FormRequest
         return array_merge(
             ProductRequest::rules(),
             ProductImageRequest::rules(),
-            ProductVariantRequest::rules()
+            ProductVariantRequest::rules(),
+            InventoryRequest::rules()
         );
     }
 }

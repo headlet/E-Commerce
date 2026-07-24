@@ -87,7 +87,23 @@ class ProductServices extends Services
             }
 
             if ($request->filled('variants')) {
-                $product->variant()->createMany($request->input('variants'));
+                foreach ($request->input('variants') as $variantData) {
+
+                    $variant = $product->variant()->create([
+                        'sku'              => $variantData['sku'],
+                        'option_values'    => $variantData['option_values'],
+                        'price'            => $variantData['price'],
+                        'compare_at_price' => $variantData['compare_at_price'] ?? null,
+                        'weight'           => $variantData['weight'] ?? null,
+                        'is_active'        => $variantData['is_active'] ?? true,
+                    ]);
+
+                    $variant->inventory()->create([
+                        'quantity'          => $variantData['quantity'],
+                        'reserved_quantity' => 0,
+                        'reorder_point'     => $variantData['reorder_point'],
+                    ]);
+                }
             }
 
             return $product->load('image', 'variant');

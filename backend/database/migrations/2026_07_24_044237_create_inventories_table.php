@@ -17,9 +17,6 @@ return new class extends Migration
             $table->foreignId('product_variant_id')
                 ->constrained()
                 ->cascadeOnDelete();
-
-            $table->string('location');
-
             $table->integer('quantity')->default(0);
             $table->integer('reserved_quantity')->default(0);
             $table->integer('reorder_point')->default(0);
