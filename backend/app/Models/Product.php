@@ -16,15 +16,23 @@ class Product extends Model
         'is_active',
     ];
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function variant(){
+    public function variant()
+    {
         return $this->hasMany(ProductVariant::class);
     }
 
-    public function image(): HasMany{
+    public function image(): HasMany
+    {
         return $this->hasMany(ProductImage::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }
