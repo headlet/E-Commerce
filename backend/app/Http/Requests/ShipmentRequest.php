@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PaymentRequest extends FormRequest
+class ShipmentRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -20,16 +20,23 @@ class PaymentRequest extends FormRequest
                 'exists:orders,id',
             ],
 
-            'provider' => [
+            'carrier' => [
                 'required',
                 'string',
                 'max:100',
             ],
 
-            'method' => [
+            'service' => [
                 'required',
                 'string',
                 'max:100',
+            ],
+
+            'tracking_number' => [
+                'nullable',
+                'string',
+                'max:255',
+                'unique:shipments,tracking_number',
             ],
 
             'status' => [
@@ -38,34 +45,15 @@ class PaymentRequest extends FormRequest
                 'max:50',
             ],
 
-            'amount' => [
-                'required',
-                'numeric',
-                'min:0',
-            ],
-
-            'transaction_id' => [
-                'nullable',
-                'string',
-                'max:255',
-                'unique:payments,transaction_id',
-            ],
-
-            'authorized_at' => [
+            'shipped_at' => [
                 'nullable',
                 'date',
             ],
 
-            'captured_at' => [
+            'delivered_at' => [
                 'nullable',
                 'date',
-                'after_or_equal:authorized_at',
-            ],
-
-            'refunded_at' => [
-                'nullable',
-                'date',
-                'after_or_equal:captured_at',
+                'after_or_equal:shipped_at',
             ],
         ];
     }
