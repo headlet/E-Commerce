@@ -16,7 +16,7 @@ class Services extends Controller
 
     public function getById(string $id)
     {
-        return $this->model::where('id', $id)->first();
+        return $this->model::findOrFail($id);
     }
 
     public function getAllData(int $pagination)
@@ -26,24 +26,18 @@ class Services extends Controller
 
     public function store(Request $request)
     {
-        $roles = $request->except('__token');
-
-        return $this->model::create($roles);
+        return $this->model::create(
+            $request->validated()
+        );
     }
 
-    public function edit(String $id)
+    public function edit(string $id)
     {
-        $data = $this->getById($id);
-        return $data;
+        return $this->getById($id);
     }
 
-    public function destroy(String $id)
+    public function destroy(string $id)
     {
-
-        $data = $this->getById($id);
-        if (!$data) {
-            return false;
-        }
-        return $data->delete();
+        return $this->getById($id)->delete();
     }
 }
