@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException; // 1. Import this class
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -40,6 +41,12 @@ class ResourcesController extends Controller
                 'message' => 'Successfully fetch all ' . $this->getName(),
                 'data' => $resources,
             ], 200);
+        } catch (AuthorizationException $e) {
+
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ], 403);
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => $th->getMessage(),
@@ -79,6 +86,12 @@ class ResourcesController extends Controller
             ]);
         } catch (ValidationException $e) {
             throw $e;
+        } catch (AuthorizationException $e) {
+
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ], 403);
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => $th->getMessage(),
@@ -105,7 +118,13 @@ class ResourcesController extends Controller
             return response()->json([
                 'message' => $this->getName() . ' ' . 'found successfully for edit.',
                 'data' => $response,
-            ],200);
+            ], 200);
+        } catch (AuthorizationException $e) {
+
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ], 403);
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => $th->getMessage(),
@@ -149,11 +168,17 @@ class ResourcesController extends Controller
             }
 
             return response()->json([
-                'message' => $this->getName() . " ". ' updated successfully',
+                'message' => $this->getName() . " " . ' updated successfully',
                 'data' => $response,
             ], 200);
         } catch (ValidationException $e) {
             throw $e;
+        } catch (AuthorizationException $e) {
+
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ], 403);
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => $th->getMessage(),
@@ -185,6 +210,12 @@ class ResourcesController extends Controller
             return response()->json([
                 'message' => $this->getName() . " " .  'Deleted Successfully'
             ], 200);
+        } catch (AuthorizationException $e) {
+
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ], 403);
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => $th->getMessage(),
