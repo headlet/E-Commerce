@@ -17,7 +17,6 @@ class ReviewController extends ResourcesController
          parent::__construct($service);
     }
 
-
     public function getValidationRequest()
     {
         return ReviewRequest::class;

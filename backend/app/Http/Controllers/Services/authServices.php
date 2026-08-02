@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Services;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Nette\Schema\ValidationException;
@@ -14,96 +15,50 @@ class AuthServices
      */
     public function register(array $data)
     {
-        try {
-            $user = User::create([
-                'first_name' => $data['first_name'],
-                'last_name'  => $data['last_name'],
-                'username'   => $data['username'],
-                'dob'        => $data['dob'],
-                'phone'      => $data['phone'],
-                'gender'     => $data['gender'],
-                'role_id'    => $data['role_id'] ?? null,
-                'email'      => $data['email'],
-                'password'   => Hash::make($data['password']),
-                'status'     => $data['status'],
-            ]);
+        $user = User::create([
+            'first_name' => $data['first_name'],
+            'last_name'  => $data['last_name'],
+            'username'   => $data['username'],
+            'dob'        => $data['dob'],
+            'phone'      => $data['phone'],
+            'gender'     => $data['gender'],
+            'role_id' => Role::where('name', 'Customer')->value('id'),
+            'email'      => $data['email'],
+            'password'   => $data['password'],
+        ]);
 
-            // Generate JWT Token
-            $token = JWTAuth::fromUser($user);
-
-            return response()->json([
-                'message' => 'User registered successfully',
-                'data' => $user,
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-                'expires_in' => JWTAuth::factory()->getTTL() * 20,
-            ], 201);
-        } catch (ValidationException $e) {
-            throw $e;
-        } catch (\Throwable $th) {
-            return response()->json([
-                'message' => $th->getMessage(),
-                'file' => $th->getFile(),
-                'line' => $th->getLine(),
-                'trace' => $th->getTraceAsString(),
-
-
-            ], 500);
-        }
+        // Generate JWT Token
+        $token = JWTAuth::fromUser($user);
+        return [
+            'user' => $user,
+            'token' => $token,
+        ];
     }
 
-    public function login(array $data)
+    public function login(array $credentials): ?array
     {
-        try {
-            if (! $token = JWTAuth::attempt($data)) {
-                return response()->json([
-                    'message' => 'Invalid Email or Password',
-                ], 401);
-            }
-
-            return response()->json([
-                'message' => 'Login successful',
-                'user' => JWTAuth::user(),
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-                'expires_in' => JWTAuth::factory()->getTTL() * 20,
-            ], 200);
-        } catch (ValidationException $e) {
-            throw $e;
-        } catch (\Throwable $th) {
-            return response()->json([
-                'message' => $th->getMessage(),
-                'file' => $th->getFile(),
-                'line' => $th->getLine(),
-                'trace' => $th->getTraceAsString(),
-
-
-            ], 500);
+        if (! $token = JWTAuth::attempt($credentials)) {
+            return null;
         }
+
+        return [
+            'user' => JWTAuth::user(),
+            'token' => $token,
+        ];
     }
 
-    public function logout()
+    public function logout(): void
     {
         JWTAuth::logout();
-
-        return response()->json([
-            'message' => 'Successfully logged out',
-        ], 200);
     }
 
-    public function refresh()
+    public function refresh(): string
     {
-        return response()->json([
-            'access_token' => JWTAuth::refresh(),
-            'token_type' => 'Bearer',
-            'expires_in' => JWTAuth::factory()->getTTL() * 60,
-        ]);
+        return JWTAuth::refresh();
     }
-
-    public function me()
+    
+    public function me(): User
     {
-        return response()->json([
-            'user' => JWTAuth::user(),
-        ]);
+        return JWTAuth::user();
     }
 }
