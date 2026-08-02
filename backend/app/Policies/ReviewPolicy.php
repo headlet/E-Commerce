@@ -8,11 +8,6 @@ use App\Models\User;
 class ReviewPolicy
 {
 
-    public function create(User $user): bool
-    {
-        return true; // or $user->can('review.create')
-    }
-
     public function update(User $user, Review $review): bool
     {
         return $user->id === $review->user_id;

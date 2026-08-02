@@ -26,8 +26,9 @@ class Services extends Controller
 
     public function store(Request $request)
     {
+        
         return $this->model::create(
-            $request->validated()
+            $request->all()
         );
     }
 

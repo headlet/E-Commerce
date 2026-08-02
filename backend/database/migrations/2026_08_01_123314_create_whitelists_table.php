@@ -10,16 +10,12 @@ return new class extends Migration
     {
         Schema::create('wishlists', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('user_id')
                 ->constrained()
                 ->cascadeOnDelete();
-
             $table->string('name');
-
             $table->boolean('is_default')
                 ->default(false);
-
             $table->timestamp('created_at')
                 ->useCurrent();
         });
