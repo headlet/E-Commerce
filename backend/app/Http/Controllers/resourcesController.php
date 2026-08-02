@@ -84,8 +84,6 @@ class ResourcesController extends Controller
             return response()->json([
                 'message' => $this->getName() . ' ' . 'Stored Successfully',
             ]);
-        } catch (ValidationException $e) {
-            throw $e;
         } catch (AuthorizationException $e) {
 
             return response()->json([
@@ -171,8 +169,6 @@ class ResourcesController extends Controller
                 'message' => $this->getName() . " " . ' updated successfully',
                 'data' => $response,
             ], 200);
-        } catch (ValidationException $e) {
-            throw $e;
         } catch (AuthorizationException $e) {
 
             return response()->json([

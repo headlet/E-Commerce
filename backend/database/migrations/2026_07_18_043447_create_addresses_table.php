@@ -15,15 +15,22 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')
                 ->constrained('users')
-                ->cascadeOnDelete();
+                ->cascadeOnDelete()
+                ->index();
             $table->string('line1');
             $table->string('line2')->nullable();
             $table->string('city');
             $table->string('state');
             $table->string('postal_code');
-            $table->string('country');
-            $table->string('type')->default('home'); // home, office, billing, shipping
+            $table->string('country')->default('Nepal');
+            $table->enum('type', [
+                'home',
+                'office',
+                'billing',
+                'shipping'
+            ])->default('home');
             $table->boolean('is_default')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

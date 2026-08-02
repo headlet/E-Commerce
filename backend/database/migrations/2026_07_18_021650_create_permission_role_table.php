@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('permission_role', function (Blueprint $table) {
-            $table -> foreignId('role_id')->constrained()->cascadeOnDelete();
-            $table-> foreignId('permission_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('role_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('permission_id')->constrained()->cascadeOnDelete();
             $table->primary(['role_id', 'permission_id']); //make role_id = permission uniques cant repeat twice
         });
     }

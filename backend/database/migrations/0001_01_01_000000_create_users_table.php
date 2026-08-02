@@ -19,10 +19,7 @@ return new class extends Migration
             $table->date('dob');
             $table->string('phone');
             $table->enum('gender', ['male', 'female', 'other']);
-            $table->foreignId('role_id')
-                ->constrained('roles')
-                ->cascadeOnUpdate()
-                ->restrictOnDelete();
+            $table->foreignId('role_id')->constrained('roles')->cascadeOnUpdate()->restrictOnDelete();
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('status', ['active', 'inactive', 'blocked'])

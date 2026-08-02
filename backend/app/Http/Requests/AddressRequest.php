@@ -20,11 +20,9 @@ class AddressRequest extends FormRequest
      *
      * @return array<string, ValidationRule|array<mixed>|string>
      */
-    public function rules($id=null): array
+    public function rules(): array
     {
         return [
-            'user_id' => ['required', 'exists:users,id'],
-
             'line1' => ['required', 'string', 'max:255'],
             'line2' => ['nullable', 'string', 'max:255'],
 
@@ -35,8 +33,7 @@ class AddressRequest extends FormRequest
 
             'type' => [
                 'required',
-                'string',
-                'in:home,office,billing,shipping'
+                'in:home,office,billing,shipping',
             ],
 
             'is_default' => ['sometimes', 'boolean'],
