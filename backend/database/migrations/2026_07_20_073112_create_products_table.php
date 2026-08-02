@@ -13,21 +13,18 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('category_id')
                 ->constrained()
-                ->cascadeOnDelete();
-
+                ->restrictOnDelete();;
             $table->string('name');
-
             $table->string('slug')->unique();
-
             $table->text('description')->nullable();
-
-            $table->string('brand')->nullable();
-
+            $table->foreignId('brand_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
             $table->boolean('is_active')->default(true);
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

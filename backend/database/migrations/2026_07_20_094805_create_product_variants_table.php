@@ -13,25 +13,17 @@ return new class extends Migration
     {
         Schema::create('product_variants', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('product_id')
                 ->constrained()
-                ->cascadeOnDelete();
-
+                ->restrictOnDelete();
             $table->string('sku')->unique();
-
-            // Example:
-            // Color:Red,Size:XL
-            $table->string('option_values');
-
+            //Example: Color:Red,Size:XL
+            $table->json('option_values');
             $table->decimal('price', 10, 2);
-
             $table->decimal('compare_at_price', 10, 2)->nullable();
-
             $table->decimal('weight', 10, 2)->default(0);
-
             $table->boolean('is_active')->default(true);
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

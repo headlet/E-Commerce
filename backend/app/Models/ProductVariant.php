@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class ProductVariant extends Model
 {
+    use HasFactory, Notifiable, SoftDeletes;
     protected $fillable = [
         'product_id',
         'sku',

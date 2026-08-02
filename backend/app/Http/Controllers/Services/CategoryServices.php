@@ -18,11 +18,11 @@ class CategoryServices extends Services
     public function store(Request $request)
     {
         $category = $request->except('__token');
-
         return $this->model->create($category);
     }
 
-       public function update(Request $request, String $id) {
+    public function update(Request $request, String $id)
+    {
         $category = $this->getById($id);
         $data = $request->except('__token');
         return $category->update($data);
