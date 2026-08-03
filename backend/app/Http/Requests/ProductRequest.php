@@ -49,9 +49,8 @@ class ProductRequest extends FormRequest
             ],
 
             'brand' => [
-                'nullable',
-                'string',
-                'max:255',
+                'required',
+                'exists:brand,id',
             ],
 
             'is_active' => [
@@ -59,7 +58,7 @@ class ProductRequest extends FormRequest
                 'boolean',
             ],
 
-           
+
         ];
     }
 }

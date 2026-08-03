@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 use Override;
 
 class ProductServices extends Services
@@ -36,7 +37,7 @@ class ProductServices extends Services
     //     "name": "Laptop",
     //     "slug": "laptop",
     //     "description": "Gaming laptop",
-    //     "brand": "Dell",
+    //     "brand-id": "1",
     //     "is_active": true,
 
     //     "images": [
@@ -61,8 +62,16 @@ class ProductServices extends Services
         return DB::transaction(function () use ($request) {
 
             $productData = Arr::except($request->all(), ['images', 'variants']);
+            $productData['slug'] = generateSlug($productData['name']);
+
+            if ($this->model->where('slug', $productData['slug'])->exists()) {
+                throw ValidationException::withMessages([
+                    'name' => ['A product with this name already exists.'],
+                ]);
+            }
 
             $product = $this->model->create($productData);
+
 
             if ($request->has('images')) {
 
@@ -106,7 +115,7 @@ class ProductServices extends Services
                 }
             }
 
-            return $product->load('image', 'variant');
+            return $product->load('image', 'variant', 'brand');
         });
     }
 
@@ -116,6 +125,18 @@ class ProductServices extends Services
 
         $product = $this->getById($id);
         $productData = $request->except('__token');
+        $productData['slug'] = generateSlug($productData['name']);
+
+        if (
+            $this->model
+            ->where('slug', $productData['slug'])
+            ->where('id', '!=', $id)
+            ->exists()
+        ) {
+            throw ValidationException::withMessages([
+                'name' => ['A product with this name already exists.'],
+            ]);
+        }
 
         return  $product->update($productData);
     }
