@@ -26,7 +26,7 @@ class Services extends Controller
 
     public function store(Request $request)
     {
-        
+
         return $this->model::create(
             $request->all()
         );
@@ -35,6 +35,13 @@ class Services extends Controller
     public function edit(string $id)
     {
         return $this->getById($id);
+    }
+
+    public function update(Request $request, String $id)
+    {
+        $data = $this->getById($id);
+        $requestData = $request->except('__token');
+        return $data->update($requestData);
     }
 
     public function destroy(string $id)
