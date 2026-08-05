@@ -36,7 +36,7 @@ class WishlistRequest extends FormRequest
                 'min:1',
             ],
 
-            'items.*.product_variant_id' => [
+            'product_variant_id' => [
                 'required',
                 'exists:product_variants,id',
                 'distinct',
