@@ -33,27 +33,22 @@ class CartRequest extends FormRequest
                 Rule::in(['active', 'ordered', 'abandoned']),
             ],
 
-            // Cart Items
-            'items' => [
-                'required',
-                'array',
-                'min:1',
-            ],
 
-            'items.*.product_variant_id' => [
+
+            'product_variant_id' => [
                 'required',
                 'integer',
                 'exists:product_variants,id',
                 'distinct',
             ],
 
-            'items.*.quantity' => [
+            'quantity' => [
                 'required',
                 'integer',
                 'min:1',
             ],
 
-            'items.*.unit_price' => [
+            'unit_price' => [
                 'required',
                 'numeric',
                 'min:0',
@@ -70,21 +65,18 @@ class CartRequest extends FormRequest
             'user_id.required' => 'User is required.',
             'user_id.exists' => 'Selected user does not exist.',
 
-            'items.required' => 'At least one cart item is required.',
-            'items.array' => 'Items must be an array.',
-            'items.min' => 'At least one item must be added.',
 
-            'items.*.product_variant_id.required' => 'Product variant is required.',
-            'items.*.product_variant_id.exists' => 'Selected product variant does not exist.',
-            'items.*.product_variant_id.distinct' => 'Duplicate product variants are not allowed.',
+            'product_variant_id.required' => 'Product variant is required.',
+            'product_variant_id.exists' => 'Selected product variant does not exist.',
+            'product_variant_id.distinct' => 'Duplicate product variants are not allowed.',
 
-            'items.*.quantity.required' => 'Quantity is required.',
-            'items.*.quantity.integer' => 'Quantity must be an integer.',
-            'items.*.quantity.min' => 'Quantity must be at least 1.',
+            'quantity.required' => 'Quantity is required.',
+            'quantity.integer' => 'Quantity must be an integer.',
+            'quantity.min' => 'Quantity must be at least 1.',
 
-            'items.*.unit_price.required' => 'Unit price is required.',
-            'items.*.unit_price.numeric' => 'Unit price must be a number.',
-            'items.*.unit_price.min' => 'Unit price cannot be negative.',
+            'unit_price.required' => 'Unit price is required.',
+            'unit_price.numeric' => 'Unit price must be a number.',
+            'unit_price.min' => 'Unit price cannot be negative.',
         ];
     }
 }

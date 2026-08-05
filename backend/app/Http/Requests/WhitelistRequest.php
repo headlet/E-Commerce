@@ -30,11 +30,6 @@ class WishlistRequest extends FormRequest
                 'boolean',
             ],
 
-            'items' => [
-                'required',
-                'array',
-                'min:1',
-            ],
 
             'product_variant_id' => [
                 'required',
@@ -47,8 +42,7 @@ class WishlistRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'items.required' => 'Wishlist must contain at least one item.',
-            'items.*.product_variant_id.distinct' => 'Duplicate products are not allowed.',
+            'product_variant_id.distinct' => 'Duplicate products are not allowed.',
         ];
     }
 }
