@@ -33,8 +33,6 @@ class CartRequest extends FormRequest
                 Rule::in(['active', 'ordered', 'abandoned']),
             ],
 
-
-
             'product_variant_id' => [
                 'required',
                 'integer',
