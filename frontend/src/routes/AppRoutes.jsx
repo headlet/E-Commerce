@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 // Layouts
-import PublicLayout from "../pages/public/layout/PublicLayout";
+import PublicLayout from "../pages/public/layout/publicLayout";
 import AdminLayout from "../pages/admin/layout/AdminLayout";
 
 // Public Pages

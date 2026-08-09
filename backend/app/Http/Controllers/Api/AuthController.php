@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Services\AuthServices;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\auth\loginRequest;
+use App\Http\Requests\auth\registerRequest;
 use Nette\Schema\ValidationException;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
@@ -18,9 +18,8 @@ class AuthController extends Controller
         $this->authServices = $authServices;
     }
 
-    public function register(RegisterRequest $request)
+    public function register(registerRequest $request)
     {
-
         $resources = $this->authServices->register($request->validated());
 
         return response()->json([
@@ -32,7 +31,7 @@ class AuthController extends Controller
         ], 201);
     }
 
-    public function login(LoginRequest $request)
+    public function login(loginRequest $request)
     {
         $resources = $this->authServices->login($request->validated());
 

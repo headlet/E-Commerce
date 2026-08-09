@@ -16,7 +16,7 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
 
-            $table->foreignId('shipping_address_id')
+            $table->foreignId('addresses_id')
                 ->constrained()
                 ->cascadeOnDelete();
 
