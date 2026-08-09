@@ -23,7 +23,27 @@ class InventoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'product_variant_id' => [
+                'required',
+                'integer',
+                'exists:product_variants,id',
+                'unique:inventories,product_variant_id',
+            ],
+            'quantity' => [
+                'sometimes',
+                'integer',
+                'min:0',
+            ],
+            'reserved_quantity' => [
+                'sometimes',
+                'integer',
+                'min:0',
+            ],
+            'reorder_point' => [
+                'sometimes',
+                'integer',
+                'min:0',
+            ],
         ];
     }
 }
