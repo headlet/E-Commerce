@@ -48,9 +48,9 @@ class AuthServices
     }
 
     public function logout(): void
-    {
-        JWTAuth::logout();
-    }
+{
+    JWTAuth::invalidate(JWTAuth::getToken());
+}
 
     public function refresh(): string
     {
