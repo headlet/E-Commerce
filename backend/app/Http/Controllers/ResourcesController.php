@@ -102,7 +102,7 @@ class ResourcesController extends Controller
         }
     }
 
-    public function edit(String $id)
+    public function show(String $id)
     {
         try {
             $resources = $this->service->getById($id);
@@ -116,7 +116,7 @@ class ResourcesController extends Controller
             $response = $this->service->edit($id);
 
             return response()->json([
-                'message' => $this->getName() . ' ' . 'found successfully for edit.',
+                'message' => $this->getName() . ' ' . 'found successfully for viewing.',
                 'data' => $response,
             ], 200);
         } catch (AuthorizationException $e) {
@@ -161,9 +161,9 @@ class ResourcesController extends Controller
 
             $response = $this->service->update($request, $id);
 
-            if (isset($response['error'])) {
+            if ($response === false) {
                 return response()->json([
-                    'message' => 'Error while updating resource: ' . $response['error'],
+                    'message' => 'Error while updating resource:  ' . $this->getName(),
                 ], 400);
             }
 
@@ -201,9 +201,9 @@ class ResourcesController extends Controller
             }
             $response = $this->service->destroy($id);
 
-            if (isset($response['error'])) {
+            if ($response === false) {
                 return response()->json([
-                    'message' => $response['error'],
+                    'message' => 'Unable to delete ' . $this->getName(),
                 ], 400);
             }
 

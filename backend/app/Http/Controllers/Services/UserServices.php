@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Services;
+
 use App\Models\User;
 use Illuminate\Http\Request;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class UserServices extends Services
 {
@@ -40,9 +42,10 @@ class UserServices extends Services
 
     public function destroy(String $id)
     {
-
         $user = $this->getById($id);
-        if (!$user) {
+        $authenticatedUser = JWTAuth::user();
+
+        if ($user->id === $authenticatedUser->id) {
             return false;
         }
         return $user->delete();

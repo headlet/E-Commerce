@@ -48,8 +48,8 @@ class ProductRequest extends FormRequest
                 'string',
             ],
 
-            'brand' => [
-                'required',
+            'brand_id' => [
+                'nullable',
                 'exists:brand,id',
             ],
 

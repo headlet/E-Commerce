@@ -20,21 +20,34 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::group(['middleware' => 'auth:api'], function () {
+Route::middleware('auth:api')->group(function () {
+
+    // Authentication
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/me', [AuthController::class, 'me']);
-    Route::resource('user', UserController::class)->except("show", 'create', 'store');
-    Route::resource('role', RoleController::class)->except('show');
-    Route::resource('address', AddressController::class)->except('show');
-    Route::resource('category', CategoryController::class)->except('show');
-    Route::resource('product', ProductController::class)->except('show');
-    Route::resource('brand', BrandController::class)->except('show');
-    Route::resource('product/image', ProductImageController::class)->except('show');
-    Route::get("inventory", [InventoryController::class, 'index']);
-    Route::resource('product/varient', ProductVariantController::class)->except('show');
-    Route::resource('review', ReviewController::class)->except('show');
-    Route::resource('cart', CartController::class)->except('show');
-    Route::resource('wishlist', WishlistController::class)->except('show');
-    //order and payment 
+
+    // Users & roles
+    Route::apiResource('user', UserController::class)->except('create');
+    Route::apiResource('role', RoleController::class)->except('create');
+
+    // Address
+    Route::apiResource('address', AddressController::class)->except('create');
+
+    // Catalog
+    Route::apiResource('category', CategoryController::class)->except('create');
+    Route::apiResource('brand', BrandController::class)->except('create');
+    Route::apiResource('product', ProductController::class)->except('create');
+    Route::apiResource('product/image', ProductImageController::class)->except('create');
+    Route::apiResource('product/variant', ProductVariantController::class)->except('create');
+
+    // Reviews
+    Route::apiResource('review', ReviewController::class)->except('create');
+
+    // Shopping
+    Route::apiResource('cart', CartController::class)->except('create');
+    Route::apiResource('wishlist', WishlistController::class)->except('create');
+
+    // Inventory
+    Route::get('/inventory', [InventoryController::class, 'index']);
 });
