@@ -60,6 +60,7 @@ class ResourcesController extends Controller
 
     public function store(Request $request)
     {
+        
         try {
             $validationRequestClass = $this->getValidationRequest();
 

@@ -13,6 +13,7 @@ class ProductImage extends Model
     use HasFactory, Notifiable, SoftDeletes;
     protected $fillable = [
         'product_id',
+        'file',
         'url',
         'alt_text',
         'sort_order',

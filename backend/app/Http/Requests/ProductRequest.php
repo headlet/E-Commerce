@@ -13,7 +13,7 @@ class ProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class ProductRequest extends FormRequest
             ],
 
             'slug' => [
-                'required',
+                'nullable',
                 'string',
                 'max:255',
                 Rule::unique('products', 'slug')->ignore($id),
@@ -50,7 +50,7 @@ class ProductRequest extends FormRequest
 
             'brand_id' => [
                 'nullable',
-                'exists:brand,id',
+                'exists:brands,id',
             ],
 
             'is_active' => [
