@@ -60,7 +60,7 @@ class ResourcesController extends Controller
 
     public function store(Request $request)
     {
-        
+
         try {
             $validationRequestClass = $this->getValidationRequest();
 
@@ -138,9 +138,9 @@ class ResourcesController extends Controller
 
     public function update(Request $request, String $id)
     {
+        
         try {
             $resources = $this->service->getById($id);
-
             if (!$resources) {
                 return response()->json([
                     'message' => 'Resource not found',

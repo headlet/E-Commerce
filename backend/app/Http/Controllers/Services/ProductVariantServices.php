@@ -15,6 +15,12 @@ class ProductVariantServices extends Services
         parent::__construct($model);
     }
 
+
+        public function getAllData(int $pagination)
+    {
+        return $this->model::with('inventory')->paginate($pagination);
+    }
+
     public function store(Request $request)
     {
         $data = $request->except('__token');

@@ -27,7 +27,7 @@ class ProductServices extends Services
 
     public function getById(string $id)
     {
-        $product = $this->model::with('image')->findOrFail($id);
+        $product = $this->model->findOrFail($id);
         return $product;
     }
 
