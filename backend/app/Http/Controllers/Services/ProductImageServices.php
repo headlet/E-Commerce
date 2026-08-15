@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Services;
 use App\Http\Controllers\Controller;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductImageServices extends Services
 {
@@ -13,17 +15,55 @@ class ProductImageServices extends Services
         parent::__construct($model);
     }
 
+
     public function store(Request $request)
     {
-        $Image = $request->except('__token');
+        try {
+            DB::transaction(function () use ($request) {
 
-        return $this->model->create($Image);
+                $productId = $request->input('product_id');
+
+                foreach ($request->input('images', []) as $index => $imageData) {
+
+                    $data = [
+                        'product_id' => $productId,
+                        'file' => $request
+                            ->file("images.$index.file")
+                            ->store('uploads/product', 'public'),
+                        'alt_text' => $imageData['alt_text'] ?? null,
+                        'sort_order' => $imageData['sort_order'] ?? ($index + 1),
+                        'is_primary' => $imageData['is_primary'] ?? false,
+                    ];
+
+                    $this->model->create($data);
+                }
+            });
+
+            return true;
+        } catch (\Throwable $e) {
+            return false;
+        }
     }
 
     public function update(Request $request, String $id)
     {
-        $Image = $this->getById($id);
+
+        dd($request->all());
+        $image = $this->getById($id);
+
         $data = $request->except('__token');
-        return $Image->update($data);
+
+        if ($request->hasFile('file')) {
+
+            if ($image->file && Storage::disk('public')->exists($image->file)) {
+                Storage::disk('public')->delete($image->file);
+            }
+
+            $data['file'] = $request
+                ->file('file')
+                ->store('uploads/product', 'public');
+        }
+
+        return $image->update($data);
     }
 }

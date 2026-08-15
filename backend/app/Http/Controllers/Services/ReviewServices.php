@@ -20,7 +20,7 @@ class ReviewServices extends Services
         Gate::authorize('update', $review);
 
         $review->update(
-            $request->validated()
+            $request->all()
         );
 
         return $review;

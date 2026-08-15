@@ -37,9 +37,10 @@ Route::middleware('auth:api')->group(function () {
     // Catalog
     Route::apiResource('category', CategoryController::class)->except('create');
     Route::apiResource('brand', BrandController::class)->except('create');
-    Route::apiResource('product', ProductController::class)->except('create');
-    Route::apiResource('product/image', ProductImageController::class)->except('create');
+        Route::apiResource('product/image', ProductImageController::class)->except('create');
     Route::apiResource('product/variant', ProductVariantController::class)->except('create');
+    Route::apiResource('product', ProductController::class)->except('create');
+
 
     // Reviews
     Route::apiResource('review', ReviewController::class)->except('create');
