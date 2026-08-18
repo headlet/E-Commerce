@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedInteger('quantity')->default(0);
             $table->unsignedInteger('reserved_quantity')->default(0);
             $table->unsignedInteger('reorder_point')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

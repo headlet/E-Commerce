@@ -2,63 +2,89 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProductImageRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, ValidationRule|array<mixed>|string>
-     */
-    public function rules(): array
+    public function rules($id = null): array
     {
-        return [
-            //Product image
+        // =========================
+        // UPDATE
+        // =========================
+        if ($id) {
+            return [
+                'file' => [
+                    'nullable',
+                    'image',
+                    'mimes:jpg,jpeg,png,webp',
+                    'max:2048',
+                ],
 
-            'product_id' => [
-                'required',
-                'exists:products,id',
-            ],
+                'alt_text' => [
+                    'nullable',
+                    'string',
+                    'max:255',
+                ],
 
-            'images' => [
-                'required',
-                'array',
-                'min:1',
-            ],
+                'sort_order' => [
+                    'nullable',
+                    'integer',
+                    'min:0',
+                ],
 
-            'images.*.file' => [
-                'required',
-                'image',
-                'mimes:jpg,jpeg,png,webp',
-                'max:2048',
-            ],
+                'is_primary' => [
+                    'sometimes',
+                    'boolean',
+                ],
+            ];
+        }
 
-            'images.*.alt_text' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
+        // =========================
+        // CREATE
+        // =========================
+        else {
+            return [
+                'product_id' => [
+                    'required',
+                    'integer',
+                    'exists:products,id',
+                ],
 
-            'images.*.sort_order' => [
-                'nullable',
-                'integer',
-                'min:0',
-            ],
+                'images' => [
+                    'required',
+                    'array',
+                    'min:1',
+                ],
 
-            'images.*.is_primary' => [
-                'sometimes',
-                'boolean',
-            ],
-        ];
+                'images.*.file' => [
+                    'required',
+                    'image',
+                    'mimes:jpg,jpeg,png,webp',
+                    'max:2048',
+                ],
+
+                'images.*.alt_text' => [
+                    'nullable',
+                    'string',
+                    'max:255',
+                ],
+
+                'images.*.sort_order' => [
+                    'nullable',
+                    'integer',
+                    'min:0',
+                ],
+
+                'images.*.is_primary' => [
+                    'sometimes',
+                    'boolean',
+                ],
+            ];
+        }
     }
 }

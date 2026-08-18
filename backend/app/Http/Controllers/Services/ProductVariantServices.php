@@ -16,7 +16,7 @@ class ProductVariantServices extends Services
     }
 
 
-        public function getAllData(int $pagination)
+    public function getAllData(int $pagination)
     {
         return $this->model::with('inventory')->paginate($pagination);
     }
@@ -27,45 +27,51 @@ class ProductVariantServices extends Services
 
         return DB::transaction(function () use ($data) {
 
+            $variantData = $data['variants'][0];
+
             $variant = $this->model->create([
                 'product_id'       => $data['product_id'],
-                'sku'              => $data['sku'],
-                'option_values'    => $data['option_values'],
-                'price'            => $data['price'],
-                'compare_at_price' => $data['compare_at_price'] ?? null,
-                'weight'           => $data['weight'] ?? null,
-                'is_active'        => $data['is_active'] ?? true,
+                'sku'              => $variantData['sku'],
+                'option_values'    => $variantData['option_values'],
+                'price'            => $variantData['price'],
+                'compare_at_price' => $variantData['compare_at_price'] ?? null,
+                'weight'           => $variantData['weight'] ?? null,
+                'is_active'        => $variantData['is_active'] ?? true,
             ]);
 
             $variant->inventory()->create([
-                'quantity'          => $data['quantity'],
+                'quantity'          => $variantData['quantity'],
                 'reserved_quantity' => 0,
-                'reorder_point'     => $data['reorder_point'],
+                'reorder_point'     => $variantData['reorder_point'],
             ]);
 
             return $variant->load('inventory');
         });
     }
+
     public function update(Request $request, string $id)
     {
         $variant = $this->getById($id);
 
         $data = $request->except('_token');
 
+
         return DB::transaction(function () use ($variant, $data) {
 
+            $variantData = $data['variants'][0];
+
             $variant->update([
-                'sku'              => $data['sku'],
-                'option_values'    => $data['option_values'],
-                'price'            => $data['price'],
-                'compare_at_price' => $data['compare_at_price'] ?? null,
-                'weight'           => $data['weight'] ?? null,
-                'is_active'        => $data['is_active'] ?? true,
+                'sku'              => $variantData['sku'],
+                'option_values'    => $variantData['option_values'],
+                'price'            => $variantData['price'],
+                'compare_at_price' => $variantData['compare_at_price'] ?? null,
+                'weight'           => $variantData['weight'] ?? null,
+                'is_active'        => $variantData['is_active'] ?? true,
             ]);
 
             $variant->inventory->update([
-                'quantity'      => $data['quantity'],
-                'reorder_point' => $data['reorder_point'],
+                'quantity'      => $variantData['quantity'],
+                'reorder_point' => $variantData['reorder_point'],
             ]);
 
             return $variant->load('inventory');

@@ -114,7 +114,7 @@ class ResourcesController extends Controller
                 ], 404);
             }
 
-            $response = $this->service->edit($id);
+            $response = $this->service->show($id);
 
             return response()->json([
                 'message' => $this->getName() . ' ' . 'found successfully for viewing.',

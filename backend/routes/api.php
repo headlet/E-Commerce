@@ -29,25 +29,25 @@ Route::middleware('auth:api')->group(function () {
 
     // Users & roles
     Route::apiResource('user', UserController::class)->except('create');
-    Route::apiResource('role', RoleController::class)->except('create');
+    Route::apiResource('role', RoleController::class);
 
     // Address
-    Route::apiResource('address', AddressController::class)->except('create');
+    Route::apiResource('address', AddressController::class);
 
     // Catalog
-    Route::apiResource('category', CategoryController::class)->except('create');
-    Route::apiResource('brand', BrandController::class)->except('create');
-        Route::apiResource('product/image', ProductImageController::class)->except('create');
-    Route::apiResource('product/variant', ProductVariantController::class)->except('create');
-    Route::apiResource('product', ProductController::class)->except('create');
+    Route::apiResource('category', CategoryController::class);
+    Route::apiResource('brand', BrandController::class);
+        Route::apiResource('product/image', ProductImageController::class);
+    Route::apiResource('product/variant', ProductVariantController::class);
+    Route::apiResource('product', ProductController::class);
 
 
     // Reviews
-    Route::apiResource('review', ReviewController::class)->except('create');
+    Route::apiResource('review', ReviewController::class);
 
     // Shopping
-    Route::apiResource('cart', CartController::class)->except('create');
-    Route::apiResource('wishlist', WishlistController::class)->except('create');
+    Route::apiResource('cart', CartController::class);
+    Route::apiResource('wishlist', WishlistController::class);
 
     // Inventory
     Route::get('/inventory', [InventoryController::class, 'index']);

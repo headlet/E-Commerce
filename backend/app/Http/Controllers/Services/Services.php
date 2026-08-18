@@ -32,7 +32,7 @@ class Services extends Controller
         );
     }
 
-    public function edit(string $id)
+    public function show(string $id)
     {
         return $this->getById($id);
     }

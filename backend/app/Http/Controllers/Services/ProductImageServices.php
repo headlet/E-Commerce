@@ -47,11 +47,9 @@ class ProductImageServices extends Services
 
     public function update(Request $request, String $id)
     {
-
-        dd($request->all());
         $image = $this->getById($id);
 
-        $data = $request->except('__token');
+        $data = $request->all();
 
         if ($request->hasFile('file')) {
 
@@ -62,7 +60,12 @@ class ProductImageServices extends Services
             $data['file'] = $request
                 ->file('file')
                 ->store('uploads/product', 'public');
+        } else {
+            $data['file'] = $image->file;
         }
+
+        $data['product_id'] = $image->product_id;
+
 
         return $image->update($data);
     }

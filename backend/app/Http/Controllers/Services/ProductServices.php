@@ -32,31 +32,6 @@ class ProductServices extends Services
     }
 
 
-    //     {
-    //     "category_id": 1,
-    //     "name": "Laptop",
-    //     "slug": "laptop",
-    //     "description": "Gaming laptop",
-    //     "brand-id": "1",
-    //     "is_active": true,
-
-    //     "images": [
-    //         {
-    //             "url": "...",
-    //             "alt_text": "...",
-    //             "is_primary": true
-    //         }
-    //     ],
-
-    //     "variants": [
-    //         {
-    //             "color": "Black",
-    //             "price": 1000,
-    //             "stock": 5
-    //         }
-    //     ]
-    // }
-
     public function store(Request $request)
     {
         return DB::transaction(function () use ($request) {
@@ -141,13 +116,27 @@ class ProductServices extends Services
         return  $product->update($productData);
     }
 
-    public function destroy(String $id)
+    public function destroy(string $id)
     {
         $product = $this->getById($id);
-        DB::transaction(function () use ($product) {
 
-            foreach ($product->image as $images) {
-                Storage::disk('public')->delete($images->url);
+        return DB::transaction(function () use ($product) {
+
+            $images = $product->image()->get();
+
+            foreach ($images as $image) {
+                if (!empty($image->file)) {
+                    Storage::delete($image->file);
+                }
+            }
+            $product->image()->delete();
+            $variants = $product->variant()->get();
+
+            foreach ($variants as $variant) {
+
+                $variant->inventory()->delete();
+
+                $variant->delete();
             }
 
             return $product->delete();

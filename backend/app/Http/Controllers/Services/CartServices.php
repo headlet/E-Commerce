@@ -15,15 +15,21 @@ class CartServices extends Services
         parent::__construct($model);
     }
 
+    public function getAllData(int $pagination)
+    {
+        return $this->model::with('items')->latest()->paginate($pagination);
+    }
+
+
     public function store(Request $request)
     {
         return DB::transaction(function () use ($request) {
 
-            $userId = JWTAuth::id();
+            // $userId = JWTAuth::id();
 
             $cart = $this->model::firstOrCreate(
                 [
-                    'user_id' => $userId,
+                    'user_id' => $request->user_id,
                 ],
                 [
                     'status' => 'active',
@@ -50,38 +56,47 @@ class CartServices extends Services
         });
     }
 
+    public function show(string $id)
+    {
+        return $this->model->with('items')->findorFail($id);
+    }
+
     public function update(Request $request, string $id)
     {
         return DB::transaction(function () use ($request, $id) {
 
             $cart = $this->model
-                ->where('user_id', JWTAuth::id())
+                ->where('id', $id)
+                ->where('user_id', $request->user_id)
                 ->firstOrFail();
 
             $cartItem = $cart->items()
-                ->where('product_variant_id', $id)
+                ->where('product_variant_id', $request->product_variant_id)
                 ->firstOrFail();
 
             $cartItem->update([
                 'quantity' => $request->quantity,
+                'unit_price'         => $request->unit_price
             ]);
 
             return $cartItem->fresh();
         });
     }
 
+    // have cart items id 
     public function destroy(string $id)
     {
-        return DB::transaction(function () use ($id) {
+        $userId = auth('api')->id();
+        return DB::transaction(function () use ($id, $userId) {
 
             $cart = $this->model
-                ->where('user_id', JWTAuth::id())
+                ->where('user_id', $userId)
                 ->firstOrFail();
 
             $cartItem = $cart->items()
-                ->where('product_variant_id', $id)
+                ->where('id', $id)
                 ->firstOrFail();
-
+            
             $cartItem->delete();
 
             // Delete cart if empty
