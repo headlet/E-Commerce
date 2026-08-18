@@ -61,16 +61,17 @@ class CartServices extends Services
         return $this->model->with('items')->findorFail($id);
     }
 
+
+    //cart item id not cart id
     public function update(Request $request, string $id)
     {
         return DB::transaction(function () use ($request, $id) {
 
             $cart = $this->model
-                ->where('id', $id)
                 ->where('user_id', $request->user_id)
                 ->firstOrFail();
 
-            $cartItem = $cart->items()
+            $cartItem = $cart->items()->where('id', $id)
                 ->where('product_variant_id', $request->product_variant_id)
                 ->firstOrFail();
 
