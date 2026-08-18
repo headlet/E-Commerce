@@ -19,6 +19,16 @@ class WishlistServices extends Services
         parent::__construct($model);
     }
 
+
+    public function getAllData(int $pagination)
+    {
+        return $this->model::with([
+            'items.productVariant.product',
+        ])
+            ->latest()
+            ->paginate($pagination);
+    }
+    
     public function store(Request $request)
     {
         return

@@ -17,7 +17,11 @@ class CartServices extends Services
 
     public function getAllData(int $pagination)
     {
-        return $this->model::with('items')->latest()->paginate($pagination);
+        return $this->model::with([
+            'items.productVariant.product',
+        ])
+            ->latest()
+            ->paginate($pagination);
     }
 
 
@@ -97,7 +101,7 @@ class CartServices extends Services
             $cartItem = $cart->items()
                 ->where('id', $id)
                 ->firstOrFail();
-            
+
             $cartItem->delete();
 
             // Delete cart if empty
