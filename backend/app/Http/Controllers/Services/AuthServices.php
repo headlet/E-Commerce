@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Services;
 
+use App\Events\UserRegistered;
+use App\Models\EmailVerificationToken;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Nette\Schema\ValidationException;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Str;
 
 class AuthServices
 {
@@ -22,13 +24,35 @@ class AuthServices
             'dob'        => $data['dob'],
             'phone'      => $data['phone'],
             'gender'     => $data['gender'],
-            'role_id' => Role::where('name', 'Customer')->value('id'),
+            'role_id'    => Role::where('name', 'Customer')->value('id'),
             'email'      => $data['email'],
-            'password'   => $data['password'],
+
+            // Important
+            'password'   => Hash::make($data['password']),
         ]);
 
-        // Generate JWT Token
+        $verificationToken = Str::random(64);
+
+        EmailVerificationToken::create([
+            'user_id' => $user->id,
+
+            // Never store the raw token
+            'token_hash' => hash(
+                'sha256',
+                $verificationToken
+            ),
+
+            // Token valid for 60 minutes
+            'expires_at' => now()->addMinutes(60),
+        ]);
+
+        event(new UserRegistered(
+            $user,
+            $verificationToken
+        ));
+
         $token = JWTAuth::fromUser($user);
+
         return [
             'user' => $user,
             'token' => $token,
@@ -48,15 +72,15 @@ class AuthServices
     }
 
     public function logout(): void
-{
-    JWTAuth::invalidate(JWTAuth::getToken());
-}
+    {
+        JWTAuth::invalidate(JWTAuth::getToken());
+    }
 
     public function refresh(): string
     {
         return JWTAuth::refresh();
     }
-    
+
     public function me(): User
     {
         return JWTAuth::user();

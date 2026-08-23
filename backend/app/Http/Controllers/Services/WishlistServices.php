@@ -28,7 +28,7 @@ class WishlistServices extends Services
             ->latest()
             ->paginate($pagination);
     }
-    
+
     public function store(Request $request)
     {
         return
@@ -48,25 +48,28 @@ class WishlistServices extends Services
             });
     }
 
+    // have wishlist items id 
     public function destroy(string $id)
     {
-        DB::transaction(function () use ($id) {
+        $userId = auth('api')->id();
+        return DB::transaction(function () use ($id, $userId) {
 
             $wishlist = $this->model
-                ->where('user_id', JWTAuth::user()->id)
+                ->where('user_id', $userId)
                 ->firstOrFail();
 
             $wishlistItem = $wishlist->items()
-                ->where('product_variant_id', $id)
+                ->where('id', $id)
                 ->firstOrFail();
 
             $wishlistItem->delete();
 
+            // Delete wislist if empty
             if (! $wishlist->items()->exists()) {
                 $wishlist->delete();
             }
-        });
 
-        return true;
+            return true;
+        });
     }
 }

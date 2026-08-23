@@ -72,7 +72,8 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Review::class);
     }
 
-    public function wishlist(){
+    public function wishlist()
+    {
         return $this->hasOne(Wishlist::class);
     }
 
@@ -86,4 +87,11 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function emailVerificationToken()
+    {
+        return $this->hasOne(EmailVerificationToken::class);
+    }
+
+    
 }
